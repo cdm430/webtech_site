@@ -1,16 +1,50 @@
-h1{
+
+#title{
     color: red;
     background-color: black;
     height: 50px;
-    -webkit-transition: height 0.8s;
-	-moz-transition: height 0.8s;
-    transition: height 0.8s;
+    margin: 0px  0px 0px 0px;
+    position: static;
+    -webkit-transition: height 0.4s;
+	-moz-transition: height 0.4s;
+    transition: height 0.4s;
 
-}
-h1:hover {
-    height: 300px;
 }
 
 body {
+    font-family: sans-serif;
     margin: 0px;
 }
+
+#dropdown {
+    background-color: red;
+    height: 0px;
+    margin:  0px 0px 0px 0px;
+    position: static;
+    display: none;
+    -webkit-transition: height 0.8s;
+	-moz-transition: height 0.8s;
+    transition: height 0.8s;
+}
+
+#title:hover + #dropdown {
+    height: 20px;
+    display: block;
+}
+
+#dropdown:hover {
+    height: 20px;
+    display: block;
+}
+
+.menu-item {
+    display: inline;
+    list-style-type: none;
+    margin-right: 2em;
+    margin-left: 2em;
+    position: relative;
+    -webkit-transition: height 0.8s;
+	-moz-transition: height 0.8s;
+    transition: height 0.8s;
+}
+
