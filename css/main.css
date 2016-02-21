@@ -1,7 +1,8 @@
 
 #title{
     color: red;
-    background-color: black;
+    text-align: center;
+/*    background-color: black;*/
     height: 50px;
     margin: 0px  0px 0px 0px;
     position: static;
@@ -14,6 +15,9 @@
 body {
     font-family: sans-serif;
     margin: 0px;
+    background-image: url("https://static1.squarespace.com/static/5681b73405f8e2137580e04e/t/5681e5c3d8af10374c4a63aa/1451353540902/About+Splash.jpg?format=2500w");
+    background-position: left top;
+    background-attachment: fixed;
 }
 
 #dropdown {
@@ -48,3 +52,26 @@ body {
     transition: height 0.8s;
 }
 
+.menu-link {
+    color: black;
+}
+
+.menu-link:link {
+    text-decoration: none;
+}
+
+.menu-link:visited {
+    color: blue;
+}
+
+.menu-link:hover {
+    color: white;
+}
+
+#planet {
+    width: 45%;
+    height: auto;
+    position: relative;
+    left: 1150px;
+    top: 60px;
+}
