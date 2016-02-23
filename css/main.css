@@ -1,14 +1,11 @@
 
-#title{
+.dropdown-parent{
     color: red;
     text-align: center;
 /*    background-color: black;*/
     height: 50px;
     margin: 0px  0px 0px 0px;
     position: static;
-    -webkit-transition: height 0.4s;
-	-moz-transition: height 0.4s;
-    transition: height 0.4s;
 
 }
 
@@ -20,25 +17,23 @@ body {
     background-attachment: fixed;
 }
 
-#dropdown {
-    background-color: red;
-    height: 0px;
+.dropdown {
+    visibility: hidden;
+    opacity: 0;
     margin:  0px 0px 0px 0px;
-    position: static;
-    display: none;
-    -webkit-transition: height 0.8s;
-	-moz-transition: height 0.8s;
-    transition: height 0.8s;
+    position: relative;
+    width: 100%;
+
+    transform: translateZ(0%);
+    transform: translateY(50%);
+    transition: all 0.5s ease 0s, visibility 0s linear 0.5s;
 }
 
-#title:hover + #dropdown {
-    height: 20px;
-    display: block;
-}
-
-#dropdown:hover {
-    height: 20px;
-    display: block;
+.dropdown:hover,.dropdown-parent:hover + .dropdown {
+    visibility: visible;
+    opacity: 1;
+    transform: translateX(0%);
+    transition-delay: 0s;
 }
 
 .menu-item {
@@ -47,31 +42,28 @@ body {
     margin-right: 2em;
     margin-left: 2em;
     position: relative;
-    -webkit-transition: height 0.8s;
-	-moz-transition: height 0.8s;
-    transition: height 0.8s;
 }
 
-.menu-link {
-    color: black;
-}
-
-.menu-link:link {
+.menu-link, .menu-link:hover, .menu-link:focus {
     text-decoration: none;
+    color: #aaf;
+    text-shadow: none;
+    -webkit-transition: 250ms linear 0s;
+    -moz-transition: 250ms linear 0s;
+    -o-transition: 250ms linear 0s;
+    transition: 250ms linear 0s;
+    outline: 0 none;
 }
 
-.menu-link:visited {
-    color: blue;
-}
-
-.menu-link:hover {
-    color: white;
+.menu-link:hover, .menu-link:focus {
+    color: #fff;
+    text-shadow: -1px 1px 8px #ffc, 1px -1px 8px #fff;
 }
 
 #planet {
     width: 45%;
     height: auto;
-    position: relative;
-    left: 1150px;
-    top: 60px;
+    margin-left: 50%;
+    margin-right: auto;
+    display: block;
 }
