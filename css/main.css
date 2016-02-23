@@ -1,8 +1,11 @@
+@font-face {
+    font-family: 'Molengo';
+    src: url("../font/Molengo-Regular.ttf");
+}
 
 .dropdown-parent{
     color: red;
     text-align: center;
-/*    background-color: black;*/
     height: 50px;
     margin: 0px  0px 0px 0px;
     position: static;
@@ -10,7 +13,7 @@
 }
 
 body {
-    font-family: sans-serif;
+    font-family: "Molengo";
     margin: 0px;
     background-image: url("https://static1.squarespace.com/static/5681b73405f8e2137580e04e/t/5681e5c3d8af10374c4a63aa/1451353540902/About+Splash.jpg?format=2500w");
     background-position: left top;
