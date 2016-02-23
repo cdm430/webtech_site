@@ -3,6 +3,7 @@
 // Then visit the site at the addresses printed on the console.
 // The server is configured to match the most restrictive publishing sites.
 
+
 // Load the web-server, file-system and file-path modules.
 var http = require('http');
 var https = require('https');
@@ -29,6 +30,7 @@ var types = {
     '.svg'  : 'image/svg+xml',
     '.json' : 'application/json',
     '.pdf'  : 'application/pdf',
+    '.ttf'  : 'font/ttf',
     '.txt'  : 'text/plain', // plain text only
     '.xhtml': '#not suitable for dual delivery, use .html',
     '.htm'  : '#proprietary, non-standard, use .html',
@@ -38,6 +40,8 @@ var types = {
               'closed source, unstable over versions and installations, ' +
               'contains unsharable personal and printer preferences, use .pdf',
 };
+
+
 
 // Start both the http and https services.  Requests can only come from
 // localhost, for security.  (This can be changed to a specific computer, but
