@@ -3,32 +3,34 @@
     src: url("../font/Molengo-Regular.ttf");
 }
 
+@font-face {
+    font-family: 'Prometheus';
+    src:"../font/PROMETHEUS.ttf";
+}
+
 .heading{
     color: #ffffff;
     font-size: 3em;
     text-align: center;
-    min-width: 900px;
     margin: 0% 0% 0% 0%;
     position: relative;
     width: auto;
-    background-color: yellow;
-
+    font-family: 'Prometheus';
 }
 
 body {
+    color: #ffffff;
     font-family: "Molengo";
     margin: 0em;
     background-image: url("https://static1.squarespace.com/static/5681b73405f8e2137580e04e/t/5681e5c3d8af10374c4a63aa/1451353540902/About+Splash.jpg?format=2500w");
     background-position: left top;
     background-attachment: fixed;
+    min-width: 900px;
 }
 
 
 .slider {
-    min-width: 1000px;
     width: 100%;
-    display: inline-block;
-
 }
 
 .compass {
@@ -36,8 +38,10 @@ body {
     height: auto;
     margin: 1% 0% 0% 5%;
     float: left;
-    -webkit-transition: -webkit-transform .8s ease-in-out;
-    transition: transform .4s ease-in-out;
+    -webkit-transition: 0.4s ease-in-out;
+    -moz-transition: 0.4 ease-in-out;
+    -o-transition: 0.4 ease-in-out;
+    transition: 0.4s ease-in-out;
     transform: rotate(90deg);
     z-index: 1;
 
@@ -58,8 +62,8 @@ body {
     opacity: 0;
     margin: 1% 0% 0% 0%;
     line-height: 50px;
-    width: 30%;
-    min-width: 600px;
+    width: 25em;
+    min-width: 700px;
     text-align: center;
     position: relative;
     left: -50px;
@@ -77,9 +81,10 @@ body {
 
 
 .menu-link {
-    margin: 0% 5%;
+    margin: 0em 2em 0em 0em;
     display: inline;
     position: relative;
+    text-transform: uppercase;    
 }
 
 .menu-link, .menu-link:hover, .menu-link:focus {
@@ -97,13 +102,16 @@ body {
 .menu-link:hover, .menu-link:focus {
     color: #fff;
     text-shadow: -1px 1px 8px #ffc, 1px -1px 8px #fff;
+    font-weight: bold;
 }
 
-
-#planet {
-    width: 45%;
-    height: auto;
-    margin-left: 50%;
-    margin-right: auto;
+.main-text {
+    position: relative;
+    top: 2em;
+    margin: 0% 5%;
     display: block;
+    width: 40%;
+    clear: left; 
+    font-size: 1em;
+    line-height: 2em;
 }
