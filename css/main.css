@@ -7,7 +7,8 @@
     color: #ffffff;
     font-size: 3em;
     text-align: center;
-    margin: 0% 0% 0% 5%;
+    min-width: 900px;
+    margin: 0% 0% 0% 0%;
     position: relative;
     width: auto;
 
@@ -15,51 +16,55 @@
 
 body {
     font-family: "Molengo";
-    margin: 0px;
+    margin: 0em;
     background-image: url("https://static1.squarespace.com/static/5681b73405f8e2137580e04e/t/5681e5c3d8af10374c4a63aa/1451353540902/About+Splash.jpg?format=2500w");
     background-position: left top;
     background-attachment: fixed;
 }
 
-.fa {
-    color: white;
-    margin: 0em 2em;
-    position: relative;
+
+.slider {
+    min-width: 1000px;
+    width: 100%;
+    display: inline-block;
+    
+}
+
+.compass {
+    width: 50px;
+    height: auto;
+    margin: 1% 0% 0% 5%;
+    float: left;
 }
 
 
 .dropdown {
     visibility: hidden;
-    list-style-type: none;
-    min-width: 500px;
+    float: left;
     font-size: 1.2em;
     opacity: 0;
-    text-align: left;
-    margin: 0em 2em;
-    padding: 0em;
-    /*margin:  0px 0px 0px 0px;*/
+    margin: 1% 0% 0% 0%;
+    line-height: 50px;
+    width: 30%;
+    min-width: 600px;
+    text-align: center;
     position: relative;
-    top: -1em;
-    left: 2em;
-    width: auto;
-    transform: translateZ(0%);
-    transform: translateY(0%);
-    transform: translateX(-10%);
+    left: -50px;
     transition: all 0.5s ease 0s, visibility 0s linear 0.5s;
 }
 
-.dropdown:hover,.fa:hover + .dropdown {
+
+.dropdown:hover,.compass:hover + .dropdown {
     visibility: visible;
     opacity: 1;
-    transform: translateX(0%);
+    transform: translateX(50px);
     transition-delay: 0s;
 }
 
-.menu-item {
+
+.menu-link {
+    margin: 0% 5%;
     display: inline;
-    margin-right: 3em;
-    margin-left: 0em;
-    padding: 0em;
     position: relative;
 }
 
