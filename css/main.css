@@ -1,26 +1,27 @@
 @font-face {
-    font-family: 'Molengo';
-    src: url("../font/Molengo-Regular.ttf");
+    font-family: 'Raleway';
+    src: url("../font/Raleway.ttf");
+    font-weight: lighter;
 }
 
-@font-face {
-    font-family: 'Prometheus';
-    src:"../font/PROMETHEUS.ttf";
-}
 
 .heading{
+    font-weight: lighter;
     color: #ffffff;
     font-size: 3em;
     text-align: center;
-    margin: 0% 0% 0% 0%;
+    margin: 0 0 0 0;
     position: relative;
     width: auto;
-    font-family: 'Prometheus';
+    text-transform: uppercase;  
+    background-color: black;
+    line-height: 2; 
 }
 
 body {
+    font-family: "Raleway";
+    font-weight: bold;
     color: #ffffff;
-    font-family: "Molengo";
     margin: 0em;
     background-image: url("https://static1.squarespace.com/static/5681b73405f8e2137580e04e/t/5681e5c3d8af10374c4a63aa/1451353540902/About+Splash.jpg?format=2500w");
     background-position: left top;
@@ -68,7 +69,7 @@ body {
     float: left;
     font-size: 1.2em;
     opacity: 0;
-    margin: 1% 0% 0% 0%;
+    margin: 1% 0 0 0%;
     line-height: 50px;
     width: 25em;
     min-width: 700px;
@@ -110,7 +111,6 @@ body {
 .menu-link:hover, .menu-link:focus {
     color: #fff;
     text-shadow: -1px 1px 8px #ffc, 1px -1px 8px #fff;
-    font-weight: bold;
 }
 
 .menu {
@@ -120,7 +120,7 @@ body {
 .main-text {
     position: relative;
     top: 2em;
-    margin: 0% 5%;
+    margin: 0 5%;
     display: block;
     width: 40%;
     clear: left; 
