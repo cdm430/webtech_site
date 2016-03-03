@@ -8,11 +8,14 @@
 <title>Demo</title>
 </head>
 <body>
-    <h1 class="heading">A Gathering of ...</h1>
+    <div class="title-bar">
+        <h1 class="heading">A Gathering of ...</h1>
+        <object class="trooper" data="images/trooper.svg" type="image/svg+xml"></object>
+    </div>
     <div class="slider">
         <div class = "menu">
-        <object class="compass" data="images/compass.svg" type="image/svg+xml" onmousenover="rotateClock()"></object>
-            Menu
+        <object class="compass" data="images/compass.svg" type="image/svg+xml"></object>
+            <span id="compass-word">Menu</span>
         </div>
             <div class="dropdown">
                 <a href="index.html" class="menu-link">Home</a>

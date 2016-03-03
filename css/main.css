@@ -4,17 +4,43 @@
     font-weight: lighter;
 }
 
-
 .heading{
     font-weight: lighter;
+    display: inline;
     color: #ffffff;
     font-size: 3em;
-    text-align: center;
     margin: 0 0 0 0;
     position: relative;
     width: auto;
     text-transform: uppercase;  
-    background-color: black;
+    
+}
+
+.trooper {
+    position:relative;
+    float:right;
+    width: 50px;
+    height: auto;
+    margin: 1.8% 2.5% 0% 0%;
+    -webkit-transition: 0.4s ease-in-out 0s;
+    -moz-transition: 0.4s ease-in-out 0s;
+    -o-transition: 0.4s ease-in-out 0s;
+    transition: 0.4s ease-in-out 0s;
+    -webkit-filter: opacity(25%);
+    -moz-filter: opacity(25%);
+    -o-filter: opacity(25%);
+    filter: opacity(25%); 
+}
+
+.trooper:hover {
+    -webkit-filter: opacity(100%);
+    -moz-filter: opacity(100%);
+    -o-filter: opacity(100%);
+    filter: opacity(100%);    
+}
+
+.title-bar {
+    text-align: center;
     line-height: 2; 
 }
 
@@ -23,12 +49,11 @@ body {
     font-weight: bold;
     color: #ffffff;
     margin: 0em;
-    background-image: url("https://static1.squarespace.com/static/5681b73405f8e2137580e04e/t/5681e5c3d8af10374c4a63aa/1451353540902/About+Splash.jpg?format=2500w");
+    background-color: #0d0d0d;
     background-position: left top;
     background-attachment: fixed;
     min-width: 900px;
 }
-
 
 .slider {
     width: 100%;
@@ -38,38 +63,60 @@ body {
     width: 50px;
     height: auto;
     -webkit-transition: 0.4s ease-in-out;
-    -moz-transition: 0.4 ease-in-out;
-    -o-transition: 0.4 ease-in-out;
+    -moz-transition: 0.4s ease-in-out;
+    -o-transition: 0.4s ease-in-out;
     transition: 0.4s ease-in-out;
     transform: rotate(90deg);
-    
-
 }
 
 .menu {
     width: 50px;
-    margin: 1% 0% 0% 5%;
+    margin: 0% 0% 0% 5%;
     float: left;
     z-index: 1;
     text-align: center;
     font-size: 0.6em;
     text-transform: uppercase;
+    cursor: default;
+    -webkit-transition: 0.4s ease-in-out;
+    -moz-transition: 0.4s ease-in-out;
+    -o-transition: 0.4s ease-in-out;
+    transition: 0.4s ease-in-out;
+    -webkit-filter: opacity(25%);
+    -moz-filter: opacity(25%);
+    -o-filter: opacity(25%);
+    filter: opacity(25%);
+}
+
+.slider:hover .menu {
+    -webkit-filter: opacity(100%);
+    -moz-filter: opacity(100%);
+    -o-filter: opacity(100%);
+    filter: opacity(100%);
+}
+
+#compass-word {
+    position: relative;
+    margin-top: 0.5em;
+    display: block;
 }
 
 .slider:hover .compass {
     transform: rotate(360deg);
     -webkit-transform: rotate(360deg);
     transition-delay: 0s;
+    -webkit-filter: opacity(100%);
+    -moz-filter: opacity(100%);
+    -o-filter: opacity(100%);
+    filter: opacity(100%);
 }
-
-
 
 .dropdown {
     visibility: hidden;
     float: left;
     font-size: 1.2em;
     opacity: 0;
-    margin: 1% 0 0 0%;
+    margin: 0% 0 0 0%;
     line-height: 50px;
     width: 25em;
     min-width: 700px;
@@ -88,10 +135,9 @@ body {
     transition-delay: 0.1s;
 }
 
-
 .menu-link {
     margin: 0em 2em 0em 0em;
-    display: inline;
+    display: inline;222
     position: relative;
     text-transform: uppercase;    
 }
