@@ -32,12 +32,14 @@
     filter: opacity(25%); 
 }
 
-.trooper:hover {
+.trooper:hover{
     -webkit-filter: opacity(100%);
     -moz-filter: opacity(100%);
     -o-filter: opacity(100%);
     filter: opacity(100%);    
 }
+
+
 
 .title-bar {
     text-align: center;
@@ -172,4 +174,24 @@ body {
     clear: left; 
     font-size: 1em;
     line-height: 2em;
+}
+
+.log-in {
+    position: relative;
+    float: right;
+    margin: 0 0.5em 0 0;
+    padding: 0.5em 1em 0.5em 1em;
+    background: none;
+    border: 2px solid #333333;
+}
+
+
+input {
+    position: relative;
+    margin: 0.5em 0 0 0;
+    border: 2px solid #333333;
+    height: 1.5em;
+    color: #e6e6e6;
+    background: none;
+    
 }
