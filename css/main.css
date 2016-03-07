@@ -27,7 +27,7 @@
     z-index: 100;
 }
 
-.trooper {
+#trooper {
     float:right;
     position:relative;
     vertical-align: middle;
@@ -45,7 +45,7 @@
     filter: opacity(25%);
 }
 
-.trooper:hover{
+#trooper:hover{
     -webkit-filter: opacity(100%);
     -moz-filter: opacity(100%);
     -o-filter: opacity(100%);
@@ -188,8 +188,10 @@ body {
     display: block;
     width: 40%;
     clear: left;
-    font-size: 1em;
+    font-size: 1.2em;
     line-height: 2em;
+    text-align: justify;
+    text-justify: inter-word;
 }
 
 .log-in {
@@ -209,5 +211,15 @@ input {
     height: 1.5em;
     color: #e6e6e6;
     background: none;
+    
+}
+
+.endor{
+    float: right;
+    position: relative;
+    right: 250px;
+    top: 50px;
+    width: 600px;
+    height: auto;
     
 }
