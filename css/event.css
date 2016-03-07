@@ -25,6 +25,7 @@
     height:170px;
     padding: 0;
     z-index: 100;
+
 }
 
 .trooper {
@@ -45,14 +46,12 @@
     filter: opacity(25%);
 }
 
-.trooper:hover{
+.trooper:hover {
     -webkit-filter: opacity(100%);
     -moz-filter: opacity(100%);
     -o-filter: opacity(100%);
     filter: opacity(100%);
 }
-
-
 
 .title-bar {
     width:100%;
@@ -60,6 +59,7 @@
     vertical-align: center;
     line-height: 90px;
     height:90px;
+    background-color: #0d0d0d;
 }
 
 body {
@@ -90,7 +90,7 @@ body {
 
 .menu {
     width: 50px;
-    margin: 0 0 0 90px;
+    margin: 0% 0% 0% 5%;
     float: left;
     z-index: 1;
     text-align: center;
@@ -184,7 +184,8 @@ body {
 
 .main-text {
     position: relative;
-    margin: 180px 0 0 90px;
+    top: 2em;
+    margin: 0 5%;
     display: block;
     width: 40%;
     clear: left;
@@ -192,22 +193,16 @@ body {
     line-height: 2em;
 }
 
-.log-in {
+#event-info {
+    clear: both;
+    width: 900px;
+    height: 20000px;
+    margin: auto;
+    margin-top: 0px;
     position: relative;
-    float: right;
-    margin: 0 0.5em 0 0;
-    padding: 0.5em 1em 0.5em 1em;
-    background: none;
-    border: 2px solid #333333;
+    margin-top: 170px;
 }
 
+.event-image {
 
-input {
-    position: relative;
-    margin: 0.5em 0 0 0;
-    border: 2px solid #333333;
-    height: 1.5em;
-    color: #e6e6e6;
-    background: none;
-    
 }
