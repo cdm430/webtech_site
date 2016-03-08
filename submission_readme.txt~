@@ -1,0 +1,13 @@
+README:
+- We have a long way to go on the client side. We have laid the foundations for the site and have spent
+  a lot of our time learning the tools that we need to use. 
+- We have had some difficulties selecting and manipulating svg images from JavaScript, however these are
+  issues that we will try to overcome by changing the <object> tags for <img>.
+- Our main challenge on the client side is to integrate a 3D planet using WebGl, however there is a 
+  steep learning curve and we are still experimenting. 
+- For the server side, we hope to be able to create a user profile that will be retrieved from the
+  server.
+- There is still lots that we hope to do on the client side including formatting such as, finishing
+  title bar, including more content, having a cutomisable character using WebGl or other libraries.
+- We also hope to integrate social media APIs such as twitter to allow user's to discuss the event.
+- We hope to use the Google Maps API for navigation etc.   

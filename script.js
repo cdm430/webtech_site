@@ -1,4 +1,5 @@
 "use strict";
+//NOTE: Haven't got this working yet.
 
 addEventListener("load", start);
 // else { attachEvent("onload", start); }
