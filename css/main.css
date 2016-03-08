@@ -211,15 +211,19 @@ input {
     height: 1.5em;
     color: #e6e6e6;
     background: none;
-    
+
 }
 
 .endor{
+    width: 400px;
+    height: auto;
+
+}
+
+#image {
     float: right;
     position: relative;
-    right: 250px;
+    right: 2em;
     top: 50px;
-    width: 600px;
-    height: auto;
-    
+
 }

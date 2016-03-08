@@ -12,9 +12,6 @@
     position: relative;
     margin: 0 0 0 90px;
     text-transform: uppercase;
-
-    /*text-align: center;*/
-
 }
 
 #top-bar {
@@ -182,15 +179,15 @@ body {
     float: left;
 }
 
-.main-text {
+.event-text {
     position: relative;
-    top: 2em;
-    margin: 0 5%;
+    margin: 5% 0% 0% 0%;
+    text-align: justify;
     display: block;
-    width: 40%;
+    width: 100%;
     clear: left;
     font-size: 1em;
-    line-height: 2em;
+    line-height: 1.2;
 }
 
 #event-info {
