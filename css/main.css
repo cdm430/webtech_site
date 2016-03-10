@@ -25,9 +25,10 @@
     height:170px;
     padding: 0;
     z-index: 100;
+    overflow: visible;
 }
 
-#trooper {
+.trooper {
     float:right;
     position:relative;
     vertical-align: middle;
@@ -45,7 +46,7 @@
     filter: opacity(25%);
 }
 
-#trooper:hover{
+.trooper:hover{
     -webkit-filter: opacity(100%);
     -moz-filter: opacity(100%);
     -o-filter: opacity(100%);
@@ -197,22 +198,26 @@ body {
 .log-in {
     position: relative;
     float: right;
+    width: 10%;
     margin: 0 0.5em 0 0;
-    padding: 0.5em 1em 0.5em 1em;
+    /*padding: 0.5em 1em 0.5em 1em;*/
     background: none;
     border: 2px solid #333333;
+    border-radius: 10px;
 }
 
 
 input {
+    width: 90%;
     position: relative;
-    margin: 0.5em 0 0 0;
+    margin: 0.2em;
+    border-radius: 10px;
     border: 2px solid #333333;
     height: 1.5em;
     color: #e6e6e6;
     background: none;
-
 }
+
 
 .endor{
     width: 400px;

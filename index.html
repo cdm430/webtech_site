@@ -10,10 +10,12 @@
     <div id="top-bar">
         <div class="title-bar">
             <h1 class="heading">A Gathering of ...</h1>
-            <object id="trooper" data="images/trooper.svg" type="image/svg+xml">
-              Your browser does not support svg
-            </object>
+            <img class="trooper" src="images/trooper.svg" alt="Your browser does not support svg"/>
         </div>
+            <form class = "log-in">
+                <input type="text" name="username" placeholder="Username" /><br />
+                <input type="password" name="password" placeholder="Password"/><br />
+            </form>
 
         <div class="slider">
             <div class = "menu">
@@ -31,12 +33,7 @@
                 </div>
         </div>
     </div>
-    <div class="log-in">
-        <form>
-            <input type="text" name="username" placeholder="Username" /><br />
-            <input type="password" name="password" placeholder="Password"/><br />
-        </form>
-    </div>
+
     <div id="image">
       <img src="images/Endor-placeholder.jpg" class="endor"/><p>
        placeholder, to be replaced by webGl 3D planet

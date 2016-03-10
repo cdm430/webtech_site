@@ -6,20 +6,17 @@ addEventListener("load", start);
 
 function start(){
 
-    var logo = document.querySelector("#trooper");
+    var logo = document.querySelector(".trooper");
     logo.addEventListener("click", logoChange);
-
-    var text = document.querySelector(".main-text");
-    text.addEventListener("click", logoChange);
 }
 
 function logoChange(){
     console.log("Clicked");
-    var src = this.getAttribute("data");
+    var src = this.getAttribute("src");
 
     if(src === "images/trooper.svg"){
-        this.setAttribute("data", "images/rebel.svg");
+        this.setAttribute("src", "images/rebel.svg");
     } else {
-        this.setAttribute("data", "images/trooper.svg");
+        this.setAttribute("src", "images/trooper.svg");
     }
 }
