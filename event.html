@@ -2,6 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en-GB" xml:lang="en-GB">
 <head>
 <meta charset="UTF-8"/>
+<link href="css/topbar.css" rel="stylesheet" type="text/css" />
 <link href="css/event.css" rel="stylesheet" type="text/css" />
 <script src="script.js" type="text/javascript"></script>
 <title>Demo</title>
@@ -10,11 +11,16 @@
     <div id="top-bar">
         <div class="title-bar">
             <h1 class="heading">The Event</h1>
-            <img class="trooper" src="images/trooper.svg" alt="Your browser does not support svg"/>
+            <img id="trooper" src="images/trooper.svg" alt="Your browser does not support svg"/>
         </div>
-        <form class = "log-in">
+        <form id = "login">
             <input type="text" name="username" placeholder="Username" /><br />
+            <div class="form-indicator"></div>
             <input type="password" name="password" placeholder="Password"/><br />
+            <div class="form-indicator"></div>
+            <input type="submit" value="log in" /><br />
+            Or ...<br />
+            <a href="#" class="button">sign up</a>
         </form>
 
         <div class="slider">
