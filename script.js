@@ -7,22 +7,36 @@ if(addEventListener) {
 else { attachEvent("onload", start); }
 
 
-
 function start(){
     console.log("Started");
     trooper.addEventListener("click", logoChange);
+
+    $('#login').hide();
+
+
+    $('#trooper').on('mouseover', function() {
+        console.log("hello");
+        $('#login').fadeIn(500);
+    });
+
+    $('#login').on('mouseleave', function() {
+        console.log("goodbye");
+        $(this).fadeOut(1500);
+    });
+
 
     var username = document.querySelector('[name="username"]');
     login.addEventListener("blur", showHint, true);
     // Captures not bubbles so set to true
     login.addEventListener("focus", clearHint, true);
 
+
 }
 
 function logoChange() {
     console.log("Clicked");
     var src = this.getAttribute("src");
-    showForm();
+    // showForm();
 
     if(src === "images/trooper.svg"){
         this.setAttribute("src", "images/rebel.svg");
@@ -32,16 +46,16 @@ function logoChange() {
 
 }
 
-function showForm() {
-
-    if(login.style.visibility == 'visible')  {
-        login.style.visibility = 'hidden';
-    }
-    else {
-        login.style.visibility = 'visible';
-    }
-    console.log("hovered");
-}
+// function showForm() {
+//
+//     if(login.style.visibility == 'visible')  {
+//         login.style.visibility = 'hidden';
+//     }
+//     else {
+//         login.style.visibility = 'visible';
+//     }
+//     console.log("hovered");
+// }
 
 function showHint(e) {
     var target = e.target;
