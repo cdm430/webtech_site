@@ -38,7 +38,6 @@
     position:relative;
     vertical-align: middle;
     width: 50px;
-    height: auto;
     margin-top: 20px;
     margin-right: 40px;
     -webkit-transition: 0.4s ease-in-out 0s;
@@ -78,8 +77,8 @@
     float: left;
     z-index: 1;
     text-align: center;
-    font-size: 0.6em;
-    text-transform: uppercase;
+    /*font-size: 0.6em;*/
+    /*text-transform: uppercase;*/
     cursor: default;
     -webkit-transition: 0.4s ease-in-out;
     -moz-transition: 0.4s ease-in-out;
@@ -117,11 +116,18 @@
     filter: opacity(100%);
 }
 
-#compass-word {
+.hint {
     position: relative;
-    margin-top: 0.5em;
+    top: 0px;
+    width: 50px;
+    height: 10px;
+    font-size: 0.6em;
+    /*margin-top: 0.5em;*/
     display: block;
+    text-transform: uppercase;
+    padding: 0px;
 }
+
 
 .slider:hover .compass {
     transform: rotate(360deg);

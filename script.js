@@ -13,7 +13,7 @@ function start(){
     trooper.addEventListener("click", logoChange);
 
     var username = document.querySelector('[name="username"]');
-    username.addEventListener("blur", showHint);
+    login.addEventListener("blur", showHint, true);
     // Captures not bubbles so set to true
     login.addEventListener("focus", clearHint, true);
 
@@ -43,11 +43,12 @@ function showForm() {
     console.log("hovered");
 }
 
-function showHint() {
-    var entered = this.value;
+function showHint(e) {
+    var target = e.target;
+    var entered = target.value;
     var length = entered.length;
-    var msg = "username too short";
-    var hint = this;
+    var msg = " too short";
+    var hint = target;
     //This will eventually use Jquery to get next div element (some browsers use
     //any white space as a text node, some don't)
     while(hint.nodeName != "div") {
@@ -57,14 +58,10 @@ function showHint() {
     // Hypothetical for now, no point saying 'too short' when nothing is entered
     // as that is obvious
     if(length > 0 && length < 6) {
-        hint.textContent = msg;
-        console.log("too short");
-        console.log(hint.nodeName);
+        var attrName = target.getAttribute("name");
+        hint.textContent = attrName + msg;
     }
-    else {
-        hint.textContent = "";
-        console.log("fine");
-    }
+    else {hint.textContent = "";}
 }
 
 // Gets rid of any hints from that input field (e.g not long enough)
