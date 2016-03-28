@@ -61,6 +61,7 @@
     vertical-align: center;
     line-height: 90px;
     height:90px;
+    background-color: #0d0d0d;
 }
 
 body {
@@ -221,4 +222,39 @@ input {
 #endor-canvas {
   float: right;
   margin: -650px 0 0 0;
+}
+
+
+
+
+/*The following is styling for profile.html. Probably move this to its own
+stylesheet once we have refactored it. Leaving it here for now for DRY purposes*/
+
+.profile-pic{
+  position: relative;
+  top: 10em;
+}
+
+.pic-circle {
+  display: block;
+  position: absolute;
+  height: 30em;
+  width: 30em;
+  left: 40%;
+  float: left;
+}
+
+
+.pic {
+  position: absolute;
+  display: block;
+  height: 20em;
+  width: 20em;
+  left: 40%;
+  margin: 50px 10px 10px 80px;
+  float: left;
+}
+
+.name {
+  color: white;
 }
