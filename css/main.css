@@ -241,6 +241,7 @@ stylesheet once we have refactored it. Leaving it here for now for DRY purposes*
   height: 30em;
   width: 30em;
   left: 40%;
+  float: left;
 }
 
 
@@ -251,4 +252,9 @@ stylesheet once we have refactored it. Leaving it here for now for DRY purposes*
   width: 20em;
   left: 40%;
   margin: 50px 10px 10px 80px;
+  float: left;
+}
+
+.name {
+  color: white;
 }
