@@ -26,6 +26,7 @@
     background-color: #0d0d0d;
 }
 
+
 .heading{
     font-weight: lighter;
     display: inline-block;
@@ -38,6 +39,7 @@
     padding: 0px;
     text-transform: uppercase;
 }
+
 
 #logo {
     width: 50px;

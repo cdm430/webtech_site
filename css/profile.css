@@ -1,0 +1,41 @@
+body {
+    font-family: "Raleway";
+    font-weight: bold;
+    color: #ffffff;
+    margin: 0 0 0 0;
+    padding: 0 0 0 0;
+    background-color: #0d0d0d;
+    background-position: left top;
+    background-attachment: fixed;
+    min-width: 900px;
+}
+
+
+.profile-pic{
+  position: relative;
+  top: 10em;
+}
+
+.pic-circle {
+  display: block;
+  position: absolute;
+  height: 30em;
+  width: 30em;
+  left: 40%;
+  float: left;
+}
+
+
+.pic {
+  position: absolute;
+  display: block;
+  height: 20em;
+  width: 20em;
+  left: 40%;
+  margin: 50px 10px 10px 80px;
+  float: left;
+}
+
+.name {
+  color: white;
+ }
