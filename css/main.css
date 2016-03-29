@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 @font-face {
     font-family: 'Raleway';
     src: url("../font/Raleway.ttf");
@@ -63,6 +64,8 @@
     height:90px;
     background-color: #0d0d0d;
 }
+=======
+>>>>>>> form
 
 body {
     font-family: "Raleway";
@@ -76,112 +79,9 @@ body {
     min-width: 900px;
 }
 
-.slider {
-    width: 100%;
-}
-
-.compass {
-    width: 50px;
+.endor{
+    width: 400px;
     height: auto;
-    -webkit-transition: 0.4s ease-in-out;
-    -moz-transition: 0.4s ease-in-out;
-    -o-transition: 0.4s ease-in-out;
-    transition: 0.4s ease-in-out;
-    transform: rotate(90deg);
-}
-
-.menu {
-    width: 50px;
-    margin: 0 0 0 90px;
-    float: left;
-    z-index: 1;
-    text-align: center;
-    font-size: 0.6em;
-    text-transform: uppercase;
-    cursor: default;
-    -webkit-transition: 0.4s ease-in-out;
-    -moz-transition: 0.4s ease-in-out;
-    -o-transition: 0.4s ease-in-out;
-    transition: 0.4s ease-in-out;
-    -webkit-filter: opacity(25%);
-    -moz-filter: opacity(25%);
-    -o-filter: opacity(25%);
-    filter: opacity(25%);
-}
-
-.slider:hover .menu {
-    -webkit-filter: opacity(100%);
-    -moz-filter: opacity(100%);
-    -o-filter: opacity(100%);
-    filter: opacity(100%);
-}
-
-#compass-word {
-    position: relative;
-    margin-top: 0.5em;
-    display: block;
-}
-
-.slider:hover .compass {
-    transform: rotate(360deg);
-    -webkit-transform: rotate(360deg);
-    transition-delay: 0s;
-    -webkit-filter: opacity(100%);
-    -moz-filter: opacity(100%);
-    -o-filter: opacity(100%);
-    filter: opacity(100%);
-}
-
-.dropdown {
-    visibility: hidden;
-    float: left;
-    font-size: 1.2em;
-    opacity: 0;
-    margin: 0% 0 0 0%;
-    line-height: 50px;
-    width: 25em;
-    min-width: 700px;
-    text-align: center;
-    position: relative;
-    left: -50px;
-    transition: all 0.5s ease 0s, visibility 0s linear 0.5s;
-    z-index: 0;
-}
-
-
-.slider:hover .dropdown {
-    visibility: visible;
-    opacity: 1;
-    transform: translateX(50px);
-    transition-delay: 0.1s;
-}
-
-.menu-link {
-    margin: 0em 2em 0em 0em;
-    display: inline;222
-    position: relative;
-    text-transform: uppercase;
-}
-
-.menu-link, .menu-link:hover, .menu-link:focus {
-    white-space: nowrap;
-    text-decoration: none;
-    color: #aaf;
-    text-shadow: none;
-    -webkit-transition: 250ms linear 0s;
-    -moz-transition: 250ms linear 0s;
-    -o-transition: 250ms linear 0s;
-    transition: 250ms linear 0s;
-    outline: 0 none;
-}
-
-.menu-link:hover, .menu-link:focus {
-    color: #fff;
-    text-shadow: -1px 1px 8px #ffc, 1px -1px 8px #fff;
-}
-
-.menu {
-    float: left;
 }
 
 .main-text {
@@ -196,6 +96,7 @@ body {
     text-justify: inter-word;
 }
 
+<<<<<<< HEAD
 .log-in {
     position: relative;
     float: right;
@@ -257,4 +158,11 @@ stylesheet once we have refactored it. Leaving it here for now for DRY purposes*
 
 .name {
   color: white;
+=======
+#image {
+    float: right;
+    position: relative;
+    right: 2em;
+    top: 50px;
+>>>>>>> form
 }

@@ -2,25 +2,37 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en-GB" xml:lang="en-GB">
 <head>
 <meta charset="UTF-8"/>
+<link href="css/topbar.css" rel="stylesheet" type="text/css" />
 <link href="css/event.css" rel="stylesheet" type="text/css" />
 <script src="js/script.js" type="text/javascript"></script>
+<script src = "jquery-1.12.2.min.js"></script>
 <title>Demo</title>
 </head>
 <body>
     <div id="top-bar">
         <div class="title-bar">
-            <h1 class="heading">The Event</h1>
-            <img class="trooper" src="images/trooper.svg" alt="Your browser does not support svg"/>
+            <h1 class="heading">A Gathering of ...</h1>
+            <div id = "logo">
+                <img id="trooper" src="images/trooper.svg" alt="Your browser does not support svg"/>
+                <div id = "login-hint">Log in</div>
+            </div>
         </div>
-        <form class = "log-in">
-            <input type="text" name="username" placeholder="Username" /><br />
-            <input type="password" name="password" placeholder="Password"/><br />
-        </form>
+            <form id = "login">
+                <input type="text" name="username" placeholder="Username" /><br/>
+                <div class="form-indicator" id="usernamehint"></div>
+                <input type="password" name="password" placeholder="Password"/><br/>
+                <div class="form-indicator"></div>
+                <input type="submit" value="log in" /><br />
+                Or ...<br />
+                <a href="#" class="button">sign up</a>
+            </form>
 
         <div class="slider">
             <div class = "menu">
-            <object class="compass" data="images/compass.svg" type="image/svg+xml">Your browser does not support svg</object>
-                <span id="compass-word">Menu</span>
+                <object class="compass" data="images/compass.svg" type="image/svg+xml">
+                    Your browser does not support svg
+                </object>
+                <div class="hint">Menu</div>
             </div>
                 <div class="dropdown">
                     <a href="index.html" class="menu-link">Home</a>
