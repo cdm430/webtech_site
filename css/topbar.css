@@ -40,6 +40,13 @@
     text-transform: uppercase;
 }
 
+#underline {
+    background-color: green;
+    width: 0%;
+    opacity: 0;
+    height: 3px;
+}
+
 
 #logo {
     width: 50px;
@@ -55,6 +62,7 @@
     -moz-filter: opacity(25%);
     -o-filter: opacity(25%);
     filter: opacity(25%);
+    cursor: pointer;
 
 }
 
@@ -71,6 +79,7 @@
     -moz-filter: opacity(100%);
     -o-filter: opacity(100%);
     filter: opacity(100%);
+
 }
 
 #trooper {

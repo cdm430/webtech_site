@@ -20,19 +20,29 @@ else { attachEvent("onload", start); }
 
 function start(){
     console.log("Started");
-    trooper.addEventListener("click", logoChange);
 
     $('#login').hide();
 
+    $('.heading').hide().fadeIn(2000);
+    $('#underline').delay(1000).animate({
+        width: '100%',
+        opacity: 1
+    }, 1500, 'linear');
 
-    $('#trooper').on('mouseover', function() {
-        console.log("hello");
-        $('#login').fadeIn(500);
+
+    $('#logo').on('click', function() {
+        logoChange();
+        var $login = $('#login');
+        if($login.is(':hidden')) {
+            $login.fadeIn(500);
+        }
+        else {
+            $login.fadeOut(500);
+        }
     });
 
-    $('#login').on('mouseleave', function() {
-        console.log("goodbye");
-        $(this).fadeOut(1500);
+    $('.slider').on('mouseover', function() {
+        $('#login').fadeOut(500);
     });
 
 
@@ -45,14 +55,14 @@ function start(){
 }
 
 function logoChange() {
-    console.log("Clicked");
-    var src = this.getAttribute("src");
+    var $trooper = $('#trooper');
+    var src = $trooper.attr("src");
     // showForm();
 
     if(src === "images/trooper.svg"){
-        this.setAttribute("src", "images/rebel.svg");
+        $trooper.attr("src", "images/rebel.svg");
     } else {
-        this.setAttribute("src", "images/trooper.svg");
+        $trooper.attr("src", "images/trooper.svg");
     }
 
 }
