@@ -21,14 +21,29 @@ else { attachEvent("onload", start); }
 
 function start(){
     console.log("Started");
+    var $heading = $('.heading');
 
     $('#login').hide();
+    $heading.hide();
+    headingEntrance();
 
-    $('.heading').hide().fadeIn(2000);
-    $('#underline').delay(1000).animate({
-        width: '100%',
-        opacity: 1
-    }, 1500, 'linear');
+
+    // $('#underline').delay(1000).animate({
+    //     width: '100%',
+    //     opacity: 1
+    // }, 1500, 'linear');
+
+    $('.slider').on('mouseenter', function() {
+        console.log("hovered on slider");
+        $heading.fadeOut(600);
+    })
+
+
+
+    $('.slider').on('mouseleave', function(){
+        $heading.fadeIn(600);
+    });
+
 
 
     $('#logo').on('click', function() {
@@ -53,6 +68,15 @@ function start(){
     // Captures not bubbles so set to true
     login.addEventListener("focus", clearHint, true);
 
+
+}
+
+function headingEntrance() {
+    $('.heading').fadeIn(2000);
+    $('#underline').delay(1000).animate({
+        width: '100%',
+        opacity: 1
+    }, 1500, 'linear');
 
 }
 
