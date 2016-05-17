@@ -75,6 +75,8 @@
 #login-hint {
     font-size: 0.6em;
     margin-top: 0.9em;
+    width: 50px;
+    text-align: center;
     padding: 0px;
     text-transform: uppercase;
     /*height: 20px;*/

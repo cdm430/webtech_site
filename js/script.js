@@ -8,15 +8,15 @@ else { attachEvent("onload", start); }
 
 
 
-!function(d,s,id){
-  var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location)?'http':'https';
-  if(!d.getElementById(id)){
-    js = d.createElement(s);
-    js.id = id;js.src = p + "://platform.twitter.com/widgets.js";
-    fjs.parentNode.insertBefore(js,fjs);
-  }
-}
-(document,"script","twitter-wjs");
+// !function(d,s,id){
+//   var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location)?'http':'https';
+//   if(!d.getElementById(id)){
+//     js = d.createElement(s);
+//     js.id = id;js.src = p + "://platform.twitter.com/widgets.js";
+//     fjs.parentNode.insertBefore(js,fjs);
+//   }
+// }
+// (document,"script","twitter-wjs");
 
 
 function start(){
@@ -28,20 +28,17 @@ function start(){
     headingEntrance();
 
 
-    // $('#underline').delay(1000).animate({
-    //     width: '100%',
-    //     opacity: 1
-    // }, 1500, 'linear');
-
     $('.slider').on('mouseenter', function() {
         console.log("hovered on slider");
-        $heading.fadeOut(600);
+        $heading.stop().fadeTo(400, 0);
     })
 
 
 
     $('.slider').on('mouseleave', function(){
-        $heading.fadeIn(600);
+        lineHide();
+        $heading.stop().fadeTo(400, 1);
+        lineAnimate();
     });
 
 
@@ -73,11 +70,25 @@ function start(){
 
 function headingEntrance() {
     $('.heading').fadeIn(2000);
-    $('#underline').delay(1000).animate({
+    $('#underline').delay(400).animate({
         width: '100%',
         opacity: 1
     }, 1500, 'linear');
+}
 
+function lineHide() {
+    $('#underline').css({'width':'0%', 'opacity':'0'});
+}
+
+function lineAnimate(){
+    $('#underline').delay(200).animate({
+        width: '100%',
+        opacity: 1
+    }, 400, 'linear');
+}
+
+function lineRedraw() {
+    lineHide();
 }
 
 function logoChange() {
