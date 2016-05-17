@@ -60,6 +60,25 @@ function start(){
     });
 
 
+
+    // $('#sign-up').on('mouseenter', function() {
+    //     // var $button = $('.button');
+    //     console.log("flag");
+    //     $('#sign-up').delay(400).animate({
+    //         width: "50%",
+    //         backgroundColor: "white"
+    //     }, 1500, 'linear');
+    // });
+    //
+    //
+    // $('.button').on('mouseleave', function() {
+    //         // $('.button').animate({
+    //         //     background-color: 'transparent',
+    //         //     color: '#ffffff'
+    //         // }, 200, 'linear');
+    // });
+
+
     var username = document.querySelector('[name="username"]');
     login.addEventListener("blur", showHint, true);
     // Captures not bubbles so set to true
