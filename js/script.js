@@ -59,6 +59,11 @@ function start(){
         $('#trooper').attr("src", "images/trooper.svg");
     });
 
+    $(window).on('scroll', function() {
+        var position = $('#ewok');
+        console.log("scroll top is " + $(window).scrollTop());
+    });
+
 
 
     // $('#sign-up').on('mouseenter', function() {

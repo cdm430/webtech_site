@@ -30,14 +30,34 @@ ul {
     width: 50%;
     /*background-color: red;*/
     /*display: inline;*/
-    float: left;
+    /*float: left;*/
     margin: 0;
 }
+
+
+
+.black .text {
+    float:left;
+}
+
+.black .buttons {
+    float:right;
+}
+
+.frosted .text {
+    float:right;
+}
+
+.frosted .buttons {
+    float:left;
+}
+
+
 
 .buttons {
     width: 50%;
     /*display: inline;*/
-    float: right;
+    /*float: right;*/
     /*background-color: yellow;*/
     margin: 0;
     text-align: center;
@@ -83,7 +103,7 @@ a.sign-in:hover {
 
 .scrolling {
     position: relative;
-    top:40em;
+    top:50em;
 }
 
 #tickets{
