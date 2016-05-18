@@ -29,3 +29,37 @@ body {
     position: relative;
     margin-top: 170px;
 }
+
+
+.social-media {
+    float: left;
+    position: fixed;
+    top: 10em;
+}
+
+#twitter, #instagram, #facebook {
+    position: relative;
+    margin: 0 1em;
+    width: 50px;
+    height: auto;
+    -webkit-transition: 0.3s ease-in-out 0s;
+    -moz-transition: 0.3s ease-in-out 0s;
+    -o-transition: 0.3s ease-in-out 0s;
+    transition: 0.3s ease-in-out 0s;
+    -webkit-filter: opacity(25%);
+    -moz-filter: opacity(25%);
+    -o-filter: opacity(25%);
+    filter: opacity(25%);
+}
+
+
+#twitter:hover, #instagram:hover, #facebook:hover {
+    -webkit-filter: opacity(100%);
+    -moz-filter: opacity(100%);
+    -o-filter: opacity(100%);
+    filter: opacity(100%);
+}
+
+.twitter-timeline {
+
+}
