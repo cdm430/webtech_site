@@ -8,6 +8,18 @@
     width: 100%;
     /*margin: -1px 0 -1px 0;*/
     display: block;
+    color: #ffffff;
+    
+}
+
+h2 {
+    font-size: 35px;
+    text-align: center;
+}
+
+ul {
+    line-height: 2em;
+    font-size: 18px;
 }
 
 .text {
@@ -24,7 +36,46 @@
     float: right;
     /*background-color: yellow;*/
     margin: 0;
+    text-align: center;
 }
+
+a.purchase, a.terms, a.sign-in {
+    display: block;
+    line-height: 3.5em;
+    margin: 3px auto;
+    width: 50%;
+    font-size: 15px;
+    color: #ffffff;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    border: 1px solid #333333;
+    -webkit-transition: 0.6s ease-in-out 0s;
+    -moz-transition: 0.6s ease-in-out 0s;
+    -o-transition: 0.6s ease-in-out 0s;
+    transition: 0.6s ease-in-out 0s;
+    text-transform: uppercase;
+    text-decoration: none;
+    appearance: button;
+    color: #ffffff;
+}
+
+a.purchase, a.terms {
+    background-color: transparent;
+}
+
+a.sign-in {
+    background-color: green;
+}
+
+a.purchase:hover, a.terms:hover {
+    background-color: #d3d3d3;
+    color: #000000;
+}
+
+a.sign-in:hover {
+    background-color: #FF6600;
+}
+
 
 .scrolling {
     position: relative;
@@ -36,9 +87,6 @@
     width: 80%;
 }
 
-
-.bottom-triangle {
-}
 
 .triangle {
     position: relative;
