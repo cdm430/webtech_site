@@ -85,6 +85,7 @@ function start(){
 
 
     var username = document.querySelector('[name="username"]');
+    var login = document.querySelector('#login');
     login.addEventListener("blur", showHint, true);
     // Captures not bubbles so set to true
     login.addEventListener("focus", clearHint, true);

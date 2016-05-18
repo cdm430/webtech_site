@@ -8,9 +8,11 @@
 .main-text {
     position: relative;
     margin: 180px 0 0 90px;
-    display: block;
+    display: inline;
     width: 40%;
-    clear: left;
+    height: auto;
+    clear: both;
+    float: left;
     font-size: 1.2em;
     line-height: 2em;
     text-align: justify;
@@ -19,8 +21,56 @@
 
 
 #endor-canvas {
-  float: right;
-  margin: -650px 0 0 0;
+    clear: both;
+    float: right;
+    margin: -45em auto 0 auto;
+    background: none;
+    overflow: visible;
+}
+
+#static-endor {
+    width: 50%;
+    height: auto;
+    position: relative;
+    clear: both;
+    float: right;
+    margin: -37em auto 0 auto;
+    right: 15em;
+}
+
+
+.planet-side {
+    position: relative;
+    clear: both;
+    float: right;
+    width: 50%;
+    height: auto;
+}
+
+
+.activate {
+    display: inline-block;
+    align-content: center;
+    line-height: 3.5em;
+    margin: 0 0 4em 16em;
+    width: 50%;
+    font-size: 15px;
+    color: #ffffff;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    border: 1px solid #333333;
+    -webkit-transition: 0.3s linear 0s;
+    -moz-transition: 0.3s linear 0s;
+    -o-transition: 0.3s linear 0s;
+    transition: 0.3s linear 0s;
+    text-transform: uppercase;
+    background-color: #FF6600;
+    color: #ffffff;
+
+}
+
+.activate:hover {
+    background-color: green;
 }
 
 
