@@ -1,14 +1,19 @@
-#text-black{
-    position: relative;
+.black{
+    /*position: relative;*/
     color: green;
     background-color: #0d0d0d;
+    /*background-color: red;*/
     /*top: 350px;*/
-    height: 300px;
+    height: 400px;
+    /*height: auto;*/
+    /*clear: both;*/
     /*padding: 20px;*/
+    z-index: 50;
     width: 100%;
     /*margin: -1px 0 -1px 0;*/
-    display: block;
+    /*display: block;*/
 }
+
 
 .text {
     width: 50%;
@@ -28,7 +33,7 @@
 
 .scrolling {
     position: relative;
-    top:200px;
+    top:40em;
 }
 
 #tickets{
@@ -37,9 +42,6 @@
 }
 
 
-.bottom-triangle {
-}
-
 .triangle {
     position: relative;
     width: 100%;
@@ -47,15 +49,28 @@
     clear: both;
     display: block;
     /*background-color: green;*/
-    width: 100%;
     margin: 0;
-
 }
+
+#footer-container{
+    height:800px;
+}
+
+
 
 #forest-back{
     position: fixed;
     width: 80%;
     z-index: -1;
     margin: 0;
+}
 
+.frosted{
+    background: rgba(255, 255, 255, 0.6);
+    color: black;
+}
+
+.package{
+    height: 400px;
+    /*background-color: red;*/
 }
