@@ -3,10 +3,27 @@
     color: green;
     background-color: #0d0d0d;
     /*top: 350px;*/
-    padding: 20px;
-    margin: 0;
-    display: inline-block;
+    height: 300px;
+    /*padding: 20px;*/
+    width: 100%;
+    /*margin: -1px 0 -1px 0;*/
+    display: block;
+}
 
+.text {
+    width: 50%;
+    /*background-color: red;*/
+    /*display: inline;*/
+    float: left;
+    margin: 0;
+}
+
+.buttons {
+    width: 50%;
+    /*display: inline;*/
+    float: right;
+    /*background-color: yellow;*/
+    margin: 0;
 }
 
 .scrolling {
@@ -19,21 +36,19 @@
     width: 80%;
 }
 
-.svg-pic {
-    /*background-color: red;*/
-    /*display: block;*/
-    margin: 0;
 
-    position: relative;
-    height: auto;
-    width: 100%;
+.bottom-triangle {
 }
 
-#triangle {
-    width: 100.5%;
-    margin: 0;
-    display: block;
+.triangle {
     position: relative;
+    width: 100%;
+    /*margin-top: -1px;*/
+    clear: both;
+    display: block;
+    /*background-color: green;*/
+    width: 100%;
+    margin: 0;
 
 }
 

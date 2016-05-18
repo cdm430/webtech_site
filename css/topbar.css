@@ -242,7 +242,7 @@ input {
 }
 
 input[type=submit] {
-    width: 15em;
+    width: 95%;
     height: 3.5em;
     font-family: "Raleway";
     font-weight: bold;
@@ -288,7 +288,7 @@ input[type=submit]:hover {
 
 /*Merge into the input type submit block?*/
 #sign-up {
-    width: 15em;
+    width: 95%;
     height: 3.5em;
     display: block;
     font-size: 15px;
