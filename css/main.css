@@ -1,22 +1,17 @@
-
-.endor{
-    width: 400px;
-    height: auto;
-}
-
-
 .main-text {
     position: relative;
     margin: 180px 0 0 90px;
+    padding-left: 0.5em;
     display: inline;
     width: 40%;
-    height: auto;
+    height: 20em;
     clear: both;
     float: left;
     font-size: 1.2em;
     line-height: 2em;
     text-align: justify;
     text-justify: inter-word;
+    overflow: scroll;
 }
 
 
@@ -34,8 +29,8 @@
     position: relative;
     clear: both;
     float: right;
-    margin: -37em auto 0 auto;
-    right: 15em;
+    margin: 0 auto 0 auto;
+    display: inline-block;
 }
 
 
@@ -52,7 +47,7 @@
     display: inline-block;
     align-content: center;
     line-height: 3.5em;
-    margin: 0 0 4em 16em;
+    margin: 0 auto 0 auto;
     width: 50%;
     font-size: 15px;
     color: #ffffff;
