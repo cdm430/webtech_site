@@ -4,6 +4,10 @@
     font-weight: lighter;
 }
 
+button::-moz-focus-inner {
+  border: 0;
+}
+
 body {
     font-family: "Raleway";
     font-weight: bold;
@@ -204,7 +208,7 @@ body {
     position: relative;
     left: -50px;
     transition: all 0.5s ease 0s, visibility 0s linear 0.5s;
-    z-index: 0;
+    z-index: 99999;
 }
 
 .slider:hover .dropdown {

@@ -62,6 +62,11 @@ function start(){
     $(window).on('scroll', function() {
         var $windowHeight = $(window.top).height();
         var $windowPosition = $(window).scrollTop();
+        var $windowBottom = $(window).scrollTop() + $windowHeight;
+        var $arrow = $('#arrow');
+        var $firstHeaderPosition = $('h2:first').offset().top;
+        console.log("h2 first " + $firstHeaderPosition);
+        var $bottomToHeader = $firstHeaderPosition - $windowHeight;
 
         $('.packageHeading').each(function() {
             var $ewokPosition = $(this).offset().top;
@@ -69,28 +74,29 @@ function start(){
             if($windowPosition + (0.8 * $windowHeight) > $ewokPosition) {
                 $.proxy(ticketTypeEntrance, this)();
             }
-        })
+        })y: ratio
+            });
+        }
     });
 
 
-
-    // $('#sign-up').on('mouseenter', function() {
-    //     // var $button = $('.button');
-    //     console.log("flag");
-    //     $('#sign-up').delay(400).animate({
-    //         width: "50%",
-    //         backgroundColor: "white"
-    //     }, 1500, 'linear');
-    // });
-    //
-    //
-    // $('.button').on('mouseleave', function() {
-    //         // $('.button').animate({
-    //         //     background-color: 'transparent',
-    //         //     color: '#ffffff'
-    //         // }, 200, 'linear');
-    // });
-
+    $('.button-outfit').on('click', function(){
+        var $costumeInfo = $('.costume-info');
+        var newOpacity = 1;
+        var newHeight = '30em';
+        if($costumeInfo.css('opacity') == 0) {
+            newOpacity = 1;
+            newHeight = '30em';
+        }
+        else {
+            newOpacity = 0;
+            newHeight = '0em';
+        }
+        $costumeInfo.animate({
+            height: newHeight,
+            opacity: newOpacity
+        }, 500, 'linear');
+    })
 
     var username = document.querySelector('[name="username"]');
     var login = document.querySelector('#login');

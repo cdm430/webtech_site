@@ -110,7 +110,7 @@ a.sign-in:hover {
 
 .scrolling {
     position: relative;
-    top:50em;
+    top:54em;
 }
 
 #tickets{
@@ -150,4 +150,14 @@ a.sign-in:hover {
 .package{
     height: 400px;
     /*background-color: red;*/
+}
+
+#arrow {
+    width: 100px;
+    height: auto;
+    bottom: 5em;
+    left: 50%;
+    margin-left: -50px;
+    position: fixed;
+    z-index: 0;
 }
