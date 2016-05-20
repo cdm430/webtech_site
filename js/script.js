@@ -74,7 +74,14 @@ function start(){
             if($windowPosition + (0.8 * $windowHeight) > $ewokPosition) {
                 $.proxy(ticketTypeEntrance, this)();
             }
-        })y: ratio
+        })
+
+        if($windowPosition < $firstHeaderPosition) {
+        console.log("flag");
+            var difference = $firstHeaderPosition - $windowBottom;
+            var ratio = (difference / $bottomToHeader);
+            $arrow.css({
+                opacity: ratio
             });
         }
     });
