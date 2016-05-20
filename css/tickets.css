@@ -18,6 +18,7 @@
 h2 {
     font-size: 35px;
     text-align: center;
+    opacity: 0;
 }
 
 ul {
@@ -52,7 +53,13 @@ ul {
     float:left;
 }
 
-
+.underline {
+    background-color: #FF6600;
+    width: 0%;
+    opacity: 0;
+    height: 3px;
+    margin: 0 auto;
+}
 
 .buttons {
     width: 50%;
