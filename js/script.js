@@ -94,15 +94,19 @@ function start(){
         if($costumeInfo.css('opacity') == 0) {
             newOpacity = 1;
             newHeight = '30em';
+            $('#costume-arrow').addClass('rotation');
         }
         else {
             newOpacity = 0;
             newHeight = '0em';
+            $('#costume-arrow').removeClass('rotation');
         }
         $costumeInfo.animate({
             height: newHeight,
             opacity: newOpacity
         }, 500, 'linear');
+
+
     })
 
     var username = document.querySelector('[name="username"]');
