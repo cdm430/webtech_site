@@ -60,8 +60,16 @@ function start(){
     });
 
     $(window).on('scroll', function() {
-        var position = $('#ewok');
-        console.log("scroll top is " + $(window).scrollTop());
+        var $windowHeight = $(window.top).height();
+        var $windowPosition = $(window).scrollTop();
+
+        $('.packageHeading').each(function() {
+            var $ewokPosition = $(this).offset().top;
+            if($(this).css("opacity") == 1) return;
+            if($windowPosition + (0.8 * $windowHeight) > $ewokPosition) {
+                $.proxy(ticketTypeEntrance, this)();
+            }
+        })
     });
 
 
@@ -97,6 +105,14 @@ function headingEntrance() {
     $('.heading').fadeIn(2000);
     $('#underline').delay(400).animate({
         width: '100%',
+        opacity: 1
+    }, 1500, 'linear');
+}
+
+function ticketTypeEntrance() {
+    $(this).fadeTo(2000, 1);
+    $(this).children('.underline').delay(400).animate({
+        width: '50%',
         opacity: 1
     }, 1500, 'linear');
 }
