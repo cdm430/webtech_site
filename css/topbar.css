@@ -319,3 +319,56 @@ input[type=submit]:hover {
 #sign-up:hover {
     background-color: #FF6600;
 }
+
+
+footer {
+    position: relative;
+    clear: both;
+    width: 100%;
+    font-size: 12px;
+    background-color: #0d0d0d;
+    text-align: center;
+    top: 5em;
+    opacity: 0.5;
+}
+
+footer p {
+    width: 100%;
+}
+
+footer p:first {
+    margin-top: 1em;
+}
+
+footer p:last-child {
+    padding-bottom: 1em;
+}
+
+footer a {
+    text-decoration: none;
+    color: #FF6600;
+}
+
+footer a:hover {
+    color: green;
+    text-decoration: underline;
+}
+
+
+
+#footer-line {
+    width: 50%;
+}
+
+
+
+
+
+
+/*body.loading {
+    overflow: hidden;
+}
+
+body.loading .modal {
+    display: block;
+}*/

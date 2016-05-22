@@ -7,5 +7,4 @@ else { attachEvent("onload", start); }
 
 function start() {
     $(".main-text").niceScroll({cursorcolor:"white", railalign:"left", cursoropacitymin:"0.2"});
-    $("html").niceScroll({cursorcolor:"white", zindex:99999, cursoropacitymin:"0.2", touchbehavior:true, railoffset:true});
 }

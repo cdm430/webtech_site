@@ -8,6 +8,7 @@ else { attachEvent("onload", start); }
 
 
 
+
 // !function(d,s,id){
 //   var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location)?'http':'https';
 //   if(!d.getElementById(id)){
@@ -41,6 +42,10 @@ function start(){
         lineAnimate();
     });
 
+    if($(window).scrollTop() >= $('h2:first').offset().top) {
+        $('#arrow').css('opacity', '0');
+    }
+
 
 
     $('#logo').on('click', function() {
@@ -62,6 +67,7 @@ function start(){
     $(window).on('scroll', function() {
         var $windowHeight = $(window.top).height();
         var $windowPosition = $(window).scrollTop();
+        console.log("window position is " + $windowPosition);
         var $windowBottom = $(window).scrollTop() + $windowHeight;
         var $arrow = $('#arrow');
         var $firstHeaderPosition = $('h2:first').offset().top;
