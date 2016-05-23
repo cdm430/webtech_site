@@ -42,13 +42,11 @@ function start(){
         lineAnimate();
     });
 
-    if($(window).scrollTop() >= $('h2:first').offset().top) {
-        $('#arrow').css('opacity', '0');
-    }
 
 
 
     $('#logo').on('click', function() {
+        console.log("clicked on logo");
         logoChange();
         var $login = $('#login');
         if($login.is(':hidden')) {
@@ -64,33 +62,6 @@ function start(){
         $('#trooper').attr("src", "images/trooper.svg");
     });
 
-    $(window).on('scroll', function() {
-        var $windowHeight = $(window.top).height();
-        var $windowPosition = $(window).scrollTop();
-        console.log("window position is " + $windowPosition);
-        var $windowBottom = $(window).scrollTop() + $windowHeight;
-        var $arrow = $('#arrow');
-        var $firstHeaderPosition = $('h2:first').offset().top;
-        console.log("h2 first " + $firstHeaderPosition);
-        var $bottomToHeader = $firstHeaderPosition - $windowHeight;
-
-        $('.packageHeading').each(function() {
-            var $ewokPosition = $(this).offset().top;
-            if($(this).css("opacity") == 1) return;
-            if($windowPosition + (0.8 * $windowHeight) > $ewokPosition) {
-                $.proxy(ticketTypeEntrance, this)();
-            }
-        })
-
-        if($windowPosition < $firstHeaderPosition) {
-        console.log("flag");
-            var difference = $firstHeaderPosition - $windowBottom;
-            var ratio = (difference / $bottomToHeader);
-            $arrow.css({
-                opacity: ratio
-            });
-        }
-    });
 
 
     $('.button-outfit').on('click', function(){

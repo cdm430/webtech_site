@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <link href="css/topbar.css" rel="stylesheet" type="text/css" />
-<link href="css/profile.css" rel="stylesheet" type="text/css" />
+<link href="css/signup.css" rel="stylesheet" type="text/css" />
 <script src="js/script.js" type="text/javascript"></script>
 <script src = "js/jquery-1.12.2.min.js"></script>
 <title>Demo</title>
@@ -45,32 +45,27 @@
     </div>
 
     <div class="profile-info">
-    <div class = "profile-pic">
-        <img class="pic-circle" src="images/pic-circle.svg" alt="Your browser does not support svg" />
-        <img class="pic" src="images/user.svg" />
-    </div>
-    <div class="info">
-        <div class="info-line">
-            <span class="info-type">Name: </span><div class="box"></div>
-        </div>
-        <div class="info-line">
-            <span class="info-type">Character Name:</span> <div class="box"></div>
-        </div>
-        <div class="info-line">
-            <span class="info-type">Email: </span> <div class="box"></div>
-        </div>
-        <div class="info-line">
-            <span class="info-type">Tickets: </span> <div class="box"></div>
-        </div>
-        <div id="button-container">
-            <button type="button" class='button-outfit'>Outfit Details</button>
-            <img id="costume-arrow" src="images/arrowright.svg" alt="Your browser does not support svg"/>
-        </div>
-        <div class="costume-info">
+        <form class="info">
+            <div class="info-line">
+                <span class="info-type">First Name: </span><input name="first-name" class="box"></input>
+            </div>
+            <div class="info-line">
+                <span class="info-type">Last Name:</span><input name="last-name" class="box"></input>
+            </div>
+            <div class="info-line">
+                <span class="info-type">Username: </span><input name="username" class="box"></input>
+            </div>
+            <div class="info-line">
+                <span class="info-type">Email: </span><input name="email" class="box"></input>
+            </div>
+            <div id="button-container">
+                <button type="button" class='button-outfit'>Outfit Details</button>
+                <img id="costume-arrow" src="images/arrowRight.svg" alt="Your browser does not support svg"/>
+            </div>
+            <div class="costume-info">
 
-        </div>
-    </div>
-
+            </div>
+        </form>
     </div>
     <div class="footer">
         <h2> FOOTER HERE </h2>
