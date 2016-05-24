@@ -30,6 +30,20 @@ body {
     margin-top: 170px;
 }
 
+#map {
+    height: 50%;
+    visibility: visible;
+    z-index: 2000000000;
+}
+
+html{
+    height:100%;
+}
+
+body{
+    height:100%;
+}
+
 
 .social-media {
     float: left;
