@@ -7,4 +7,5 @@ else { attachEvent("onload", start); }
 
 function start() {
     $(".main-text").niceScroll({cursorcolor:"white", railalign:"left", cursoropacitymin:"0.2"});
+    $(window).on("resize", setup);
 }
