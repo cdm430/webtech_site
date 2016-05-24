@@ -34,23 +34,28 @@ function start(){
         $heading.stop().fadeTo(400, 0);
     })
 
-    // $('#login').on('submit', function(e) {
-    //     e.preventDefault();
-    //     var username = $('#username').val();
-    //     var password = $('#password').val();
-    //
-    //     console.log("username entered is " + username);
-    //     console.log("password entered is " + password);
-    //
-    //     var xmlhttp = new XMLHttpRequest();
-    //     xmlhttp.open("GET","/getpass", true);
-    //     xmlhttp.onreadystatechange=function(){
-    //     if (xmlhttp.readyState==4 && xmlhttp.status==200){
-    //         // string=xmlhttp.responseText;
-    //         }
-    //     }
-    //     xmlhttp.send();
-    // });
+    $('#login').on('submit', function(e) {
+        e.preventDefault();
+        var username = $('#username').val();
+        var password = $('#password').val();
+        var details = $('#login').serialize();
+        console.log(details);
+        var url = "login?" + details;
+        // console.log("username entered is " + username);
+        // console.log("password entered is " + password);
+
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.open("GET", url, true);
+        xmlhttp.onreadystatechange = function(){
+          if (xmlhttp.readyState==4 && xmlhttp.status==200){
+              var responseString = xmlhttp.responseText;
+              var responseObject = JSON.parse(responseString);
+              console.log("response object: " + responseObject.username);
+              console.log("request done");
+          }
+        }
+        xmlhttp.send();
+    });
 
 
     $('.slider').on('mouseleave', function(){

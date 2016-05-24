@@ -21,34 +21,25 @@ function start() {
 
 function redirectHTTPS(request, response) {
     var url = request.url;
-    // url = "https://localhost:8443" + url;
-    // var type = findType(url);
-    // if (type == null) return fail(response, BadType, "File type unsupported");
-    // if (type == "text/html") type = negotiate(request.headers.accept);
-    // reply(response, url, type);
-
     response.writeHead(Redirect, {
-        'Location': 'https://localhost:8443/' + url
+        'Location': 'https://localhost:8443' + url
     });
     response.end();
-
 }
 
 // Serve a request.  Process and validate the url, then deliver the file.
 function handle(request, response) {
     var url = request.url;
+    console.log(url);
+    if(starts(url, "/login")) {
+      parseLogin(request, response);
+      console.log("parsed");
+      return;
+    }
+
     url = removeQuery(url);
     url = lower(url);
     url = addIndex(url);
-
-    // if(url == "/getpass") {
-    //     console.log("received a request");
-    // }
-
-    // var QS = require('querystring');
-    // var params = QS.parse(require('url').parse(request.url).query);
-    // console.log(params.car);
-
 
     if (! valid(url)) return fail(response, NotFound, "Invalid URL");
     if (! safe(url)) return fail(response, NotFound, "Unsafe URL");
@@ -57,6 +48,16 @@ function handle(request, response) {
     if (type == null) return fail(response, BadType, "File type unsupported");
     if (type == "text/html") type = negotiate(request.headers.accept);
     reply(response, url, type);
+}
+
+
+function parseLogin(request, response) {
+    console.log(request.url);
+    var QS = require('querystring');
+    var params = QS.parse(require('url').parse(request.url).query);
+    console.log(params);
+    var detailsString = JSON.stringify(params);
+    deliver(response, "text/plain", null, detailsString);
 }
 
 
