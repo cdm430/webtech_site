@@ -21,11 +21,15 @@ body {
     line-height: 1.2;
 }
 
+.event-image {
+    width: 100%;
+}
+
 #event-info {
     clear: both;
-    width: 900px;
+    width: 50%;
+    height: 100%;
     margin: auto;
-    margin-top: 0px;
     position: relative;
     margin-top: 170px;
 }
@@ -33,6 +37,7 @@ body {
 #map {
     height: 50%;
     visibility: visible;
+    position: relative;
     z-index: 2000000000;
 }
 
