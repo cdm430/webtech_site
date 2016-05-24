@@ -10,7 +10,7 @@ var OK = 200, Redirect = 307, NotFound = 404, BadType = 415, Error = 500;
 
 function start() {
     //test();
-    var httpService = http.createServer(handle);
+    var httpService = http.createServer(redirectHTTPS);
     httpService.listen(ports[0], 'localhost');
     var options = { key: key, cert: cert };
     var httpsService = https.createServer(options, handle);
@@ -19,6 +19,21 @@ function start() {
 }
 
 
+function redirectHTTPS(request, response) {
+    var url = request.url;
+    // url = "https://localhost:8443" + url;
+    // var type = findType(url);
+    // if (type == null) return fail(response, BadType, "File type unsupported");
+    // if (type == "text/html") type = negotiate(request.headers.accept);
+    // reply(response, url, type);
+
+    response.writeHead(Redirect, {
+        'Location': 'https://localhost:8443/' + url
+    });
+    response.end();
+
+}
+
 // Serve a request.  Process and validate the url, then deliver the file.
 function handle(request, response) {
     var url = request.url;
@@ -26,11 +41,13 @@ function handle(request, response) {
     url = lower(url);
     url = addIndex(url);
 
+    // if(url == "/getpass") {
+    //     console.log("received a request");
+    // }
 
-
-    var QS = require('querystring');
-    var params = QS.parse(require('url').parse(request.url).query);
-    console.log(params.car);
+    // var QS = require('querystring');
+    // var params = QS.parse(require('url').parse(request.url).query);
+    // console.log(params.car);
 
 
     if (! valid(url)) return fail(response, NotFound, "Invalid URL");

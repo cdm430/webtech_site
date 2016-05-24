@@ -34,6 +34,23 @@ function start(){
         $heading.stop().fadeTo(400, 0);
     })
 
+    // $('#login').on('submit', function(e) {
+    //     e.preventDefault();
+    //     var username = $('#username').val();
+    //     var password = $('#password').val();
+    //
+    //     console.log("username entered is " + username);
+    //     console.log("password entered is " + password);
+    //
+    //     var xmlhttp = new XMLHttpRequest();
+    //     xmlhttp.open("GET","/getpass", true);
+    //     xmlhttp.onreadystatechange=function(){
+    //     if (xmlhttp.readyState==4 && xmlhttp.status==200){
+    //         // string=xmlhttp.responseText;
+    //         }
+    //     }
+    //     xmlhttp.send();
+    // });
 
 
     $('.slider').on('mouseleave', function(){
@@ -88,9 +105,9 @@ function start(){
 
     var username = document.querySelector('[name="username"]');
     var login = document.querySelector('#login');
-    login.addEventListener("blur", showHint, true);
-    // Captures not bubbles so set to true
-    login.addEventListener("focus", clearHint, true);
+    // login.addEventListener("blur", showHint, true);
+    // // Captures not bubbles so set to true
+    // login.addEventListener("focus", clearHint, true);
 
 
 }
