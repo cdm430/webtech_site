@@ -61,34 +61,55 @@ function parseLogin(request, response) {
     var QS = require('querystring');
     var params = QS.parse(require('url').parse(request.url).query);
     console.log(params);
-    checkUserExists(params);
-    var detailsString = JSON.stringify(params);
-    deliver(response, "text/plain", null, detailsString);
+    checkUserExists(params, response);
+    // console.log("the user password is " + user.password);
+    // var detailsString = JSON.stringify(params);
+    // console.log("details string is " + detailsString);
+    // deliver(response, "text/plain", null, detailsString);
 }
 
-function checkUserExists(params) {
+function checkUserExists(params, response) {
     var username = params.username;
     var password;
+    var user = {};
     var db = new sql.Database("test.db");
     var ps = db.prepare("SELECT * FROM User WHERE username = ?");
-    var user = ps.get(username, find);
+    ps.get(username, show);
+    // console.log(JSON.stringify(userInfo));
 
-    // function show(err, rows) {
-    //     if(err) throw err;
-    //     if(rows == undefined) {
-    //         console.log("ROW IS UNDEFINED");
-    //         return;
-    //     }
-    //     console.log(rows);
-    //     console.log("corresponding password is " + rows.password);
-    //     password = rows.password;
-    // }
-
-    function find(err, rows) {
-        console.log("user is " + user);
-
+    function show(err, rows) {
+        if(err) throw err;
+        if(rows == undefined) {
+            console.log("ROW IS UNDEFINED");
+            isRight(user, response, false);
+            return;
+        }
+        console.log(rows);
+        console.log("corresponding password is " + rows.password);
+        password = rows.password;
+        user.username = rows.username;
+        user.password = password;
+        console.log("password is " + password);
+        console.log("user password is " + user.password);
+        isRight(user, response, true);
     }
+
+
     console.log("password is " + password);
+}
+
+function isRight(user, response, worked) {
+    console.log("the final user info is " + JSON.stringify(user));
+    if(worked) {
+        console.log("it was successful");
+        var detailsString = JSON.stringify(user);
+        deliver(response, "text/plain", null, detailsString);
+    }
+    else {
+        console.log("It did not work");
+        deliver(response, "text/plain", null, "nf");
+    }
+
 }
 
 // Remove the query part of a url.
