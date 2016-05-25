@@ -37,8 +37,7 @@ body {
 #map {
     height: 50%;
     visibility: visible;
-    position: relative;
-    z-index: 2000000000;
+    position: relative
 }
 
 html{

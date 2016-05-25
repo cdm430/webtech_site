@@ -1,3 +1,8 @@
+"use strict";
+var sql = require("sqlite3");
+sql.verbose();
+
+
 var http = require('http');
 var https = require('https');
 var fs = require('fs');
@@ -56,10 +61,28 @@ function parseLogin(request, response) {
     var QS = require('querystring');
     var params = QS.parse(require('url').parse(request.url).query);
     console.log(params);
+    checkUserExists(params);
     var detailsString = JSON.stringify(params);
     deliver(response, "text/plain", null, detailsString);
 }
 
+function checkUserExists(params) {
+    var username = params.username;
+    var db = new sql.Database("test.db");
+    db.all("SELCT * FROM USER", show);
+
+    function show(err, rows) {
+        if(err) throw err;
+        console.log(rows);
+    }
+
+    // function getData() {
+    //
+    //     var ps = db.prepare("SELECT * FROM User WHERE username = ?");
+    //     ps.run(username);
+    //
+    // }
+}
 
 // Remove the query part of a url.
 function removeQuery(url) {
