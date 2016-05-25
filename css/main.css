@@ -1,28 +1,107 @@
-.main-text {
-    position: relative;
-    margin: 10em 0 0 5%;
-    padding-left: 0.8em;
-    display: inline-block;
-    width: 40%;
-    height: 35em;
-    /*clear: both;*/
-    float: left;
-    font-size: 20px;
-    line-height: 2em;
-    text-align: justify;
-    text-justify: inter-word;
-    overflow: scroll;
-    /*background-color: red;*/
+html,body {
+    height: 100%;
 }
 
 
-/*#endor-canvas {
-    clear: both;
-    float: right;
-    margin: -45em auto 0 auto;
-    background: none;
-    overflow: visible;
-}*/
+.main-text {
+    position: relative;
+    font-size: 20px;
+    line-height: 2em;
+    top: 5em;
+}
+
+
+#scroll-prompt {
+    position: relative;
+    bottom: 5em;
+    font-size: 25px;
+    line-height: 1.5em;
+    opacity: 1;
+}
+
+
+.text-side {
+    position: relative;
+    display: inline-block;
+    width: 40%;
+    margin: 10em 0 0 5%;
+    height: 35em;
+    overflow: scroll;
+    text-align: justify;
+    text-justify: inter-word;
+    float: left;
+    font-size: 20px;
+    background-image: url("../images/index-redwood.jpg");
+    -webkit-background-size: 100%;
+    background-size: 140%;
+}
+
+
+.black {
+    color: white;
+    background-color: #0d0d0d;
+    z-index: 10;
+    display: block;
+
+}
+
+
+.package.black {
+    padding: 0.8em;
+}
+
+
+.package.frosted {
+    padding: 0.8em;
+}
+
+
+.triangle {
+    display: block;
+    width: 100%;
+}
+
+
+.big {
+    height: 20em;
+    line-height: 20em;
+    text-align: center;
+    margin: 1em 0;
+}
+
+
+.big #bottom {
+    background: rgba(13,13,13, 0.5);
+    margin: auto;
+    display: inline-block;
+    font-size: 35px;
+    color: white;
+    font-weight: bold;
+    padding: 0.5em;
+    vertical-align: center;
+    line-height: normal;
+}
+
+
+.big #top {
+    margin: auto;
+    display: inline-block;
+    font-size: 55px;
+    color: white;
+    font-weight: bold;
+    /*padding: 0.em;*/
+    vertical-align: center;
+    line-height: normal;
+}
+
+
+.frosted {
+    background: rgba(255, 255, 255, 0.6);
+    color: black;
+    z-index: 10;
+    display: block;
+
+}
 
 
 #static-endor {
@@ -56,7 +135,6 @@
     width: 50%;
     height: 10em;
     margin: 0 auto;
-    /*background-color: purple;*/
     font-size: 20px;
     z-index: 0;
 
@@ -69,7 +147,6 @@
     width: 100%;
     font-size: 20px;
     top: 45em;
-    /*background-color: green;*/
     text-align: center;
 }
 
@@ -95,6 +172,12 @@
     cursor: pointer;
 
 }
+
+
+#activate-button:focus {
+    outline: none;
+}
+
 
 #activate-button:hover {
     background-color: green;
