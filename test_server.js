@@ -68,20 +68,27 @@ function parseLogin(request, response) {
 
 function checkUserExists(params) {
     var username = params.username;
+    var password;
     var db = new sql.Database("test.db");
-    db.all("SELCT * FROM USER", show);
+    var ps = db.prepare("SELECT * FROM User WHERE username = ?");
+    var user = ps.get(username, find);
 
-    function show(err, rows) {
-        if(err) throw err;
-        console.log(rows);
-    }
-
-    // function getData() {
-    //
-    //     var ps = db.prepare("SELECT * FROM User WHERE username = ?");
-    //     ps.run(username);
-    //
+    // function show(err, rows) {
+    //     if(err) throw err;
+    //     if(rows == undefined) {
+    //         console.log("ROW IS UNDEFINED");
+    //         return;
+    //     }
+    //     console.log(rows);
+    //     console.log("corresponding password is " + rows.password);
+    //     password = rows.password;
     // }
+
+    function find(err, rows) {
+        console.log("user is " + user);
+
+    }
+    console.log("password is " + password);
 }
 
 // Remove the query part of a url.
