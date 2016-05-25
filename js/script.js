@@ -49,7 +49,7 @@ function start(){
         xmlhttp.onreadystatechange = function(){
           if (xmlhttp.readyState==4 && xmlhttp.status==200){
               var responseString = xmlhttp.responseText;
-              if(responseString == "nf") {
+              if(responseString == null) {
                   console.log("user not found!!!!!");
                   return;
               }

@@ -1,6 +1,7 @@
 "use strict";
 var sql = require("sqlite3");
 sql.verbose();
+var db = new sql.Database("test.db");
 
 
 var http = require('http');
@@ -57,57 +58,57 @@ function handle(request, response) {
 
 
 function parseLogin(request, response) {
-    console.log(request.url);
+    // Extract the entered parameters from the login field
     var QS = require('querystring');
     var params = QS.parse(require('url').parse(request.url).query);
     console.log(params);
     checkUserExists(params, response);
-    // console.log("the user password is " + user.password);
-    // var detailsString = JSON.stringify(params);
-    // console.log("details string is " + detailsString);
-    // deliver(response, "text/plain", null, detailsString);
 }
 
 function checkUserExists(params, response) {
     var username = params.username;
-    var password;
+    var password = params.password;
+
     var user = {};
-    var db = new sql.Database("test.db");
+    // var db = new sql.Database("test.db");
+    // Prepared Statement to stop SQL injection
+    console.log(password);
     var ps = db.prepare("SELECT * FROM User WHERE username = ?");
-    ps.get(username, show);
+    ps.get(username, findUser);
     // console.log(JSON.stringify(userInfo));
 
-    function show(err, rows) {
+    function findUser(err, rows) {
         if(err) throw err;
         if(rows == undefined) {
             console.log("ROW IS UNDEFINED");
-            isRight(user, response, false);
+            deliverData(user, response, false);
             return;
         }
-        console.log(rows);
-        console.log("corresponding password is " + rows.password);
-        password = rows.password;
+        // console.log(rows);
+        // console.log("corresponding password is " + rows.password);
+        // password = rows.password;
         user.username = rows.username;
-        user.password = password;
-        console.log("password is " + password);
-        console.log("user password is " + user.password);
-        isRight(user, response, true);
+        user.password = rows.password;
+        // console.log("password is " + password);
+        // console.log("user password is " + user.password);
+        deliverData(user, response, true);
     }
 
 
-    console.log("password is " + password);
+    // console.log("password is " + password);
 }
 
-function isRight(user, response, worked) {
-    console.log("the final user info is " + JSON.stringify(user));
+
+function deliverData(user, response, worked) {
+    // console.log("the final user info is " + JSON.stringify(user));
     if(worked) {
-        console.log("it was successful");
+        // console.log("it was successful");
         var detailsString = JSON.stringify(user);
         deliver(response, "text/plain", null, detailsString);
     }
     else {
-        console.log("It did not work");
-        deliver(response, "text/plain", null, "nf");
+        // console.log("It did not work");
+        deliver(response, "text/plain", null, null);
     }
 
 }
