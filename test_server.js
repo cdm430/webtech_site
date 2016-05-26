@@ -1,6 +1,7 @@
 "use strict";
 var sql = require("sqlite3");
 sql.verbose();
+var db = new sql.Database("test.db");
 
 
 var http = require('http');
@@ -34,6 +35,21 @@ function redirectHTTPS(request, response) {
 
 // Serve a request.  Process and validate the url, then deliver the file.
 function handle(request, response) {
+    console.log(url);
+    console.log(console.log(JSON.stringify(request.headers)));
+    var headerobject = request.headers;
+    // if('Set-Cookie' in headerobject ) {
+    //     console.log("index of host is in it");
+    // }
+    // else {
+    //     console.log("not in it ");
+    // }
+    var rc = request.headers.cookie;
+    console.log("rc is " + rc);
+    var cookieList = parseCookies(request);
+    console.log()
+    console.log(JSON.stringify(cookieList));
+
     var url = request.url;
     console.log(url);
     if(starts(url, "/login")) {
@@ -55,40 +71,88 @@ function handle(request, response) {
     reply(response, url, type);
 }
 
+function parseCookies(request) {
+    var cookieList = {};
+    var rc = request.headers.cookie;
+
+    rc = rc.split(';').forEach(function(cookie){
+        var parts = cookie.split('=');
+        cookieList[parts.shift().trim()] = decodeURI(parts.join('='));
+    });
+
+    return cookieList;
+}
 
 function parseLogin(request, response) {
-    console.log(request.url);
+    // Extract the entered parameters from the login field
     var QS = require('querystring');
     var params = QS.parse(require('url').parse(request.url).query);
     console.log(params);
-    checkUserExists(params);
-    var detailsString = JSON.stringify(params);
-    deliver(response, "text/plain", null, detailsString);
+    checkUserExists(params, response);
 }
 
-function checkUserExists(params) {
+function checkUserExists(params, response) {
     var username = params.username;
-    var password;
-    var db = new sql.Database("test.db");
-    var ps = db.prepare("SELECT * FROM User WHERE username = ?");
-    var user = ps.get(username, find);
+    var password = params.password;
 
-    // function show(err, rows) {
-    //     if(err) throw err;
-    //     if(rows == undefined) {
-    //         console.log("ROW IS UNDEFINED");
-    //         return;
-    //     }
-    //     console.log(rows);
-    //     console.log("corresponding password is " + rows.password);
-    //     password = rows.password;
-    // }
+    var user = {};
+    // var db = new sql.Database("test.db");
+    // Prepared Statement to stop SQL injection
+    console.log(password);
+    var ps = db.prepare("SELECT * FROM User WHERE username = ? AND password = ?");
+    ps.get(username, password, findUser);
+    // console.log(JSON.stringify(userInfo));
 
-    function find(err, rows) {
-        console.log("user is " + user);
+    function findUser(err, rows) {
+        if(err) throw err;
+        if(rows == undefined) {
+            console.log("ROW IS UNDEFINED");
+            deliverData(user, response, false);
+            return;
+        }
+        // console.log(rows);
+        // console.log("corresponding password is " + rows.password);
+        // password = rows.password;
+        user.username = rows.username;
+        user.password = rows.password;
+        // console.log("password is " + password);
+        // console.log("user password is " + user.password);
+        deliverData(user, response, true);
+    }
+
+
+    // console.log("password is " + password);
+}
+
+
+function deliverData(user, response, worked) {
+    // console.log("the final user info is " + JSON.stringify(user));
+    if(worked) {
+        // console.log("it was successful");
+        // var detailsString = JSON.stringify(user);
+        // deliver(response, "text/plain", null, detailsString);
+        response.writeHead(OK, {
+            'Set-Cookie': 'sessionid = today; expires=' + new Date(new Date().getTime() + 86400).toUTCString(),
+            'Content-Type': 'text/plain'
+        });
+        response.end();
+        return;
 
     }
-    console.log("password is " + password);
+    else {
+        // console.log("It did not work");
+        // deliver(response, "text/plain", null, "nf");
+        response.writeHead(OK, {
+            'Set-Cookie': 'tomorrow',
+            'Set-Cookie': 'today',
+            'Content-Type': 'text/plain'
+        });
+        response.end();
+        return;
+
+
+    }
+
 }
 
 // Remove the query part of a url.
