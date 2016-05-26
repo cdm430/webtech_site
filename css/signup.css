@@ -1,35 +1,14 @@
-/*.profile-pic{
-  position: relative;
-  top: 10em;
-}*/
+.html,body {
+    height: 100%;
+}
 
-.profile-info {
+
+.user-info {
     width: 80%;
     margin: 0 auto;
+    min-width: 1500px;
+    min-height: 1300px;
     /*background-color: red;*/
-}
-
-.pic-circle {
-  /*display: block;
-
-  height: 30em;
-  width: 30em;
-  left: 40%;
-  float: left;*/
-  width: 20em;
-  position: absolute;
-  left: 50%;
-  margin-top: 10em;
-  margin-left: -10em;
-}
-
-
-.pic {
-    width: 12em;
-    position: absolute;
-    left: 50%;
-    margin-top: 12em;
-    margin-left: -6em;
 }
 
 
@@ -39,7 +18,7 @@
     margin: 0 auto;
     line-height: 2.5em;
     padding: 1em;
-    top: 32em;
+    top: 10em;
     display: block;
     -webkit-border-radius: 5px;
     border-radius: 5px;
@@ -48,30 +27,26 @@
 
 }
 
-#costume-arrow {
-    height: 3.5em;
-    /*bottom: 5em;
-    left: 50%;*/
-    /*margin-left: -50px;*/
-    float: right;
-    z-index: 0;
-    -webkit-transition: 0.4s ease-in-out;
-    -moz-transition: 0.4s ease-in-out;
-    -o-transition: 0.4s ease-in-out;
-    transition: 0.4s ease-in-out;
-    /*transform: rotate(-90deg);*/
 
+.genders {
+    width: 100%;
+    display: inline;
+    text-align: center;
+    margin: 0 30%;
 }
 
-.rotation {
-    transform: rotate(90deg);
-    -webkit-transform: rotate(90deg);
-    transition-delay: 0s;
+
+.radio {
+    width: 15%;
 }
+
 
 #button-container{
     margin-top: 2em;
+    margin: 2em auto 0em auto;
     height: 3.5em;
+    text-align: center;
+    width: 50%;
 }
 
 .info-line {
@@ -108,7 +83,7 @@
     line-height: 3.5em;
     height: 100%;
     margin: 0 auto;
-    width: 40%;
+    width: 10%;
     font-size: 15px;
     color: #ffffff;
     -webkit-border-radius: 5px;
@@ -147,7 +122,3 @@
 
 }
 
-.footer {
-    top: 100em;
-    position: absolute;
-}

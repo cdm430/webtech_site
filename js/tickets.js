@@ -17,11 +17,9 @@ function start(){
     $(window).on('scroll', function() {
         var $windowHeight = $(window.top).height();
         var $windowPosition = $(window).scrollTop();
-        console.log("window position is " + $windowPosition);
         var $windowBottom = $(window).scrollTop() + $windowHeight;
         var $arrow = $('#arrow');
         var $firstHeaderPosition = $('h2:first').offset().top;
-        console.log("h2 first " + $firstHeaderPosition);
         var $bottomToHeader = $firstHeaderPosition - $windowHeight;
 
         $('.packageHeading').each(function() {
