@@ -7,7 +7,7 @@ if(addEventListener) {
 else { attachEvent("onload", start); }
 
 
-
+var username;
 
 // !function(d,s,id){
 //   var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location)?'http':'https';
@@ -27,6 +27,8 @@ function start(){
     $('#login').hide();
     $heading.hide();
     headingEntrance();
+
+    checkLoggedIn();
 
 
     $('.slider').on('mouseenter', function() {
@@ -125,6 +127,32 @@ function start(){
 
 
 }
+
+function checkLoggedIn() {
+    var url = "loggedIn/";
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.open("GET", url, true);
+    xmlhttp.onreadystatechange = function(){
+      if (xmlhttp.readyState==4 && xmlhttp.status==200){
+          var responseString = xmlhttp.responseText;
+          if(responseString === "nf") {
+              console.log("not logged in, do nothing");
+              return;
+          }
+          else {
+            console.log("logged in and must change html for log in box");
+            console.log("response object username : " + responseString);
+            username = responseString;
+            console.log("username set to " + username);
+          }
+      }
+    }
+    xmlhttp.send();
+}
+
+// function changeLoginBox() {
+//     
+// }
 
 function headingEntrance() {
     $('.heading').fadeIn(2000);
