@@ -25,30 +25,14 @@ function changeButton() {
 function fadePrompt() {
     var $textSide = $('.text-side');
     var $scrollPosition = $textSide.scrollTop();
-    var $paragraphPosition = $('p:first').offset();
-    var $topToParagraph = $paragraphPosition - $scrollPosition;
-    var $prompt = $('.scroll-prompt');
+    var $paragraphPosition = $('p:first').offset().top;
+    var $topToPar = $paragraphPosition - $scrollPosition;
 
-    if($scrollPosition < $paragraphPosition) {
-        console.log("p: " + $paragraphPosition);
-        var difference = $paragraphPosition - $scrollPosition;
-        var ratio = difference / $topToParagraph;
+    var $prompt = $('#scroll-prompt');
+    if ($scrollPosition < $paragraphPosition) {
+        var ratio = $topToPar / $paragraphPosition;
         $prompt.css({
             opacity: ratio
         });
     }
-    console.log($scrollPosition);
-
-
-
-    //
-    //var x = 1;
-    //var ratio = x / $scrollPosition;
-    //var console.log("offset: " + $prompt.offset().top);
-    //if($prompt.offset() < $scrollPosition){
-    //    console.log("flag");
-    //}
-    //$prompt.css({
-    //    opacity: ratio
-    //});
 }
