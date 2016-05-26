@@ -3,6 +3,7 @@ var sql = require("sqlite3");
 sql.verbose();
 var db = new sql.Database("test.db");
 
+var userToKey = {};
 
 var http = require('http');
 var https = require('https');
@@ -45,10 +46,14 @@ function handle(request, response) {
     //     console.log("not in it ");
     // }
     var rc = request.headers.cookie;
-    console.log("rc is " + rc);
-    var cookieList = parseCookies(request);
-    console.log()
-    console.log(JSON.stringify(cookieList));
+    if(rc !== undefined) {
+        var cookieList = parseCookies(request);
+        var key = cookieList.sessionid;
+        var userId = userToKey[key];
+        console.log("user: " + userId);
+        // console.log("sessionid::: " + userToKey[key]);
+    }
+    // console.log(JSON.stringify(cookieList));
 
     var url = request.url;
     console.log(url);
@@ -83,6 +88,13 @@ function parseCookies(request) {
     return cookieList;
 }
 
+function generateKey(response) {
+    var crypto = require("crypto");
+    var sha = crypto.createHash('sha256');
+    sha.update(Math.random().toString());
+    return sha.digest('hex');
+}
+
 function parseLogin(request, response) {
     // Extract the entered parameters from the login field
     var QS = require('querystring');
@@ -110,14 +122,33 @@ function checkUserExists(params, response) {
             deliverData(user, response, false);
             return;
         }
+        else {
+            var key = generateKey(response);
+            console.log("userid: " + rows.id);
+            userToKey[key] = rows.id;
+            console.log("key: " + key);
+            response.writeHead(OK, {
+                'Set-Cookie' : 'sessionid=' + key,
+                'type' : 'text/html'
+            });
+            response.write(rows.username);
+            response.end();
+            return;
+        }
         // console.log(rows);
         // console.log("corresponding password is " + rows.password);
         // password = rows.password;
-        user.username = rows.username;
-        user.password = rows.password;
+
+
+        // user.username = rows.username;
+        // user.password = rows.password;
+
+
         // console.log("password is " + password);
         // console.log("user password is " + user.password);
-        deliverData(user, response, true);
+
+
+        // deliverData(user, response, true);
     }
 
 
@@ -131,10 +162,10 @@ function deliverData(user, response, worked) {
         // console.log("it was successful");
         // var detailsString = JSON.stringify(user);
         // deliver(response, "text/plain", null, detailsString);
-        response.writeHead(OK, {
-            'Set-Cookie': 'sessionid = today; expires=' + new Date(new Date().getTime() + 86400).toUTCString(),
-            'Content-Type': 'text/plain'
-        });
+        // response.writeHead(OK, {
+        //     'Set-Cookie': 'sessionid = today; expires=' + 34,
+        //     'Content-Type': 'text/plain'
+        // });
         response.end();
         return;
 
@@ -142,11 +173,10 @@ function deliverData(user, response, worked) {
     else {
         // console.log("It did not work");
         // deliver(response, "text/plain", null, "nf");
-        response.writeHead(OK, {
-            'Set-Cookie': 'tomorrow',
-            'Set-Cookie': 'today',
-            'Content-Type': 'text/plain'
-        });
+        // response.writeHead(OK, {
+        //     'Set-Cookie': 'tomorrow',
+        //     'Content-Type': 'text/plain'
+        // });
         response.end();
         return;
 

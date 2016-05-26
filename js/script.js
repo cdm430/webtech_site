@@ -51,12 +51,15 @@ function start(){
               var responseString = xmlhttp.responseText;
               var responseHeader = xmlhttp.getAllResponseHeaders();
               console.log("response header is " + responseHeader);
-              if(responseString == "nf") {
+              if(responseString === "nf") {
                   console.log("user not found!!!!!");
                   return;
               }
-              var responseObject = JSON.parse(responseString);
-              console.log("response object username : pass = " + responseObject.username + " " + responseObject.password);
+              if(responseString === "new data") {
+                  console.log("new cookie will be made");
+              }
+            //   var responseObject = JSON.parse(responseString);
+              console.log("response object username : " + responseString);
               console.log("request done");
           }
         }
