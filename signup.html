@@ -4,8 +4,9 @@
 <meta charset="UTF-8"/>
 <link href="css/topbar.css" rel="stylesheet" type="text/css" />
 <link href="css/signup.css" rel="stylesheet" type="text/css" />
-<script src="js/script.js" type="text/javascript"></script>
 <script src = "js/jquery-1.12.2.min.js"></script>
+<script src="js/script.js" type="text/javascript"></script>
+<script src="js/signup.js" type="text/javascript"></script>
 <title>Demo</title>
 </head>
 <body>
@@ -44,31 +45,51 @@
 
     </div>
 
-    <div class="profile-info">
+    <div class="user-info">
         <form class="info">
             <div class="info-line">
-                <span class="info-type">First Name: </span><input name="first-name" class="box"></input>
+                <span class="info-type">First Name: </span><input name="fname" class="box" />
             </div>
             <div class="info-line">
-                <span class="info-type">Last Name:</span><input name="last-name" class="box"></input>
+                <span class="info-type">Last Name:</span><input name="lname" class="box" />
             </div>
             <div class="info-line">
-                <span class="info-type">Username: </span><input name="username" class="box"></input>
+                <span class="info-type">Username: </span><input name="username" class="box" />
             </div>
             <div class="info-line">
-                <span class="info-type">Email: </span><input name="email" class="box"></input>
+                <span class="info-type">Email: </span><input name="email" class="box" />
             </div>
-            <div id="button-container">
-                <button type="button" class='button-outfit'>Outfit Details</button>
-                <img id="costume-arrow" src="images/arrowRight.svg" alt="Your browser does not support svg"/>
+            <div class="info-line">
+                <span class="info-type">Password: </span><input type="password" name="password" class="box" id="pass1" />
             </div>
-            <div class="costume-info">
+            <div class="info-line">
+                <span class="info-type">Confirm Password: </span><input type="password" name="confirm-password" class="box" id="pass2" />
+            </div>
+            <!--<div class="info-line">-->
+                <!--<span class="info-type">Gender: </span>-->
+                <!--<div class="genders">-->
+                    <!--Male: <input type="radio" name="gender" class="radio" value="male" />-->
+                    <!--Female: <input type="radio" name="gender" class="radio" value="female" />-->
+                <!--</div>-->
+            <!--</div>-->
 
+            <div id="button-container">
+                <input type="submit" class='button-outfit' placeholder="Sign Up" />
             </div>
         </form>
     </div>
-    <div class="footer">
-        <h2> FOOTER HERE </h2>
-    </div>
+
+    <footer>
+        <hr id="footer-line" />
+        <p>
+            <a href = "#">Terms of Use</a> &amp; <a href = "#">Privacy Policy</a>
+        </p>
+        <p>
+            Contact us: <a href="#">email@email.com</a>
+        </p>
+        <p>
+            &#169; A Gathering of... (2016) - C Meehan and L White
+        </p>
+    </footer>
 </body>
 </html>

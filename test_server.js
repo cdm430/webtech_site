@@ -1,3 +1,4 @@
+// Serve a request.  Process and validate the url, then deliver the file.
 "use strict";
 var sql = require("sqlite3");
 sql.verbose();
@@ -34,48 +35,6 @@ function redirectHTTPS(request, response) {
     response.end();
 }
 
-// Serve a request.  Process and validate the url, then deliver the file.
-function handle(request, response) {
-    console.log(url);
-    console.log(console.log(JSON.stringify(request.headers)));
-    var headerobject = request.headers;
-    // if('Set-Cookie' in headerobject ) {
-    //     console.log("index of host is in it");
-    // }
-    // else {
-    //     console.log("not in it ");
-    // }
-    var rc = request.headers.cookie;
-    if(rc !== undefined) {
-        var cookieList = parseCookies(request);
-        var key = cookieList.sessionid;
-        var userId = userToKey[key];
-        console.log("user: " + userId);
-        // console.log("sessionid::: " + userToKey[key]);
-    }
-    // console.log(JSON.stringify(cookieList));
-
-    var url = request.url;
-    console.log(url);
-    if(starts(url, "/login")) {
-      parseLogin(request, response);
-      console.log("parsed");
-      return;
-    }
-
-    url = removeQuery(url);
-    url = lower(url);
-    url = addIndex(url);
-
-    if (! valid(url)) return fail(response, NotFound, "Invalid URL");
-    if (! safe(url)) return fail(response, NotFound, "Unsafe URL");
-    if (! open(url)) return fail(response, NotFound, "URL has been banned");
-    var type = findType(url);
-    if (type == null) return fail(response, BadType, "File type unsupported");
-    if (type == "text/html") type = negotiate(request.headers.accept);
-    reply(response, url, type);
-}
-
 function parseCookies(request) {
     var cookieList = {};
     var rc = request.headers.cookie;
@@ -86,6 +45,52 @@ function parseCookies(request) {
     });
 
     return cookieList;
+}
+
+function handle(request, response) {
+    //console.log(url);
+    //console.log(console.log(JSON.stringify(request.headers)));
+    var headerobject = request.headers;
+    var rc = request.headers.cookie;
+    if(rc !== undefined) {
+        // console.log("sessionid::: " + userToKey[key]);
+        var cookieList = parseCookies(request);
+        var key = cookieList.sessionid;
+        var userId = userToKey[key];
+        //console.log("user: " + userId);
+    }
+    // console.log(JSON.stringify(cookieList));
+    var url = request.url;
+
+    console.log(url);
+    if(starts(url   , "/login")) {
+        parseLogin(request, response);
+        console.log("parsed");
+        return;
+    }
+    else if(starts(url, "/signup.html")) {
+        console.log("Got into Signup");
+        parseSignup(request, response);
+        return;
+    }
+    // if('Set-Cookie' in headerobject ) {
+    //     console.log("index of host is in it");
+    // }
+    // else {
+    //     console.log("not in it ");
+    // }
+
+
+    url = removeQuery(url);
+    url = lower(url);
+    url = addIndex(url);
+    if (! valid(url)) return fail(response, NotFound, "Invalid URL");
+    if (! safe(url)) return fail(response, NotFound, "Unsafe URL");
+    if (! open(url)) return fail(response, NotFound, "URL has been banned");
+    var type = findType(url);
+    if (type == null) return fail(response, BadType, "File type unsupported");
+    if (type == "text/html") type = negotiate(request.headers.accept);
+    reply(response, url, type);
 }
 
 function generateKey(response) {
@@ -102,6 +107,7 @@ function parseLogin(request, response) {
     console.log(params);
     checkUserExists(params, response);
 }
+
 
 function checkUserExists(params, response) {
     var username = params.username;
@@ -183,6 +189,27 @@ function deliverData(user, response, worked) {
 
     }
 
+}
+
+function parseSignup(request, response) {
+    var QS = require('querystring');
+    var params = QS.parse(require('url').parse(request.url).query);
+    console.log(params.fname);
+    console.log(params.lname);
+    console.log(params.username);
+    reply(response, request.url, "text/html");
+    //writeSignup(params, response);
+}
+
+function writeSignup(params, response) {
+    var fname = params.fname, lname = params.lname, username = params.username,
+        email = params.email, password = params.pass, gender = params.gender;
+    //db.query('INSERT INTO (fname, lname, username, email, password, gender ' +
+    //    'VALUES(?, ?, ?, ?, ?, ?)', {values: [fname, lname, username, email, password,
+    //    gender]});
+    //console.log("written");
+    //response.end();
+    return;
 }
 
 // Remove the query part of a url.

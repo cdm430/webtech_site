@@ -324,12 +324,10 @@ input[type=submit]:hover {
 footer {
     position: relative;
     clear: both;
-    bottom: 0;
     width: 100%;
     font-size: 12px;
     background-color: #0d0d0d;
     text-align: center;
-    top: 5em;
     opacity: 0.5;
 }
 
