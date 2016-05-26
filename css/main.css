@@ -12,10 +12,11 @@ html,body {
 
 
 #scroll-prompt {
-    position: relative;
-    bottom: 5em;
+    position: fixed;
+    width: 100px;
+    /*bottom: 5em;*/
     font-size: 25px;
-    line-height: 1.5em;
+
     opacity: 1;
 }
 
@@ -33,12 +34,13 @@ html,body {
     font-size: 20px;
     background-image: url("../images/index-redwood.jpg");
     -webkit-background-size: 100%;
-    background-size: 140%;
+    background-size: 1200px;
 }
 
 
 .black {
     color: white;
+    width:;
     background-color: #0d0d0d;
     z-index: 10;
     display: block;
@@ -96,10 +98,11 @@ html,body {
 
 
 .frosted {
-    background: rgba(255, 255, 255, 0.6);
-    color: black;
+    background: rgba(0, 0, 0, 0.3);
+    color: white;
     z-index: 10;
     display: block;
+    text-shadow: 2px 2px black;
 
 }
 
