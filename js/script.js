@@ -57,7 +57,7 @@ function start(){
               else {
                   console.log("username " + username);
                   username = responseString;
-                  changeLoginBox();
+                  checkLoggedIn();
               }
           }
         }
@@ -74,19 +74,7 @@ function start(){
 
 
 
-    $('#logo').on('click', function() {
-        console.log("clicked on logo");
-        var $trooper = $('#trooper');
-        var $box = $('#trooperbox');
-        if(($box.css("opacity")) <= "0.5") {
-            $box.fadeTo(200, 1);
-            $trooper.attr("src", "images/rebel.svg");
-        }
-        else {
-            $box.fadeTo(200, 0);
-            $trooper.attr("src", "images/trooper.svg");
-        }
-    });
+    $('#logo').on('click', logoChange);
 
 
     $('.slider').on('mouseover', function() {
@@ -125,6 +113,21 @@ function start(){
 
 }
 
+function logoChange() {
+    console.log("clicked on logo");
+    var $trooper = $('#trooper');
+    var $box = $('#trooperbox');
+    if(($box.css("opacity")) <= "0.5") {
+        $box.fadeTo(200, 1);
+        $trooper.attr("src", "images/rebel.svg");
+    }
+    else {
+        $box.fadeTo(200, 0);
+        $trooper.attr("src", "images/trooper.svg");
+    }
+
+}
+
 function checkLoggedIn() {
     var url = "loggedin";
     var xmlhttp = new XMLHttpRequest();
@@ -142,6 +145,10 @@ function checkLoggedIn() {
             username = responseString;
             console.log("username set to " + username);
             changeLoginBox();
+            console.log("url is " + window.location.href);
+            if(window.location.href === "https://localhost:8443/tickets.html") {
+                changePackages();
+            }
           }
       }
     }
