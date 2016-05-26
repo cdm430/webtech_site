@@ -11,7 +11,7 @@ function startup() {
         "fname VARCHAR(100) NOT NULL, " +
         "lname VARCHAR(100) NOT NULL, " +
         "username VARCHAR(100) UNIQUE NOT NULL, " +
-        "email VARCHAR(100) UNIQUE NOT NULL, " +
+        "email VARCHAR(100) NOT NULL, " +
         "password VARCHAR(100) NOT NULL, " +
         "gender VARCHAR(10) NOT NULL);"
         , err);

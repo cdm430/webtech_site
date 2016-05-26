@@ -245,13 +245,33 @@ function deliverData(response, worked) {
 function parseSignup(request, response) {
     var QS = require('querystring');
     var params = QS.parse(require('url').parse(request.url).query);
-    writeSignup(params, response);
+    clash(params, response);
 }
+
+
+function clash(params, response) {
+    var username = params.username;
+    var ps = db.prepare("SELECT id FROM User WHERE username=?");
+    ps.get(username, check);
+
+    function check(err, rows) {
+        if(err) throw err;
+        if(rows === undefined) {
+            writeSignup(params, response);
+        }
+        else {
+            response.writeHead(OK, {'Content-Type' : 'text/plain'});
+            response.write("taken");
+            response.end();
+        }
+    }
+
+}
+
 
 function writeSignup(params, response) {
     var fname = params.fname, lname = params.lname, username = params.username,
         email = params.email, password = params.password, gender = params.gender;
-
     var ps = db.prepare('INSERT INTO User (fname, lname, username, email, password, gender) ' +
        'VALUES(?, ?, ?, ?, ?, ?)');
     ps.run(fname, lname, username, email, password, gender);

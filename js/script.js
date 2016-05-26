@@ -85,6 +85,7 @@ function start(){
             $box.fadeOut(500);
         }
     });
+    
 
     $('.slider').on('mouseover', function() {
         $('#trooperbox').fadeOut(500);

@@ -67,7 +67,7 @@ input[type=radio] {
     height: 2.5em;
 }
 
-.value {
+.signinput {
     float: right;
     -webkit-border-radius: 5px;
     border-radius: 5px;
@@ -121,6 +121,28 @@ input[type=radio] {
     border: 1px solid #333333;
 
 }
+
+
+.signinput:-moz-placeholder{
+    color: red;
+    opacity: 0.4;
+}
+
+.signinput::-moz-placeholder{
+    color: red;
+    opacity: 0.4;
+}
+
+.signinput::-webkit-input-placeholder{
+    color: red;
+    opacity: 0.4;
+}
+
+.signinput:-ms-input-placeholder{
+    color: red;
+    opacity: 0.4;
+}
+
 
 
 #spacer {
