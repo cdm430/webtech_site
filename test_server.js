@@ -45,12 +45,12 @@ function handle(request, response) {
     // else {
     //     console.log("not in it ");
     // }
-    if(rc !== undefined) {
     var rc = request.headers.cookie;
+    if(rc !== undefined) {
         var cookieList = parseCookies(request);
         var key = cookieList.sessionid;
         var userId = userToKey[key];
-        console.log("user: " + userToKey[key]);
+        console.log("user: " + userId);
         // console.log("sessionid::: " + userToKey[key]);
     }
     // console.log(JSON.stringify(cookieList));
