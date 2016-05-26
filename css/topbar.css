@@ -232,6 +232,12 @@ body {
     /*visibility: hidden;*/
 }
 
+
+#trooperbox {
+    opacity: 0;
+}
+
+
 input {
     width: 90%;
     position: relative;

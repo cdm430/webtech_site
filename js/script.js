@@ -76,16 +76,18 @@ function start(){
 
     $('#logo').on('click', function() {
         console.log("clicked on logo");
-        logoChange();
+        var $trooper = $('#trooper');
         var $box = $('#trooperbox');
-        if($box.is(':hidden')) {
-            $box.fadeIn(500);
+        if(($box.css("opacity")) <= "0.5") {
+            $box.fadeTo(200, 1);
+            $trooper.attr("src", "images/rebel.svg");
         }
         else {
-            $box.fadeOut(500);
+            $box.fadeTo(200, 0);
+            $trooper.attr("src", "images/trooper.svg");
         }
     });
-    
+
 
     $('.slider').on('mouseover', function() {
         $('#trooperbox').fadeOut(500);
@@ -206,29 +208,6 @@ function lineRedraw() {
     lineHide();
 }
 
-function logoChange() {
-    var $trooper = $('#trooper');
-    var src = $trooper.attr("src");
-    // showForm();
-
-    if(src === "images/trooper.svg"){
-        $trooper.attr("src", "images/rebel.svg");
-    } else {
-        $trooper.attr("src", "images/trooper.svg");
-    }
-
-}
-
-// function showForm() {
-//
-//     if(login.style.visibility == 'visible')  {
-//         login.style.visibility = 'hidden';
-//     }
-//     else {
-//         login.style.visibility = 'visible';
-//     }
-//     console.log("hovered");
-// }
 
 function showHint(e) {
     var target = e.target;

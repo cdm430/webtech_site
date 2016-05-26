@@ -22,7 +22,7 @@ function setup() {
   canvas = document.getElementById('endor-canvas');
   canvasWidth = window.innerWidth / 2;
   canvasHeight = window.innerHeight / 2;
-  rad = window.innerWidth / 2600;
+  rad = window.innerWidth / 2550;
   seg = 32;
   scene =         new THREE.Scene();
   camera =        new THREE.PerspectiveCamera(65, canvasWidth/canvasHeight, 0.01, 1000);
