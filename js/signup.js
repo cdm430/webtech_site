@@ -1,17 +1,22 @@
 "use strict";
 
-$(document).ready( function() {
-    $(".info").on('submit', submitSignUp);
-});
+$(document).ready(start);
+
+
+function start() {
+    $("#sign-up-form").on("submit", submitSignUp);
+}
 
 
 function submitSignUp(e) {
+    e.preventDefault();
+    console.log("FLAG");
     if(checkInputs() === true) {
-        e.preventDefault();
         //var fName = $('#fname').val(), lName = $('#lname').val(), uName = $('#uname').val(),
         //    email = $('#email').val(), pass = $('#pass1').val(), gender = $('#gender').val();
-        var details = $('.info').serialize();
-        var url = "signup.html" + details;
+        var details = $('#sign-up-form').serialize();
+        console.log("serialised: " + JSON.stringify(details));
+        var url = "create-account?" + details;
 
         var xmlhttp = new XMLHttpRequest();
         xmlhttp.open("GET", url, true);
@@ -31,8 +36,9 @@ function submitSignUp(e) {
 
 
 function checkInputs() {
+    console.log("flag2");
     var passed = true;
-    var inputs = $('.box').not(':input[type=submit]');
+    var inputs = $('.value').not(':input[type=submit]');
     $(inputs).each(function() {
         console.log("value: " + $(this).val());
         if($(this).val() === "") {
@@ -40,6 +46,7 @@ function checkInputs() {
             return;
         }
     });
-    if(!($('#pass1').val() === $('#pass2').val())) {console.log("flag2"); passed = false; };
+    if(!$("input[name='gender']:checked").val()) passed = false;
+    if(!($('#pass1').val() === $('#pass2').val())) passed = false;
     return passed;
 }

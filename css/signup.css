@@ -6,13 +6,12 @@
 .user-info {
     width: 80%;
     margin: 0 auto;
-    min-width: 1500px;
-    min-height: 1300px;
+    /*min-height: 1300px;*/
     /*background-color: red;*/
 }
 
 
-.info {
+#sign-up-form {
     position: relative;
     width: 40%;
     margin: 0 auto;
@@ -23,6 +22,7 @@
     -webkit-border-radius: 5px;
     border-radius: 5px;
     border: 1px solid #333333;
+    min-width: 500px;
     /*background-color: red;*/
 
 }
@@ -32,11 +32,11 @@
     width: 100%;
     display: inline;
     text-align: center;
-    margin: 0 30%;
+    margin: 0 25%;
 }
 
 
-.radio {
+input[type=radio] {
     width: 15%;
 }
 
@@ -67,7 +67,7 @@
     height: 2.5em;
 }
 
-.box {
+.value {
     float: right;
     -webkit-border-radius: 5px;
     border-radius: 5px;
@@ -123,5 +123,6 @@
 }
 
 
-
-
+#spacer {
+    height: 15em;
+}

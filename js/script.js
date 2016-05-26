@@ -24,7 +24,7 @@ function start(){
     console.log("Started");
     var $heading = $('.heading');
 
-    $('#login').hide();
+    $('#trooperbox').hide();
     $heading.hide();
     headingEntrance();
 
@@ -38,8 +38,7 @@ function start(){
 
     $('#login').on('submit', function(e) {
         e.preventDefault();
-        var username = $('#username').val();
-        var password = $('#password').val();
+
         var details = $('#login').serialize();
         console.log(details);
         var url = "login?" + details;
@@ -51,18 +50,15 @@ function start(){
         xmlhttp.onreadystatechange = function(){
           if (xmlhttp.readyState==4 && xmlhttp.status==200){
               var responseString = xmlhttp.responseText;
-              var responseHeader = xmlhttp.getAllResponseHeaders();
-              console.log("response header is " + responseHeader);
               if(responseString === "nf") {
                   console.log("user not found!!!!!");
                   return;
               }
-              if(responseString === "new data") {
-                  console.log("new cookie will be made");
+              else {
+                  console.log("username " + username);
+                  username = responseString;
+                  changeLoginBox();
               }
-            //   var responseObject = JSON.parse(responseString);
-              console.log("response object username : " + responseString);
-              console.log("request done");
           }
         }
         xmlhttp.send();
@@ -81,17 +77,17 @@ function start(){
     $('#logo').on('click', function() {
         console.log("clicked on logo");
         logoChange();
-        var $login = $('#login');
-        if($login.is(':hidden')) {
-            $login.fadeIn(500);
+        var $box = $('#trooperbox');
+        if($box.is(':hidden')) {
+            $box.fadeIn(500);
         }
         else {
-            $login.fadeOut(500);
+            $box.fadeOut(500);
         }
     });
 
     $('.slider').on('mouseover', function() {
-        $('#login').fadeOut(500);
+        $('#trooperbox').fadeOut(500);
         $('#trooper').attr("src", "images/trooper.svg");
     });
 
@@ -119,8 +115,6 @@ function start(){
 
     })
 
-    var username = document.querySelector('[name="username"]');
-    var login = document.querySelector('#login');
     // login.addEventListener("blur", showHint, true);
     // // Captures not bubbles so set to true
     // login.addEventListener("focus", clearHint, true);
@@ -129,7 +123,7 @@ function start(){
 }
 
 function checkLoggedIn() {
-    var url = "loggedIn/";
+    var url = "loggedin";
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.open("GET", url, true);
     xmlhttp.onreadystatechange = function(){
@@ -144,15 +138,41 @@ function checkLoggedIn() {
             console.log("response object username : " + responseString);
             username = responseString;
             console.log("username set to " + username);
+            changeLoginBox();
           }
       }
     }
     xmlhttp.send();
 }
 
-// function changeLoginBox() {
-//     
-// }
+function changeLoginBox() {
+    var newContent = "<div id='login'> <span id='username-word'>" +
+        username + "</span><a href='profile.html' class='button' id='profilebutton'>Profile" +
+        "</a><button class='button' id='logoutbutton'>Log Out</button>"
+         + "</div>";
+
+    $('#trooperbox').html(newContent);
+
+    $('#logoutbutton').on('click', logOut);
+}
+
+function logOut() {
+    var url = "logout";
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.open("GET", url, true);
+    xmlhttp.onreadystatechange = function(){
+      if (xmlhttp.readyState==4 && xmlhttp.status==200){
+          console.log("got into log out");
+          var responseString = xmlhttp.responseText;
+          if(responseString === "loggedout") {
+            console.log("logged out and must revert html for log in box");
+            window.location="https://localhost:8443/";
+          }
+      }
+    }
+    xmlhttp.send();
+    console.log("end of func");
+}
 
 function headingEntrance() {
     $('.heading').fadeIn(2000);
