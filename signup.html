@@ -4,8 +4,9 @@
 <meta charset="UTF-8"/>
 <link href="css/topbar.css" rel="stylesheet" type="text/css" />
 <link href="css/signup.css" rel="stylesheet" type="text/css" />
-<script src="js/script.js" type="text/javascript"></script>
 <script src = "js/jquery-1.12.2.min.js"></script>
+<script src="js/script.js" type="text/javascript"></script>
+<script src="js/signup.js" type="text/javascript"></script>
 <title>Demo</title>
 </head>
 <body>
@@ -47,33 +48,33 @@
     <div class="user-info">
         <form class="info">
             <div class="info-line">
-                <span id="fname" class="info-type">First Name: </span><input name="first-name" class="box" />
+                <span class="info-type">First Name: </span><input name="fname" class="box" />
             </div>
             <div class="info-line">
-                <span id="lname" class="info-type">Last Name:</span><input name="last-name" class="box" />
+                <span class="info-type">Last Name:</span><input name="lname" class="box" />
             </div>
             <div class="info-line">
-                <span id="uname" class="info-type">Username: </span><input name="username" class="box" />
+                <span class="info-type">Username: </span><input name="username" class="box" />
             </div>
             <div class="info-line">
-                <span id="email" class="info-type">Email: </span><input name="email" class="box" />
+                <span class="info-type">Email: </span><input name="email" class="box" />
             </div>
             <div class="info-line">
-                <span id="pass1" class="info-type">Password: </span><input type="password" name="password" class="box" />
+                <span class="info-type">Password: </span><input type="password" name="password" class="box" />
             </div>
             <div class="info-line">
-                <span id="pass2" class="info-type">Confirm Password: </span><input type="password" name="confirm-password" class="box" />
+                <span class="info-type">Confirm Password: </span><input type="password" name="confirm-password" class="box" />
             </div>
             <div class="info-line">
                 <span class="info-type">Gender: </span>
                 <div class="genders">
-                    Male: <input type="radio" name="gender" class="radio male" value="male" />
-                    Female: <input type="radio" name="gender" class="radio female" value="female" />
+                    Male: <input type="radio" name="gender" class="radio" value="male" />
+                    Female: <input type="radio" name="gender" class="radio" value="female" />
                 </div>
             </div>
 
             <div id="button-container">
-                <input id="submit" type="submit" class='button-outfit' placeholder="Sign Up" />
+                <input type="submit" class='button-outfit' placeholder="Sign Up" />
             </div>
         </form>
     </div>
