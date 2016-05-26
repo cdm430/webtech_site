@@ -35,6 +35,21 @@ function redirectHTTPS(request, response) {
 
 // Serve a request.  Process and validate the url, then deliver the file.
 function handle(request, response) {
+    console.log(url);
+    console.log(console.log(JSON.stringify(request.headers)));
+    var headerobject = request.headers;
+    // if('Set-Cookie' in headerobject ) {
+    //     console.log("index of host is in it");
+    // }
+    // else {
+    //     console.log("not in it ");
+    // }
+    var rc = request.headers.cookie;
+    console.log("rc is " + rc);
+    var cookieList = parseCookies(request);
+    console.log()
+    console.log(JSON.stringify(cookieList));
+
     var url = request.url;
     console.log(url);
     if(starts(url, "/login")) {
@@ -56,6 +71,17 @@ function handle(request, response) {
     reply(response, url, type);
 }
 
+function parseCookies(request) {
+    var cookieList = {};
+    var rc = request.headers.cookie;
+
+    rc = rc.split(';').forEach(function(cookie){
+        var parts = cookie.split('=');
+        cookieList[parts.shift().trim()] = decodeURI(parts.join('='));
+    });
+
+    return cookieList;
+}
 
 function parseLogin(request, response) {
     // Extract the entered parameters from the login field
@@ -73,8 +99,8 @@ function checkUserExists(params, response) {
     // var db = new sql.Database("test.db");
     // Prepared Statement to stop SQL injection
     console.log(password);
-    var ps = db.prepare("SELECT * FROM User WHERE username = ?");
-    ps.get(username, findUser);
+    var ps = db.prepare("SELECT * FROM User WHERE username = ? AND password = ?");
+    ps.get(username, password, findUser);
     // console.log(JSON.stringify(userInfo));
 
     function findUser(err, rows) {
@@ -103,12 +129,28 @@ function deliverData(user, response, worked) {
     // console.log("the final user info is " + JSON.stringify(user));
     if(worked) {
         // console.log("it was successful");
-        var detailsString = JSON.stringify(user);
-        deliver(response, "text/plain", null, detailsString);
+        // var detailsString = JSON.stringify(user);
+        // deliver(response, "text/plain", null, detailsString);
+        response.writeHead(OK, {
+            'Set-Cookie': 'sessionid = today; expires=' + new Date(new Date().getTime() + 86400).toUTCString(),
+            'Content-Type': 'text/plain'
+        });
+        response.end();
+        return;
+
     }
     else {
         // console.log("It did not work");
-        deliver(response, "text/plain", null, null);
+        // deliver(response, "text/plain", null, "nf");
+        response.writeHead(OK, {
+            'Set-Cookie': 'tomorrow',
+            'Set-Cookie': 'today',
+            'Content-Type': 'text/plain'
+        });
+        response.end();
+        return;
+
+
     }
 
 }
