@@ -97,6 +97,28 @@ function handle(request, response) {
         deliverInfo(response, key);
         return;
     }
+    else if(starts(url, "/purchaseticket?")) {
+        if(rc === undefined) {
+            deliverData(response, false);
+        }
+        else {
+            var urlParts = url.split("?");
+            var ticketType = urlParts[1];
+            makePurchase(ticketType, userId, response);
+        }
+
+        return;
+    }
+    else if(starts(url, "/gettickets")) {
+        if(rc === undefined) {
+            deliverData(response, false);
+        }
+        else {
+            getTickets(userId, response);
+        }
+        return;
+
+    }
 
 
     url = removeQuery(url);
@@ -111,6 +133,40 @@ function handle(request, response) {
     reply(response, url, type);
 }
 
+
+function getTickets(userId, response) {
+    var numTickets1, numTickets2, numTickets3;
+
+    var ps = db.prepare("SELECT (SELECT COUNT(*) FROM PurchasedTicket WHERE user = ? and ticketType = 1) AS numTickets1, " +
+        "(SELECT COUNT(*) FROM PurchasedTicket WHERE user = ? and ticketType = 2) AS numTickets2, " +
+            "(SELECT COUNT(*) FROM PurchasedTicket WHERE user = ? and ticketType = 3) AS numTickets3");
+
+    ps.get(userId, userId, userId, sendNumTickets);
+
+
+    function sendNumTickets(err, rows) {
+        if(err) throw err;
+        if(rows == undefined) {
+            console.log("ROW IS UNDEFINED");
+            deliverData(response, false);
+            return;
+        }
+        else {
+            response.writeHead(OK, {'Content-Type' : 'text/plain' });
+            console.log(JSON.stringify(rows));
+            var objectString = JSON.stringify(rows);
+            response.write(objectString);
+            response.end();
+            return;
+        }
+    }
+
+
+}
+
+
+
+
 function logOut(response, key) {
     console.log("trying to log out ");
     console.log("before " + JSON.stringify(userToKey));
@@ -124,6 +180,28 @@ function logOut(response, key) {
     console.log("should have logged out");
 
 }
+
+
+function makePurchase(ticketType, userId, response) {
+    var ticketId;
+    if(ticketType === "ewok-purchase")          ticketId = 1;
+    else if(ticketType === "rebel-purchase")    ticketId = 2;
+    else if(ticketType === "jedi-purchase")     ticketId = 3;
+
+    var ps = db.prepare("INSERT INTO PurchasedTicket (user, ticketType) " +
+       "VALUES(?, ?)");
+
+   ps.run(userId, ticketId);
+   ps.finalize(writeResponse);
+
+   function writeResponse() {
+       response.writeHead(OK, {'Content-Type' : 'text/plain'});
+       response.write("writtenticket");
+       response.end();
+   }
+
+}
+
 
 function generateKey(response) {
     var crypto = require("crypto");
