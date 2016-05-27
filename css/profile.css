@@ -1,8 +1,3 @@
-/*.profile-pic{
-  position: relative;
-  top: 10em;
-}*/
-
 .profile-info {
     width: 80%;
     margin: 0 auto;
@@ -10,12 +5,6 @@
 }
 
 .pic-circle {
-  /*display: block;
-
-  height: 30em;
-  width: 30em;
-  left: 40%;
-  float: left;*/
   width: 20em;
   position: absolute;
   left: 50%;
@@ -140,7 +129,7 @@
 }
 
 
-.costume-info{
+.costume-container {
     height: 0em;
     position: relative;
     opacity: 0;
@@ -151,8 +140,8 @@
     -webkit-border-radius: 5px;
     border-radius: 5px;
     border: 1px solid #333333;
-
 }
+
 
 .footer {
     top: 100em;
@@ -164,3 +153,38 @@
     color: white;
 }
 
+
+.costume-box {
+    float: right;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    border: 1px solid #333333;
+    width: 65%;
+    font-size: 20px;
+    height: 2.5em;
+    line-height: 2.5em;
+    display: block;
+    margin-right: 0.5em;
+}
+
+
+.costume-info span {
+    line-height: 2.5em;
+    height: 2.5em;
+    padding-left: 1em;
+}
+
+.costume-info {
+    width: 100%;
+    height: 2.5em;
+    display: inline-block;
+    font-size: 20px;
+    padding: 0;
+    margin: 0;
+    margin: 0.25em 0;
+}
+
+
+.spacer {
+    height: 50em;
+}

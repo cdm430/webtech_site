@@ -69,27 +69,7 @@ function start(){
 
 
 
-    $('.button-outfit').on('click', function(){
-        var $costumeInfo = $('.costume-info');
-        var newOpacity = 1;
-        var newHeight = '30em';
-        if($costumeInfo.css('opacity') == 0) {
-            newOpacity = 1;
-            newHeight = '30em';
-            $('#costume-arrow').addClass('rotation');
-        }
-        else {
-            newOpacity = 0;
-            newHeight = '0em';
-            $('#costume-arrow').removeClass('rotation');
-        }
-        $costumeInfo.animate({
-            height: newHeight,
-            opacity: newOpacity
-        }, 500, 'linear');
 
-
-    })
 
     // login.addEventListener("blur", showHint, true);
     // // Captures not bubbles so set to true
@@ -136,6 +116,7 @@ function checkLoggedIn() {
             }
             else if(window.location.href === "https://localhost:8443/profile.html") {
                 getUserInfo();
+                addCostumeListener();
             }
           }
       }
@@ -164,7 +145,7 @@ function logOut() {
           var responseString = xmlhttp.responseText;
           if(responseString === "loggedout") {
             console.log("logged out and must revert html for log in box");
-            //clearUserInfo();
+            clearUserInfo();
             window.location="https://localhost:8443/";
           }
       }
