@@ -6,6 +6,7 @@ db.serialize(startup);
 
 function startup() {
     db.run("DROP TABLE IF EXISTS User");
+    db.run("DROP TABLE IF EXISTS PurchasedTicket");
     db.run("CREATE TABLE User (" +
         "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
         "fname VARCHAR(100) NOT NULL, " +
@@ -14,6 +15,12 @@ function startup() {
         "email VARCHAR(100) NOT NULL, " +
         "password VARCHAR(100) NOT NULL, " +
         "gender VARCHAR(10) NOT NULL);"
+        , err);
+
+    db.run("CREATE TABLE PurchasedTicket (" +
+        "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+        "user INTEGER REFERENCES User(id), " +
+        "ticketType INTEGER NOT NULL);"
         , err);
 
     // db.run("INSERT INTO User (fname, lname, username, email, password, gender) " +
