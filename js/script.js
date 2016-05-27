@@ -9,17 +9,6 @@ else { attachEvent("onload", start); }
 
 var username;
 
-// !function(d,s,id){
-//   var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location)?'http':'https';
-//   if(!d.getElementById(id)){
-//     js = d.createElement(s);
-//     js.id = id;js.src = p + "://platform.twitter.com/widgets.js";
-//     fjs.parentNode.insertBefore(js,fjs);
-//   }
-// }
-// (document,"script","twitter-wjs");
-
-
 function start(){
     console.log("Started");
     var $heading = $('.heading');
@@ -145,6 +134,9 @@ function checkLoggedIn() {
             if(window.location.href === "https://localhost:8443/tickets.html") {
                 changePackages();
             }
+            else if(window.location.href === "https://localhost:8443/profile.html") {
+                getUserInfo();
+            }
           }
       }
     }
@@ -172,6 +164,7 @@ function logOut() {
           var responseString = xmlhttp.responseText;
           if(responseString === "loggedout") {
             console.log("logged out and must revert html for log in box");
+            //clearUserInfo();
             window.location="https://localhost:8443/";
           }
       }

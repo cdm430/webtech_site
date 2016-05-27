@@ -15,6 +15,7 @@ function startup() {
         "password VARCHAR(100) NOT NULL, " +
         "gender VARCHAR(10) NOT NULL);"
         , err);
+
     // db.run("INSERT INTO User (fname, lname, username, email, password, gender) " +
     //     "VALUES ('Liam', 'White', 'Liam121', 'liam@liam.com', 'wales', 'male')", err);
     // db.run("INSERT INTO User (fname, lname, username, email, password, gender) " +

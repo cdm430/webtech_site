@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en-GB" xml:lang="en-GB">
 <head>
-<meta charset="UTF-8"/>
-<link href="css/topbar.css" rel="stylesheet" type="text/css" />
-<link href="css/profile.css" rel="stylesheet" type="text/css" />
-<script src="js/script.js" type="text/javascript"></script>
-<script src = "js/jquery-1.12.2.min.js"></script>
-<title>Demo</title>
+    <script src = "js/jquery-1.12.2.min.js"></script>
+    <meta charset="UTF-8"/>
+    <link href="css/topbar.css" rel="stylesheet" type="text/css" />
+    <link href="css/profile.css" rel="stylesheet" type="text/css" />
+    <script src="js/script.js" type="text/javascript"></script>
+    <script src="js/profile.js" type="text/javascript"></script>
+    <title>Demo</title>
 </head>
 <body>
     <div id="top-bar">
@@ -52,13 +53,16 @@
     </div>
     <div class="info">
         <div class="info-line">
-            <span class="info-type">Name: </span><div class="box"></div>
+            <span class="info-type">Name: </span><div id="name" class="box"></div>
         </div>
         <div class="info-line">
-            <span class="info-type">Character Name:</span> <div class="box"></div>
+            <span class="info-type">Username:</span> <div id="uname" class="box"></div>
         </div>
         <div class="info-line">
-            <span class="info-type">Email: </span> <div class="box"></div>
+            <span class="info-type">Email: </span> <div id="email" class="box"></div>
+        </div>
+        <div class="info-line">
+            <span class="info-type">Gender: </span> <div id="gender" class="box"></div>
         </div>
         <div class="info-line">
             <span class="info-type">Tickets: </span> <div class="box"></div>

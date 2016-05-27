@@ -99,9 +99,11 @@
     border-radius: 5px;
     border: 1px solid #333333;
     width: 60%;
+    font-size: 20px;
     height: 2.5em;
+    line-height: 2.5em;
     display: block;
-    /*background-color: purple;*/
+    padding-left: 1em;
 }
 
 .button-outfit {
@@ -114,10 +116,10 @@
     color: #ffffff;
     -webkit-border-radius: 5px;
     border-radius: 5px;
+    background-color: transparent;
     border: 1px solid #333333;
     -webkit-transition: 0.6s ease-in-out 0s;
     -moz-transition: 0.6s ease-in-out 0s;
-    -o-transition: 0.6s ease-in-out 0s;
     transition: 0.6s ease-in-out 0s;
     text-transform: uppercase;
     color: #ffffff;
@@ -131,6 +133,10 @@
 
 .button-outfit:active {
     background-color: green;
+}
+
+.button-outfit:focus {
+    outline: none;
 }
 
 
@@ -152,3 +158,9 @@
     top: 100em;
     position: absolute;
 }
+
+
+.account-info {
+    color: white;
+}
+

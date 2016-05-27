@@ -92,12 +92,11 @@ function handle(request, response) {
         }
         return;
     }
-    // if('Set-Cookie' in headerobject ) {
-    //     console.log("index of host is in it");
-    // }
-    // else {
-    //     console.log("not in it ");
-    // }
+    else if(starts(url, "/get-user-info") && (rc != undefined || key === 0)) {
+        console.log("key: " + key);
+        deliverInfo(response, key);
+        return;
+    }
 
 
     url = removeQuery(url);
@@ -241,6 +240,42 @@ function deliverData(response, worked) {
     }
 
 }
+
+
+function deliverEmpty(response) {
+    response.writeHeader(OK, {'Content-Type' : 'text/plain'});
+    response.write("nf");
+    response.end();
+}
+
+
+function deliverInfo(response, key) {
+    console.log("userToKey: " + JSON.stringify(userToKey));
+    var user = userToKey[key];
+    console.log("key: " + key);
+    getInfo(user, response);
+}
+
+
+function getInfo(user, response) {
+    var ps = db.prepare("SELECT * FROM User WHERE id = ?");
+    ps.get(user, getUser);
+    console.log("user: " + user);
+    function getUser(err, rows) {
+        if(err) throw err;
+        if(rows === undefined) {
+            console.log("flag2");
+            deliverEmpty(response);
+        }
+        else {
+            var userString = JSON.stringify(rows);
+            response.writeHeader(OK, {'Content-Type' : 'text/plain'});
+            response.write(userString);
+            response.end();
+        }
+    }
+}
+
 
 function parseSignup(request, response) {
     var QS = require('querystring');

@@ -13,11 +13,11 @@ function start() {
 function changeButton() {
     var $activateButton = $('#activate-button');
     if($activateButton.text() === 'Animate') {
-        $activateButton.html("Stop");
+        $activateButton.text("Stop");
         console.log("FLAG");
     }
     else {
-        $activateButton.html("Animate");
+        $activateButton.text("Animate");
     }
 }
 
