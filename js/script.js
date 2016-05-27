@@ -35,9 +35,9 @@ function start(){
     })
 
     $('#login').on('submit', function(e) {
+        //var password = $('#password').val();
+        //var username = $('#username').val();
         e.preventDefault();
-        var username = $('#username').val();
-        var password = $('#password').val();
         var details = $('#login').serialize();
         console.log(details);
         var url = "login?" + details;
@@ -58,7 +58,7 @@ function start(){
               if(responseString === "new data") {
                   console.log("new cookie will be made");
               }
-            //   var responseObject = JSON.parse(responseString);
+               var responseObject = JSON.parse(responseString);
               console.log("response object username : " + responseString);
               console.log("request done");
           }
