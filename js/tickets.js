@@ -1,5 +1,7 @@
 "use strict";
 
+var numTickets1, numTickets2, numTickets3;
+
 
 if(addEventListener) {
     addEventListener("load", start);
