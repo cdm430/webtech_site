@@ -48,29 +48,48 @@ function parseCookies(request) {
 }
 
 function handle(request, response) {
-    //console.log(url);
     //console.log(console.log(JSON.stringify(request.headers)));
     var headerobject = request.headers;
     var rc = request.headers.cookie;
+    var cookieList, key, userId;
     if(rc !== undefined) {
         // console.log("sessionid::: " + userToKey[key]);
-        var cookieList = parseCookies(request);
-        var key = cookieList.sessionid;
-        var userId = userToKey[key];
+        cookieList = parseCookies(request);
+        key = cookieList.sessionid;
+        userId = userToKey[key];
         //console.log("user: " + userId);
     }
     // console.log(JSON.stringify(cookieList));
     var url = request.url;
 
     console.log(url);
-    if(starts(url   , "/login")) {
+    if(starts(url, "/login")) {
         parseLogin(request, response);
         console.log("parsed");
         return;
     }
-    else if(starts(url, "/signup.html")) {
+    else if(starts(url, "/create-account")) {
         console.log("Got into Signup");
         parseSignup(request, response);
+        return;
+    }
+    // Check if user is logged in and if so return username
+    else if(starts(url, "/loggedin")) {
+        if(rc === undefined) {
+            deliverData(response, false);
+        }
+        else {
+            deliverUsername(response, userId);
+        }
+        return;
+    }
+    else if(starts(url, "/logout")) {
+        if(rc === undefined) {
+            console.log("freak situation");
+        }
+        else {
+            logOut(response, key);
+        }
         return;
     }
     // if('Set-Cookie' in headerobject ) {
@@ -93,6 +112,20 @@ function handle(request, response) {
     reply(response, url, type);
 }
 
+function logOut(response, key) {
+    console.log("trying to log out ");
+    console.log("before " + JSON.stringify(userToKey));
+    delete userToKey[key];
+    console.log("after " + JSON.stringify(userToKey));
+    response.writeHead(OK, {
+        'Set-Cookie' : "0",
+        'Content-Type' : 'text/plain'});
+    response.write("loggedout");
+    response.end();
+    console.log("should have logged out");
+
+}
+
 function generateKey(response) {
     var crypto = require("crypto");
     var sha = crypto.createHash('sha256');
@@ -108,6 +141,29 @@ function parseLogin(request, response) {
     checkUserExists(params, response);
 }
 
+function deliverUsername(response, userId) {
+    var ps = db.prepare("SELECT username FROM USER WHERE id = ?");
+    ps.get(userId, findUser);
+    // console.log("flag1");
+    function findUser(err, rows) {
+        if(err) throw err;
+        console.log("called find user");
+
+        if(rows == undefined) {
+            console.log("ROW IS UNDEFINED");
+            deliverData(response, false);
+            return;
+        }
+        else {
+            response.writeHead(OK, {'Content-Type' : 'text/plain' });
+            response.write(rows.username);
+            response.end();
+            return;
+        }
+    }
+
+
+}
 
 function checkUserExists(params, response) {
     var username = params.username;
@@ -123,9 +179,11 @@ function checkUserExists(params, response) {
 
     function findUser(err, rows) {
         if(err) throw err;
+        console.log("called find user");
+
         if(rows == undefined) {
             console.log("ROW IS UNDEFINED");
-            deliverData(user, response, false);
+            deliverData(response, false);
             return;
         }
         else {
@@ -135,7 +193,7 @@ function checkUserExists(params, response) {
             console.log("key: " + key);
             response.writeHead(OK, {
                 'Set-Cookie' : 'sessionid=' + key,
-                'type' : 'text/html'
+                'Content-Type' : 'text/plain'
             });
             response.write(rows.username);
             response.end();
@@ -162,7 +220,8 @@ function checkUserExists(params, response) {
 }
 
 
-function deliverData(user, response, worked) {
+
+function deliverData(response, worked) {
     // console.log("the final user info is " + JSON.stringify(user));
     if(worked) {
         // console.log("it was successful");
@@ -177,16 +236,8 @@ function deliverData(user, response, worked) {
 
     }
     else {
-        // console.log("It did not work");
-        // deliver(response, "text/plain", null, "nf");
-        // response.writeHead(OK, {
-        //     'Set-Cookie': 'tomorrow',
-        //     'Content-Type': 'text/plain'
-        // });
-        response.end();
+        deliver(response, "text/plain", null, "nf");
         return;
-
-
     }
 
 }
@@ -194,22 +245,42 @@ function deliverData(user, response, worked) {
 function parseSignup(request, response) {
     var QS = require('querystring');
     var params = QS.parse(require('url').parse(request.url).query);
-    console.log(params.fname);
-    console.log(params.lname);
-    console.log(params.username);
-    reply(response, request.url, "text/html");
-    //writeSignup(params, response);
+    clash(params, response);
 }
+
+
+function clash(params, response) {
+    var username = params.username;
+    var ps = db.prepare("SELECT id FROM User WHERE username=?");
+    ps.get(username, check);
+
+    function check(err, rows) {
+        if(err) throw err;
+        if(rows === undefined) {
+            writeSignup(params, response);
+        }
+        else {
+            response.writeHead(OK, {'Content-Type' : 'text/plain'});
+            response.write("taken");
+            response.end();
+        }
+    }
+
+}
+
 
 function writeSignup(params, response) {
     var fname = params.fname, lname = params.lname, username = params.username,
-        email = params.email, password = params.pass, gender = params.gender;
-    //db.query('INSERT INTO (fname, lname, username, email, password, gender ' +
-    //    'VALUES(?, ?, ?, ?, ?, ?)', {values: [fname, lname, username, email, password,
-    //    gender]});
-    //console.log("written");
-    //response.end();
-    return;
+        email = params.email, password = params.password, gender = params.gender;
+    var ps = db.prepare('INSERT INTO User (fname, lname, username, email, password, gender) ' +
+       'VALUES(?, ?, ?, ?, ?, ?)');
+    ps.run(fname, lname, username, email, password, gender);
+    ps.finalize(writeResponse);
+
+    function writeResponse() {
+        response.writeHead(OK, {'Content-Type' : 'text/plain'});
+        response.end();
+    }
 }
 
 // Remove the query part of a url.
@@ -274,6 +345,7 @@ function findType(url) {
     var extension = url.substring(dot);
     return types[extension];
 }
+
 
 // Give a minimal failure response to the browser
 function fail(response, code, text) {

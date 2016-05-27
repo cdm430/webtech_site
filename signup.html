@@ -34,50 +34,51 @@
                 <div id = "login-hint">Log in</div>
             </div>
         </div>
+        <div id="trooperbox">
             <form id = "login">
-                <input type="text" name="username" placeholder="Username" /><br/>
+                <input id="username" type="text" name="username" placeholder="Username" /><br/>
                 <div class="form-indicator" id="usernamehint"></div>
-                <input type="password" name="password" placeholder="Password"/><br/>
+                <input id="password" type="password" name="password" placeholder="Password"/><br/>
                 <div class="form-indicator"></div>
                 <input type="submit" value="log in" class="button"/><br />
-                <a href="#" class="button" id="sign-up">sign up</a>
+                <a href="signup.html" class="button" id="sign-up">sign up</a>
             </form>
-
+        </div>
     </div>
-
     <div class="user-info">
-        <form class="info">
+        <form id="sign-up-form">
             <div class="info-line">
-                <span class="info-type">First Name: </span><input name="fname" class="box" />
+                <span class="info-type">First Name:</span><input name="fname" class="signinput" />
             </div>
             <div class="info-line">
-                <span class="info-type">Last Name:</span><input name="lname" class="box" />
+                <span class="info-type">Last Name:</span><input name="lname" class="signinput" />
             </div>
             <div class="info-line">
-                <span class="info-type">Username: </span><input name="username" class="box" />
+                <span class="info-type">Username:</span><input name="username" class="signinput" />
             </div>
             <div class="info-line">
-                <span class="info-type">Email: </span><input name="email" class="box" />
+                <span class="info-type">Email:</span><input name="email" class="signinput" />
             </div>
             <div class="info-line">
-                <span class="info-type">Password: </span><input type="password" name="password" class="box" id="pass1" />
+                <span class="info-type">Password:</span><input type="password" name="password" class="signinput" id="pass1" />
             </div>
             <div class="info-line">
-                <span class="info-type">Confirm Password: </span><input type="password" name="confirm-password" class="box" id="pass2" />
+                <span class="info-type">Confirm Password:</span><input type="password" name="confirm-password" class="signinput" id="pass2" />
             </div>
-            <!--<div class="info-line">-->
-                <!--<span class="info-type">Gender: </span>-->
-                <!--<div class="genders">-->
-                    <!--Male: <input type="radio" name="gender" class="radio" value="male" />-->
-                    <!--Female: <input type="radio" name="gender" class="radio" value="female" />-->
-                <!--</div>-->
-            <!--</div>-->
+            <div class="info-line">
+                <span class="info-type">Gender: </span>
+                <div class="genders">
+                    M: <input type="radio" name="gender" class="gender-button" value="male" />
+                    F: <input type="radio" name="gender" class="gender-button" value="female" />
+                </div>
+            </div>
 
             <div id="button-container">
-                <input type="submit" class='button-outfit' placeholder="Sign Up" />
+                <input type="submit" class='button-outfit' value="Sign Up" />
             </div>
         </form>
     </div>
+    <div id='spacer'></div>
 
     <footer>
         <hr id="footer-line" />

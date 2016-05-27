@@ -69,7 +69,7 @@ ul {
     text-align: center;
 }
 
-a.purchase, a.terms, a.sign-in {
+.purchase, .terms, .sign-in, .purchase-frosted, .terms-frosted {
     display: block;
     line-height: 3.5em;
     margin: 3px auto;
@@ -89,20 +89,29 @@ a.purchase, a.terms, a.sign-in {
     color: #ffffff;
 }
 
-a.purchase, a.terms {
+.purchase, .terms, .purchase-frosted, .terms-frosted {
     background-color: transparent;
 }
 
-a.sign-in {
+.purchase-frosted, .terms-frosted {
+    color: #000000;
+}
+
+.sign-in {
     background-color: green;
 }
 
-a.purchase:hover, a.terms:hover {
+.purchase:hover, .terms:hover {
     background-color: #d3d3d3;
     color: #000000;
 }
 
-a.sign-in:hover {
+.purchase-frosted:hover, .terms-frosted:hover {
+    background-color: #47515b;
+    color: #ffffff;
+}
+
+.sign-in:hover {
     background-color: #FF6600;
 }
 

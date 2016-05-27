@@ -7,7 +7,7 @@ if(addEventListener) {
 else { attachEvent("onload", start); }
 
 
-
+var username;
 
 // !function(d,s,id){
 //   var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location)?'http':'https';
@@ -24,9 +24,11 @@ function start(){
     console.log("Started");
     var $heading = $('.heading');
 
-    $('#login').hide();
+    $('#trooperbox').hide();
     $heading.hide();
     headingEntrance();
+
+    checkLoggedIn();
 
 
     $('.slider').on('mouseenter', function() {
@@ -35,32 +37,24 @@ function start(){
     })
 
     $('#login').on('submit', function(e) {
-        //var password = $('#password').val();
-        //var username = $('#username').val();
         e.preventDefault();
         var details = $('#login').serialize();
-        console.log(details);
         var url = "login?" + details;
-        // console.log("username entered is " + username);
-        // console.log("password entered is " + password);
 
         var xmlhttp = new XMLHttpRequest();
         xmlhttp.open("GET", url, true);
         xmlhttp.onreadystatechange = function(){
           if (xmlhttp.readyState==4 && xmlhttp.status==200){
               var responseString = xmlhttp.responseText;
-              var responseHeader = xmlhttp.getAllResponseHeaders();
-              console.log("response header is " + responseHeader);
               if(responseString === "nf") {
                   console.log("user not found!!!!!");
                   return;
               }
-              if(responseString === "new data") {
-                  console.log("new cookie will be made");
+              else {
+                  console.log("username " + username);
+                  username = responseString;
+                  checkLoggedIn();
               }
-               var responseObject = JSON.parse(responseString);
-              console.log("response object username : " + responseString);
-              console.log("request done");
           }
         }
         xmlhttp.send();
@@ -76,20 +70,11 @@ function start(){
 
 
 
-    $('#logo').on('click', function() {
-        console.log("clicked on logo");
-        logoChange();
-        var $login = $('#login');
-        if($login.is(':hidden')) {
-            $login.fadeIn(500);
-        }
-        else {
-            $login.fadeOut(500);
-        }
-    });
+    $('#logo').on('click', logoChange);
+
 
     $('.slider').on('mouseover', function() {
-        $('#login').fadeOut(500);
+        $('#trooperbox').fadeOut(500);
         $('#trooper').attr("src", "images/trooper.svg");
     });
 
@@ -117,13 +102,82 @@ function start(){
 
     })
 
-    var username = document.querySelector('[name="username"]');
-    var login = document.querySelector('#login');
     // login.addEventListener("blur", showHint, true);
     // // Captures not bubbles so set to true
     // login.addEventListener("focus", clearHint, true);
 
 
+}
+
+function logoChange() {
+    console.log("clicked on logo");
+    var $trooper = $('#trooper');
+    var $box = $('#trooperbox');
+    if(($box.css("opacity")) <= "0.5") {
+        $box.fadeTo(200, 1);
+        $trooper.attr("src", "images/rebel.svg");
+    }
+    else {
+        $box.fadeTo(200, 0);
+        $trooper.attr("src", "images/trooper.svg");
+    }
+
+}
+
+function checkLoggedIn() {
+    var url = "loggedin";
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.open("GET", url, true);
+    xmlhttp.onreadystatechange = function(){
+      if (xmlhttp.readyState==4 && xmlhttp.status==200){
+          var responseString = xmlhttp.responseText;
+          if(responseString === "nf") {
+              console.log("not logged in, do nothing");
+              return;
+          }
+          else {
+            console.log("logged in and must change html for log in box");
+            console.log("response object username : " + responseString);
+            username = responseString;
+            console.log("username set to " + username);
+            changeLoginBox();
+            console.log("url is " + window.location.href);
+            if(window.location.href === "https://localhost:8443/tickets.html") {
+                changePackages();
+            }
+          }
+      }
+    }
+    xmlhttp.send();
+}
+
+function changeLoginBox() {
+    var newContent = "<div id='login'> <span id='username-word'>" +
+        username + "</span><a href='profile.html' class='button' id='profilebutton'>Profile" +
+        "</a><button class='button' id='logoutbutton'>Log Out</button>"
+         + "</div>";
+
+    $('#trooperbox').html(newContent);
+
+    $('#logoutbutton').on('click', logOut);
+}
+
+function logOut() {
+    var url = "logout";
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.open("GET", url, true);
+    xmlhttp.onreadystatechange = function(){
+      if (xmlhttp.readyState==4 && xmlhttp.status==200){
+          console.log("got into log out");
+          var responseString = xmlhttp.responseText;
+          if(responseString === "loggedout") {
+            console.log("logged out and must revert html for log in box");
+            window.location="https://localhost:8443/";
+          }
+      }
+    }
+    xmlhttp.send();
+    console.log("end of func");
 }
 
 function headingEntrance() {
@@ -157,29 +211,6 @@ function lineRedraw() {
     lineHide();
 }
 
-function logoChange() {
-    var $trooper = $('#trooper');
-    var src = $trooper.attr("src");
-    // showForm();
-
-    if(src === "images/trooper.svg"){
-        $trooper.attr("src", "images/rebel.svg");
-    } else {
-        $trooper.attr("src", "images/trooper.svg");
-    }
-
-}
-
-// function showForm() {
-//
-//     if(login.style.visibility == 'visible')  {
-//         login.style.visibility = 'hidden';
-//     }
-//     else {
-//         login.style.visibility = 'visible';
-//     }
-//     console.log("hovered");
-// }
 
 function showHint(e) {
     var target = e.target;
