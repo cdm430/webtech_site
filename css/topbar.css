@@ -226,7 +226,7 @@ body {
     width: 12%;
     margin: 20px 20px 0 0;
     /*padding: 0.5em 1em 0.5em 1em;*/
-    background: none;
+    background: rgba(13,13,13, 0.5);
     border: 2px solid #333333;
     border-radius: 10px;
     /*visibility: hidden;*/
@@ -246,7 +246,7 @@ input {
     border: 2px solid #333333;
     height: 1.5em;
     color: #e6e6e6;
-    background: none;
+    background: #0d0d0d;
 }
 
 input[type=submit] {

@@ -144,7 +144,7 @@ function checkLoggedIn() {
 }
 
 function changeLoginBox() {
-    var newContent = "<div id='login'> <span id='username-word'>" +
+    var newContent = "<div id='login'> <span id='username-word'>Hi,    " +
         username + "</span><a href='profile.html' class='button' id='profilebutton'>Profile" +
         "</a><button class='button' id='logoutbutton'>Log Out</button>"
          + "</div>";

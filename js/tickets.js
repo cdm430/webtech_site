@@ -11,9 +11,8 @@ else { attachEvent("onload", start); }
 
 function start(){
 
-    if($(window).scrollTop() >= $('#ewokpackage').offset().top) {
-        $('#arrow').css('opacity', '0');
-    }
+    $(window).scrollTop(0);
+
 
     $('.sign-in').on('click', logoChange);
 
@@ -66,7 +65,6 @@ function checkLoggedInTickets() {
             username = responseString;
             console.log("username set to " + username);
             changePackages();
-
           }
       }
     }
@@ -82,4 +80,9 @@ function changePackages() {
     $('.purchase').on('click', function() {
         $(this).text("Purchase Another")
     })
+
+
+    $('.purchase, .terms, .purchase-frosted, .terms-frosted').animate({
+        top: '6em'
+    }, 200, 'linear');
 }
