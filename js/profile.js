@@ -16,7 +16,6 @@ var costume = [
 
 
 function start() {
-    previewFile();
     $('.button-outfit').off().on('click', logoChange);
 }
 
@@ -94,21 +93,7 @@ function addCostumeInfo() {
 }
 
 
-function previewFile(){
-    var preview = document.querySelector('#new-pic');
-    var file    = document.querySelector('input[type=file]').files[0];
-    var reader  = new FileReader();
 
-    reader.onloadend = function () {
-        preview.src = reader.result;
-    }
-
-    if (file) {
-        reader.readAsDataURL(file);
-    } else {
-        preview.src = "";
-    }
-}
 
 
 /*

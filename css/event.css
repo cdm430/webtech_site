@@ -56,6 +56,7 @@ body{
 
 
 .social-media {
+    text-align: center;
     float: left;
     position: fixed;
     top: 10em;
@@ -88,4 +89,10 @@ body{
 
 .spacer {
     height: 130em;
+}
+
+
+.share-text {
+    font-size: 25px;
+    padding: 1em;
 }

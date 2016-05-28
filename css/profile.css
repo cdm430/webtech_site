@@ -1,6 +1,8 @@
 .profile-info {
     width: 80%;
+    height: 10%;
     margin: 0 auto;
+    text-align: center;
 }
 
 .pic-circle {
@@ -194,6 +196,7 @@
     margin: 0;
     margin: 0.25em 0;
 }
+
 
 
 .spacer {

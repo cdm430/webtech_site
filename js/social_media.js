@@ -7,24 +7,28 @@
 
  function start() {
     var twitter = document.querySelector("#twitter");
-    twitter.addEventListener("click", start_twitter);
+    twitter.addEventListener("click", tweet);
  }
 
- function start_twitter(){
-   var $twitter_logo = $('#twitter-logo');
-   !function(d,s,id){
-     var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location)?'http':'https';
-     if(!d.getElementById(id)){
-       js = d.createElement(s);
-       js.id = id;js.src = p + "://platform.twitter.com/widgets.js";
-       fjs.parentNode.insertBefore(js,fjs);
-     }
-   }
-   (document,"script","twitter-wjs");
-   $twitter_logo.on('mouseover', function() {
-     console.log("Hover");
-     $twitter_logo.animate({
-       opacity: 1
-     }, 1500, 'linear');
-   });
- }
+
+function tweet() {
+    window.twttr = (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0],
+        t = window.twttr || {};
+    if (d.getElementById(id)) return t;
+    js = d.createElement(s);
+    js.id = id;
+    js.src = "https://platform.twitter.com/widgets.js";
+    fjs.parentNode.insertBefore(js, fjs);
+
+    t._e = [];
+    t.ready = function(f) {
+        t._e.push(f);
+    };
+
+    return t;
+    }(document, "script", "twitter-wjs"));
+}
+
+
+
