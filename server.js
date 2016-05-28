@@ -1,23 +1,29 @@
 // Serve a request.  Process and validate the url, then deliver the file.
 "use strict";
+
+// Database setup
 var sql = require("sqlite3");
 sql.verbose();
 var db = new sql.Database("test.db");
 
+// Global map to be used for session keys and user ids
 var userToKey = {};
 
+// Required global variables
 var http = require('http');
 var https = require('https');
 var fs = require('fs');
 var path = require('path');
-
 var ports = [8080, 8443];
 var banned = defineBanned();
 var types = defineTypes();
 var OK = 200, Redirect = 307, NotFound = 404, BadType = 415, Error = 500;
 
+
+/*
+ * Starts the server running and sets up the port listening
+ */
 function start() {
-    //test();
     var httpService = http.createServer(redirectHTTPS);
     httpService.listen(ports[0], 'localhost');
     var options = { key: key, cert: cert };
@@ -27,6 +33,9 @@ function start() {
 }
 
 
+/*
+ * Redirects the browser to the https version
+ */
 function redirectHTTPS(request, response) {
     var url = request.url;
     response.writeHead(Redirect, {
@@ -35,6 +44,11 @@ function redirectHTTPS(request, response) {
     response.end();
 }
 
+
+/*
+ * Parses the broswer cookies in a manner which allows the session key to be
+ * easily separated
+ */
 function parseCookies(request) {
     var cookieList = {};
     var rc = request.headers.cookie;
@@ -47,79 +61,16 @@ function parseCookies(request) {
     return cookieList;
 }
 
+
+/*
+ * Main function for handling any incoming requests
+ */
 function handle(request, response) {
-    //console.log(console.log(JSON.stringify(request.headers)));
-    var headerobject = request.headers;
-    var rc = request.headers.cookie;
-    var cookieList, key, userId;
-    if(rc !== undefined) {
-        // console.log("sessionid::: " + userToKey[key]);
-        cookieList = parseCookies(request);
-        key = cookieList.sessionid;
-        userId = userToKey[key];
-        //console.log("user: " + userId);
-    }
-    // console.log(JSON.stringify(cookieList));
     var url = request.url;
 
     console.log(url);
-    if(starts(url, "/login")) {
-        parseLogin(request, response);
-        console.log("parsed");
-        return;
-    }
-    else if(starts(url, "/create-account")) {
-        console.log("Got into Signup");
-        parseSignup(request, response);
-        return;
-    }
-    // Check if user is logged in and if so return username
-    else if(starts(url, "/loggedin")) {
-        if(rc === undefined) {
-            deliverData(response, false);
-        }
-        else {
-            deliverUsername(response, userId);
-        }
-        return;
-    }
-    else if(starts(url, "/logout")) {
-        if(rc === undefined) {
-            console.log("freak situation");
-        }
-        else {
-            logOut(response, key);
-        }
-        return;
-    }
-    else if(starts(url, "/get-user-info") && (rc != undefined || key === 0)) {
-        console.log("key: " + key);
-        deliverInfo(response, key);
-        return;
-    }
-    else if(starts(url, "/purchaseticket?")) {
-        if(rc === undefined) {
-            deliverData(response, false);
-        }
-        else {
-            var urlParts = url.split("?");
-            var ticketType = urlParts[1];
-            makePurchase(ticketType, userId, response);
-        }
 
-        return;
-    }
-    else if(starts(url, "/gettickets")) {
-        if(rc === undefined) {
-            deliverData(response, false);
-        }
-        else {
-            getTickets(userId, response);
-        }
-        return;
-
-    }
-
+    if(checkSpecialRequests(request, response)) return;
 
     url = removeQuery(url);
     url = lower(url);
@@ -134,6 +85,74 @@ function handle(request, response) {
 }
 
 
+/*
+ * Check if any special requests were made, return true if so, else false
+ */
+function checkSpecialRequests(request, response) {
+    // Get necessary cookie information
+    var cookieList, key, userId;
+    var headerobject = request.headers;
+    var rc = request.headers.cookie;
+    if(rc !== undefined) {
+        cookieList = parseCookies(request);
+        key = cookieList.sessionid;
+        userId = userToKey[key];
+    }
+    var url = request.url;
+
+
+    // Check if trying to login and do so
+    if(starts(url, "/login")) {
+        parseLogin(request, response);
+        return true;
+    }
+    // Check if trying to create account and do so
+    else if(starts(url, "/create-account")) {
+        parseSignup(request, response);
+        return true;
+    }
+    // Check if user is logged in and if so return username
+    else if(starts(url, "/loggedin")) {
+        if(rc === undefined) deliverData(response, false);
+        else deliverUsername(response, userId);
+        return true;
+    }
+    // Check if trying to log out and do so
+    else if(starts(url, "/logout")) {
+        if(rc === undefined) console.log("freak situation");
+        else logOut(response, key);
+        return true;
+    }
+    // Check if trying to retrieve user info and do so
+    else if(starts(url, "/get-user-info") && (rc != undefined || key === 0)) {
+        deliverInfo(response, key);
+        return true;
+    }
+    // Check if trying to purchase a ticket and do so
+    else if(starts(url, "/purchaseticket?")) {
+        if(rc === undefined) deliverData(response, false);
+        else {
+            var urlParts = url.split("?");
+            var ticketType = urlParts[1];
+            makePurchase(ticketType, userId, response);
+        }
+        return true;
+    }
+    // Check if trying to get ticket info and do so
+    else if(starts(url, "/gettickets")) {
+        if(rc === undefined) deliverData(response, false);
+        else getTickets(userId, response);
+        return true;
+    }
+
+    // Return false if no special cases were found
+    return false;
+}
+
+
+/*
+ * Get ticket information for a given user
+ */
 function getTickets(userId, response) {
     var numTickets1, numTickets2, numTickets3;
 
@@ -143,45 +162,40 @@ function getTickets(userId, response) {
 
     ps.get(userId, userId, userId, sendNumTickets);
 
-
+    // Send the number of each tickets back
     function sendNumTickets(err, rows) {
         if(err) throw err;
         if(rows == undefined) {
-            console.log("ROW IS UNDEFINED");
             deliverData(response, false);
             return;
         }
         else {
             response.writeHead(OK, {'Content-Type' : 'text/plain' });
-            console.log(JSON.stringify(rows));
             var objectString = JSON.stringify(rows);
             response.write(objectString);
             response.end();
             return;
         }
     }
-
-
 }
 
 
-
-
+/*
+ * Log out the user by setting empty cookie and removing from list
+ */
 function logOut(response, key) {
-    console.log("trying to log out ");
-    console.log("before " + JSON.stringify(userToKey));
     delete userToKey[key];
-    console.log("after " + JSON.stringify(userToKey));
     response.writeHead(OK, {
         'Set-Cookie' : "0",
         'Content-Type' : 'text/plain'});
     response.write("loggedout");
     response.end();
-    console.log("should have logged out");
-
 }
 
 
+/*
+ * Make a purchase of a ticket by adding to the tickets purchased table
+ */
 function makePurchase(ticketType, userId, response) {
     var ticketId;
     if(ticketType === "ewok-purchase")          ticketId = 1;
@@ -199,10 +213,12 @@ function makePurchase(ticketType, userId, response) {
        response.write("writtenticket");
        response.end();
    }
-
 }
 
 
+/*
+ * Generates a random session key (sha256)
+ */
 function generateKey(response) {
     var crypto = require("crypto");
     var sha = crypto.createHash('sha256');
@@ -210,24 +226,28 @@ function generateKey(response) {
     return sha.digest('hex');
 }
 
+
+/*
+ * Parse the login information and check if exists etc
+ */
 function parseLogin(request, response) {
     // Extract the entered parameters from the login field
     var QS = require('querystring');
     var params = QS.parse(require('url').parse(request.url).query);
-    console.log(params);
     checkUserExists(params, response);
 }
 
+
+/*
+ * Deliver the logged in username in the resonse
+ */
 function deliverUsername(response, userId) {
     var ps = db.prepare("SELECT username FROM USER WHERE id = ?");
     ps.get(userId, findUser);
-    // console.log("flag1");
     function findUser(err, rows) {
         if(err) throw err;
-        console.log("called find user");
 
         if(rows == undefined) {
-            console.log("ROW IS UNDEFINED");
             deliverData(response, false);
             return;
         }
@@ -238,36 +258,31 @@ function deliverUsername(response, userId) {
             return;
         }
     }
-
-
 }
 
+
+/*
+ * Check if the user exists for a given login username password combination
+ */
 function checkUserExists(params, response) {
     var username = params.username;
     var password = params.password;
 
     var user = {};
-    // var db = new sql.Database("test.db");
     // Prepared Statement to stop SQL injection
-    console.log(password);
     var ps = db.prepare("SELECT * FROM User WHERE username = ? AND password = ?");
     ps.get(username, password, findUser);
-    // console.log(JSON.stringify(userInfo));
 
     function findUser(err, rows) {
         if(err) throw err;
-        console.log("called find user");
 
         if(rows == undefined) {
-            console.log("ROW IS UNDEFINED");
             deliverData(response, false);
             return;
         }
         else {
             var key = generateKey(response);
-            console.log("userid: " + rows.id);
             userToKey[key] = rows.id;
-            console.log("key: " + key);
             response.writeHead(OK, {
                 'Set-Cookie' : 'sessionid=' + key,
                 'Content-Type' : 'text/plain'
@@ -276,50 +291,28 @@ function checkUserExists(params, response) {
             response.end();
             return;
         }
-        // console.log(rows);
-        // console.log("corresponding password is " + rows.password);
-        // password = rows.password;
-
-
-        // user.username = rows.username;
-        // user.password = rows.password;
-
-
-        // console.log("password is " + password);
-        // console.log("user password is " + user.password);
-
-
-        // deliverData(user, response, true);
     }
-
-
-    // console.log("password is " + password);
 }
 
 
-
+/*
+ * Deliver response information depending on whether query successful or not
+ */
 function deliverData(response, worked) {
-    // console.log("the final user info is " + JSON.stringify(user));
     if(worked) {
-        // console.log("it was successful");
-        // var detailsString = JSON.stringify(user);
-        // deliver(response, "text/plain", null, detailsString);
-        // response.writeHead(OK, {
-        //     'Set-Cookie': 'sessionid = today; expires=' + 34,
-        //     'Content-Type': 'text/plain'
-        // });
         response.end();
         return;
-
     }
     else {
-        deliver(response, "text/plain", null, "nf");
+        deliverEmpty(response);
         return;
     }
-
 }
 
 
+/*
+ * Delivers an empty resonse to indicate unsuccessful db query
+ */
 function deliverEmpty(response) {
     response.writeHeader(OK, {'Content-Type' : 'text/plain'});
     response.write("nf");
@@ -327,22 +320,24 @@ function deliverEmpty(response) {
 }
 
 
+/*
+ * Delivers user information response
+ */
 function deliverInfo(response, key) {
-    console.log("userToKey: " + JSON.stringify(userToKey));
     var user = userToKey[key];
-    console.log("key: " + key);
     getInfo(user, response);
 }
 
 
+/*
+ * Get user info from a given user id
+ */
 function getInfo(user, response) {
     var ps = db.prepare("SELECT * FROM User WHERE id = ?");
     ps.get(user, getUser);
-    console.log("user: " + user);
     function getUser(err, rows) {
         if(err) throw err;
         if(rows === undefined) {
-            console.log("flag2");
             deliverEmpty(response);
         }
         else {
@@ -355,6 +350,9 @@ function getInfo(user, response) {
 }
 
 
+/*
+ * Parses the sign up request to make suitable db query
+ */
 function parseSignup(request, response) {
     var QS = require('querystring');
     var params = QS.parse(require('url').parse(request.url).query);
@@ -362,6 +360,9 @@ function parseSignup(request, response) {
 }
 
 
+/*
+ * Check if username is already taken
+ */
 function clash(params, response) {
     var username = params.username;
     var ps = db.prepare("SELECT id FROM User WHERE username=?");
@@ -382,6 +383,9 @@ function clash(params, response) {
 }
 
 
+/*
+ * Write the new user to db based on the sign up info
+ */
 function writeSignup(params, response) {
     var fname = params.fname, lname = params.lname, username = params.username,
         email = params.email, password = params.password, gender = params.gender;
@@ -396,20 +400,29 @@ function writeSignup(params, response) {
     }
 }
 
-// Remove the query part of a url.
+
+/*
+ * Remove query part of a URL
+ */
 function removeQuery(url) {
     var n = url.indexOf('?');
     if (n >= 0) url = url.substring(0, n);
     return url;
 }
 
-// Read and deliver the url as a file within the site.
+
+/*
+ * Read and deliver url as file within site
+ */
 function reply(response, url, type) {
     var file = "." + url;
     fs.readFile(file, deliver.bind(null, response, type));
 }
 
-// Deliver the file that has been read in to the browser.
+
+/*
+ * Deliver the file that has been read into the browser
+ */
 function deliver(response, type, err, content) {
     if (err) return fail(response, NotFound, "File not found");
     var typeHeader = { 'Content-Type': type };
@@ -431,6 +444,9 @@ function negotiate(accept) {
 }
 
 
+/*
+ * Print addresses based on ports in terminal
+ */
 function printAddresses() {
     var httpAddress = "http://localhost";
     if (ports[0] != 80) httpAddress += ":" + ports[0];
@@ -442,17 +458,26 @@ function printAddresses() {
 }
 
 
+/*
+ * Convert to lower case
+ */
 function lower(url) {
     return url.toLowerCase();
 }
 
 
+/*
+ * Add index to end of url
+ */
 function addIndex(url) {
     if (ends(url, '/')) url = url + "index.html";
     return url;
 }
 
 
+/*
+ * Find type of url
+ */
 function findType(url) {
     var dot = url.lastIndexOf(".");
     var extension = url.substring(dot);
@@ -460,7 +485,9 @@ function findType(url) {
 }
 
 
-// Give a minimal failure response to the browser
+/*
+ * Give minimal failure response to the browser
+ */
 function fail(response, code, text) {
     var textTypeHeader = { 'Content-Type': 'text/plain' };
     response.writeHead(code, textTypeHeader);
@@ -469,7 +496,9 @@ function fail(response, code, text) {
 }
 
 
-// Avoid delivering the server source file.  Also call banUpperCase.
+/*
+ * Avoid delivering server file, also ban upper case
+ */
 function defineBanned() {
     var banned = ["/server.js"];
     banUpperCase(".", banned);
@@ -490,7 +519,9 @@ function valid(url) {
 }
 
 
-
+/*
+ * Bans upper case
+ */
 function banUpperCase(folder, banned) {
     var folderBit = 1 << 14;
     var names = fs.readdirSync(folder);
