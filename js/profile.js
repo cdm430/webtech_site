@@ -93,9 +93,6 @@ function addCostumeInfo() {
 }
 
 
-
-
-
 /*
  * Creates a drop down menu displayiong the user's costume information
  */

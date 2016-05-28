@@ -1,86 +1,30 @@
 "use strict";
 
-
-if(addEventListener) {
-    addEventListener("load", start);
-}
-else { attachEvent("onload", start); }
-
+$(document).ready(start);
 
 var username;
 
+/*
+ * Calls all of the initial functions and sets up the necessary listeners
+ */
 function start(){
-    console.log("Started");
-    var $heading = $('.heading');
-
     $('#trooperbox').hide();
-    $heading.hide();
+    $('.heading').hide();
     headingEntrance();
-
     checkLoggedIn();
+    addLogInListener();
 
-
-    $('.slider').on('mouseenter', function() {
-        console.log("hovered on slider");
-        $heading.stop().fadeTo(400, 0);
-    })
-
-    $('#login').on('submit', function(e) {
-        e.preventDefault();
-        var details = $('#login').serialize();
-        var url = "login?" + details;
-
-        var xmlhttp = new XMLHttpRequest();
-        xmlhttp.open("GET", url, true);
-        xmlhttp.onreadystatechange = function(){
-          if (xmlhttp.readyState==4 && xmlhttp.status==200){
-              var responseString = xmlhttp.responseText;
-              if(responseString === "nf") {
-                  showWrongLoginHint();
-                  console.log("user not found!!!!!");
-                  return;
-              }
-              else {
-                  console.log("username " + username);
-                  username = responseString;
-                  checkLoggedIn();
-              }
-          }
-        }
-        xmlhttp.send();
-    });
-
-
-    $('.slider').on('mouseleave', function(){
-        lineHide();
-        $heading.stop().fadeTo(400, 1);
-        lineAnimate();
-    });
-
-
-
-
+    $('.slider').on('mouseenter', removeHeading);
+    $('.slider').on('mouseleave', slide);
     $('#logo').on('click', logoChange);
-
-
-    $('.slider').on('mouseover', function() {
-        $('#trooperbox').fadeOut(500);
-        $('#trooper').attr("src", "images/trooper.svg");
-    });
-
-
-
-
-
-    // login.addEventListener("blur", showHint, true);
-    // // Captures not bubbles so set to true
-    // login.addEventListener("focus", clearHint, true);
-
-
+    $('.slider').on('mouseover', refreshLogo);
 }
 
+
+/*
+ * Changes the login logo when clicked and opens the log in box
+ */
 function logoChange() {
-    console.log("clicked on logo");
     var $trooper = $('#trooper');
     var $box = $('#trooperbox');
     if(($box.css("opacity")) <= "0.5") {
@@ -91,27 +35,30 @@ function logoChange() {
         $box.fadeTo(200, 0);
         $trooper.attr("src", "images/trooper.svg");
     }
-
 }
 
+
+/*
+ * Checks if the user is logged in by sending a server request that can then check the
+ * session id against the map containing sessionid:userid. If the user is logged in,
+ * then depending on the current page, the page is changed. The log in box is also
+ * changed to display the log out button and the user's username.
+ */
 function checkLoggedIn() {
     var url = "loggedin";
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.open("GET", url, true);
+
     xmlhttp.onreadystatechange = function(){
       if (xmlhttp.readyState==4 && xmlhttp.status==200){
           var responseString = xmlhttp.responseText;
           if(responseString === "nf") {
-              console.log("not logged in, do nothing");
+              console.log("No user logged in");
               return;
           }
           else {
-            console.log("logged in and must change html for log in box");
-            console.log("response object username : " + responseString);
             username = responseString;
-            console.log("username set to " + username);
             changeLoginBox();
-            console.log("url is " + window.location.href);
             if(window.location.href === "https://localhost:8443/tickets.html") {
                 changePackages();
             }
@@ -125,9 +72,15 @@ function checkLoggedIn() {
     xmlhttp.send();
 }
 
+
+/*
+ * Change the log in box on log in to display the username, the "view profile" button
+ * and the "log out" button
+ */
 function changeLoginBox() {
     var newContent = "<div id='login'> <span id='username-word'>Hi,    " +
-        username + "</span><a href='profile.html' class='button' id='profilebutton'>Profile" +
+        username + "</span><a href='profile.html' class='button' " +
+        "id='profilebutton'>Profile" +
         "</a><button class='button' id='logoutbutton'>Log Out</button>"
          + "</div>";
 
@@ -137,6 +90,10 @@ function changeLoginBox() {
 }
 
 
+/*
+ * If the username/password combination are incorrect, then a prompt is displayed to
+ * the user
+ */
 function showWrongLoginHint() {
     $('#username, #password').val("");
     $('#username').attr('placeholder', 'Invalid username or password');
@@ -145,28 +102,65 @@ function showWrongLoginHint() {
     $('#username, #password').on("click", function() {
         $('#username').removeClass('invalid');
         $('#username').attr('placeholder', 'Username');
-    })
+    });
 }
 
 
+/*
+ * Adds a log in listener to the "submit" button in the log in box. This sends a request
+ * to the server to determine if the user is able to log in
+ */
+function addLogInListener() {
+    $('#login').on('submit', function(e) {
+        e.preventDefault();
+        var details = $('#login').serialize();
+        var url = "login?" + details;
+
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.open("GET", url, true);
+
+        xmlhttp.onreadystatechange = function(){
+            if (xmlhttp.readyState==4 && xmlhttp.status==200){
+                var responseString = xmlhttp.responseText;
+                if(responseString === "nf") {
+                    console.log(responseString);
+                    showWrongLoginHint();
+                    return;
+                }
+                else {
+                    username = responseString;
+                    checkLoggedIn();
+                }
+            }
+        }
+        xmlhttp.send();
+    });
+}
+
+
+/*
+ * Sends a request to the server to delete the user's sessionid;
+ */
 function logOut() {
     var url = "logout";
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.open("GET", url, true);
+
     xmlhttp.onreadystatechange = function(){
       if (xmlhttp.readyState==4 && xmlhttp.status==200){
-          console.log("got into log out");
           var responseString = xmlhttp.responseText;
           if(responseString === "loggedout") {
-            console.log("logged out and must revert html for log in box");
             window.location="https://localhost:8443/";
           }
       }
     }
     xmlhttp.send();
-    console.log("end of func");
 }
 
+
+/*
+ * Fades the header in and animates a line under the header.
+ */
 function headingEntrance() {
     $('.heading').fadeIn(2000);
     $('#underline').delay(400).animate({
@@ -175,17 +169,11 @@ function headingEntrance() {
     }, 1500, 'linear');
 }
 
-function ticketTypeEntrance() {
-    $(this).fadeTo(2000, 1);
-    $(this).children('.underline').delay(400).animate({
-        width: '50%',
-        opacity: 1
-    }, 1500, 'linear');
-}
 
 function lineHide() {
     $('#underline').css({'width':'0%', 'opacity':'0'});
 }
+
 
 function lineAnimate(){
     $('#underline').delay(200).animate({
@@ -194,42 +182,27 @@ function lineAnimate(){
     }, 400, 'linear');
 }
 
-function lineRedraw() {
+
+function removeHeading() {
+    $('.heading').stop().fadeTo(400, 0);
+}
+
+
+/*
+ * Slides out the menu bar and hides the heading.
+ */
+function slide() {
     lineHide();
+    $('.heading').stop().fadeTo(400, 1);
+    lineAnimate();
 }
 
 
-
-function showHint(e) {
-    var target = e.target;
-    var entered = target.value;
-    var length = entered.length;
-    var msg = " too short";
-    var hint = target;
-    //This will eventually use Jquery to get next div element (some browsers use
-    //any white space as a text node, some don't)
-    while(hint.nodeName != "div") {
-        console.log(hint.nodeName);
-        hint = hint.nextSibling;
-    }
-    // Hypothetical for now, no point saying 'too short' when nothing is entered
-    // as that is obvious
-    if(length > 0 && length < 6) {
-        var attrName = target.getAttribute("name");
-        hint.textContent = attrName + msg;
-    }
-    else {hint.textContent = "";}
-}
-
-// Gets rid of any hints from that input field (e.g not long enough)
-function clearHint(e) {
-    var target = e.target;
-
-    var hint = target;
-    while(hint.nodeName != "div") {
-        console.log(hint.nodeName);
-        hint = hint.nextSibling;
-    }
-    hint.textContent = "";
-
+/*
+ * Hides the log in box and returns the logo to the original image when the menu is
+ * hovered over
+ */
+function refreshLogo() {
+    $('#trooperbox').fadeOut(500);
+    $('#trooper').attr("src", "images/trooper.svg");
 }

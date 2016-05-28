@@ -166,3 +166,15 @@ function fillTicketInfo() {
         }, 1000, 'linear');
     }
 }
+
+
+/*
+ * Fades ticket type heading in and animates a line underneath the heading
+ */
+function ticketTypeEntrance() {
+    $(this).fadeTo(2000, 1);
+    $(this).children('.underline').delay(400).animate({
+        width: '50%',
+        opacity: 1
+    }, 1500, 'linear');
+}
