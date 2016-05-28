@@ -10,7 +10,7 @@ if something appears not to work:
 -   We have put in the required differences in css (such as using webkit, moz
     and -o specifiers so it should style the same across the safari, chrome,
     opera and firefox) in css and used jquery for the built-in polyfills.
-    However we were not able to test on safari in the end through absence of
+    However we were not able to test on safari in the end due to the absence of
     a mac computer
 
 -   Crucially, the latest version of Node Js (v6) was used for ubuntu before
