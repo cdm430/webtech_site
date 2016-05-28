@@ -16,7 +16,7 @@ body {
     margin: 5% 0% 0% 0%;
     position: relative;
     line-height: 1.2;
-    font-size: 1em;
+    font-size: 20px;
     display: block;
     width: 100%;
     clear: left;
@@ -95,4 +95,10 @@ body{
 .share-text {
     font-size: 25px;
     padding: 1em;
+}
+
+
+.text-link {
+    text-decoration: none;
+    color: lightskyblue;
 }
