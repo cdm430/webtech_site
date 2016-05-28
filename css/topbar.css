@@ -4,9 +4,6 @@
     font-weight: lighter;
 }
 
-button::-moz-focus-inner {
-  border: 0;
-}
 
 body {
     font-family: "Raleway";
@@ -18,10 +15,10 @@ body {
     min-width: 900px;
 }
 
+
 #top-bar {
     width:100%;
     position: fixed;
-    /*margin: 0px;*/
     top: 0px;
     height:90px;
     padding: 0;
@@ -32,14 +29,12 @@ body {
 
 .title-bar {
     width:100%;
-    /*text-align: center;*/
     top: 0;
     padding: 0;
-    /*line-height: 70px;*/
     height:90px;
     background-color: #0d0d0d;
-
 }
+
 
 .heading{
     font-weight: lighter;
@@ -50,21 +45,19 @@ body {
     color: #ffffff;
     font-size: 3em;
     position: fixed;
-    /*margin-right: 180px;*/
     margin-top: 20px;
     left: 50%;
     margin-left: -6em;
-    /*margin-right: auto;*/
     padding: 0px;
     text-transform: uppercase;
 }
+
 
 #underline {
     background-color: green;
     width: 0%;
     opacity: 0;
     height: 3px;
-
 }
 
 
@@ -86,6 +79,7 @@ body {
     z-index: 100;
 }
 
+
 #login-hint {
     font-size: 0.6em;
     margin-top: 0.9em;
@@ -93,16 +87,16 @@ body {
     text-align: center;
     padding: 0px;
     text-transform: uppercase;
-    /*height: 20px;*/
 }
+
 
 #logo:hover{
     -webkit-filter: opacity(100%);
     -moz-filter: opacity(100%);
     -o-filter: opacity(100%);
     filter: opacity(100%);
-
 }
+
 
 #trooper {
     position:relative;
@@ -116,6 +110,7 @@ body {
     width: 100%;
 }
 
+
 .compass {
     width: 50px;
     height: auto;
@@ -126,14 +121,13 @@ body {
     transform: rotate(90deg);
 }
 
+
 .menu {
     width: 50px;
     margin: 20px 0 0 90px;
     float: left;
     z-index: 1;
     text-align: center;
-    /*font-size: 0.6em;*/
-    /*text-transform: uppercase;*/
     cursor: default;
     -webkit-transition: 0.4s ease-in-out;
     -moz-transition: 0.4s ease-in-out;
@@ -144,6 +138,7 @@ body {
     -o-filter: opacity(25%);
     filter: opacity(25%);
 }
+
 
 .menu-link {
     margin: 0em 2em 0em 0em;
@@ -159,10 +154,12 @@ body {
     color: #ffffff;
 }
 
+
 .menu-link:hover, .menu-link:focus {
     color: #fff;
     text-shadow: -1px 1px 8px #ffc, 1px -1px 8px #fff;
 }
+
 
 .slider:hover .menu {
     -webkit-filter: opacity(100%);
@@ -171,13 +168,13 @@ body {
     filter: opacity(100%);
 }
 
+
 .hint {
     position: relative;
     top: 0px;
     width: 50px;
     height: 10px;
     font-size: 0.6em;
-    /*margin-top: 0.5em;*/
     display: block;
     text-transform: uppercase;
     padding: 0px;
@@ -185,14 +182,20 @@ body {
 
 
 .slider:hover .compass {
-    transform: rotate(360deg);
     -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+    -webkit-transition-delay: 0s;
+    -moz-transition-delay; 0s;
+    -o-transition-delay: 0s;
     transition-delay: 0s;
     -webkit-filter: opacity(100%);
     -moz-filter: opacity(100%);
     -o-filter: opacity(100%);
     filter: opacity(100%);
 }
+
 
 .dropdown {
     visibility: hidden;
@@ -206,16 +209,27 @@ body {
     text-align: center;
     position: relative;
     left: -50px;
+    -webkit-transition: all 0.5s ease 0s, visibility 0s linear 0.5s;
+    -moz-transition: all 0.5s ease 0s, visibility 0s linear 0.5s;
+    -o-transition: all 0.5s ease 0s, visibility 0s linear 0.5s;
     transition: all 0.5s ease 0s, visibility 0s linear 0.5s;
     z-index: 99999;
 }
 
+
 .slider:hover .dropdown {
     visibility: visible;
     opacity: 1;
+    -webkit-transform: translateX(50px);
+    -moz-transform: translateX(50px);
+    -o-transform: translateX(50px);
     transform: translateX(50px);
+    -webkit-transition-delay: 0.1s;
+    -moz-transition-delay: 0.1s;
+    -o-transition-delay: 0.1s;
     transition-delay: 0.1s;
 }
+
 
 #login {
     position: relative;
@@ -225,11 +239,9 @@ body {
     float: right;
     width: 12%;
     margin: 20px 20px 0 0;
-    /*padding: 0.5em 1em 0.5em 1em;*/
     background: rgba(13,13,13, 0.5);
     border: 2px solid #333333;
     border-radius: 10px;
-    /*visibility: hidden;*/
 }
 
 
@@ -249,6 +261,7 @@ input {
     background: #0d0d0d;
 }
 
+
 input[type=submit] {
     width: 95%;
     height: 3.5em;
@@ -260,21 +273,15 @@ input[type=submit] {
     -moz-transition: 0.6s ease-in-out 0s;
     -o-transition: 0.6s ease-in-out 0s;
     transition: 0.6s ease-in-out 0s;
-
-    /*background: rgba(255, 255, 255, 0);*/
     text-transform: uppercase;
-
-    /*border:0 solid white;*/
     cursor:pointer;
     border: 1px solid #333333;
     margin: 3px auto;
-
     -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -o-border-radius: 5px;
     border-radius: 5px;
     font-size: 15px;
-    /*background: none;*/
-
-
 }
 
 
@@ -299,7 +306,7 @@ input[type=submit]:hover {
     padding: 0;
 }
 
-/*Merge into the input type submit block?*/
+
 #sign-up {
     width: 95%;
     height: 3.5em;
@@ -310,25 +317,28 @@ input[type=submit]:hover {
     text-transform: uppercase;
     -webkit-appearance: button;
     -moz-appearance: button;
+    -o-appearance: button;
     appearance: button;
     text-decoration: none;
     color: #ffffff;
     -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -o-border-radius: 5px;
     border-radius: 5px;
     border: 1px solid #333333;
     margin: 3px auto;
-    /*background: rgba(255, 255, 255, 0);*/
     background-color: green;
     -webkit-transition: 0.6s ease-in-out 0s;
     -moz-transition: 0.6s ease-in-out 0s;
     -o-transition: 0.6s ease-in-out 0s;
     transition: 0.6s ease-in-out 0s;
-    /*background: none;*/
 }
+
 
 #logoutbutton:focus {
     outline: none;
 }
+
 
 #sign-up:hover {
     background-color: #FF6600;
@@ -345,28 +355,32 @@ footer {
     opacity: 0.5;
 }
 
+
 footer p {
     width: 100%;
 }
+
 
 footer p:first {
     margin-top: 1em;
 }
 
+
 footer p:last-child {
     padding-bottom: 1em;
 }
+
 
 footer a {
     text-decoration: none;
     color: #FF6600;
 }
 
+
 footer a:hover {
     color: green;
     text-decoration: underline;
 }
-
 
 
 #footer-line {
@@ -379,6 +393,7 @@ footer a:hover {
     font-size: 15px;
 }
 
+
 #profilebutton, #logoutbutton {
     width: 95%;
     height: 3.5em;
@@ -389,10 +404,13 @@ footer a:hover {
     text-transform: uppercase;
     -webkit-appearance: button;
     -moz-appearance: button;
+    -o-appearance: button;
     appearance: button;
     text-decoration: none;
     color: #ffffff;
     -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -o-border-radius: 5px;
     border-radius: 5px;
     border: 1px solid #333333;
     margin: 3px auto;
@@ -402,33 +420,64 @@ footer a:hover {
     transition: 0.3s ease-in-out 0s;
 }
 
+
 #logoutbutton {
     background-color: green;
 }
+
 
 #logoutbutton:hover {
     background-color: red;
 }
 
+
 #logoutbutton:focus {
     outline: none;
 }
+
 
 #profilebutton {
     background-color: transparent;
     color: white;
 }
 
+
 #profilebutton:hover {
     background-color: white;
     color: black;
 }
 
+
 #profilebutton:focus {
     outline: none;
 }
 
+
 #username-word {
     font-size: 18px;
     line-height: 3.5em;
+}
+
+
+.invalid:-moz-placeholder{
+    color: red;
+    opacity: 0.4;
+}
+
+
+.invalid::-moz-placeholder{
+    color: red;
+    opacity: 0.4;
+}
+
+
+.invalid::-webkit-input-placeholder{
+    color: red;
+    opacity: 0.4;
+}
+
+
+.invalid:-ms-input-placeholder{
+    color: red;
+    opacity: 0.4;
 }

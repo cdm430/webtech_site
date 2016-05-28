@@ -14,7 +14,6 @@ function changeButton() {
     var $activateButton = $('#activate-button');
     if($activateButton.text() === 'Animate') {
         $activateButton.text("Stop");
-        console.log("FLAG");
     }
     else {
         $activateButton.text("Animate");

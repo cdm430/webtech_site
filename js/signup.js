@@ -2,27 +2,24 @@
 
 $(document).ready(start);
 
-
 function start() {
     $("#sign-up-form").on("submit", submitSignUp);
 }
 
 
+/*
+ * Sumbits the request with all of the user input from the sign up form
+ */
 function submitSignUp(e) {
     e.preventDefault();
-    console.log("FLAG");
     if(checkInputs() === true) {
-        //var fName = $('#fname').val(), lName = $('#lname').val(), uName = $('#uname').val(),
-        //    email = $('#email').val(), pass = $('#pass1').val(), gender = $('#gender').val();
         var details = $('#sign-up-form').serialize();
-        console.log("serialised: " + JSON.stringify(details));
         var url = "create-account?" + details;
 
         var xmlhttp = new XMLHttpRequest();
         xmlhttp.open("GET", url, true);
         xmlhttp.onreadystatechange = function () {
             if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-                console.log("Completed");
                 var responseString = xmlhttp.responseText;
                 if(responseString === "taken") {
                     $('input[name="username"]').val("");
@@ -40,12 +37,16 @@ function submitSignUp(e) {
 }
 
 
+/*
+ * Client side validation of the inputs. Checks if any fields are empty, if the
+ * passwords match, if a gender has been selected and if the email contains an
+ * '@' or a '.' symbol. If any of these fail, then a request is not sent
+ * and an error message is displayed in appropriate input box
+ */
 function checkInputs() {
-    console.log("flag2");
     var passed = true;
     var inputs = $('.value').not(':input[type=submit]');
     $(inputs).each(function() {
-        console.log("value: " + $(this).val());
         if($(this).val() === "") {
             passed = false;
             return;

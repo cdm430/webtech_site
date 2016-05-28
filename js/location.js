@@ -1,16 +1,5 @@
 "use strict";
 
-
-if(addEventListener) {
-    addEventListener("load", start);
-}
-else { attachEvent("onload", start); }
-
-// map = new google.maps.Map(document.getElementById('map'), {
-//   center: {lat: -34.397, lng: 150.644},
-//   zoom: 8
-// });
-
 function initMap() {
     var myLatlng = {lat: 41.2146192, lng: -124.0084718};
     var map;
@@ -26,8 +15,6 @@ function initMap() {
     });
 
     map.addListener('center_changed', function() {
-    // 3 seconds after the center of the map has changed, pan back to the
-    // marker.
         window.setTimeout(function() {
             map.panTo(marker.getPosition());
         }, 3000);
@@ -37,13 +24,4 @@ function initMap() {
         map.setZoom(15);
         map.setCenter(marker.getPosition());
     });
-
-
-    console.log("hello");
-    console.log(map);
-    console.log($('#map').css('visibility'));
-}
-
-function start(){
-    // initMap();
 }

@@ -36,6 +36,7 @@ function start(){
           if (xmlhttp.readyState==4 && xmlhttp.status==200){
               var responseString = xmlhttp.responseText;
               if(responseString === "nf") {
+                  showWrongLoginHint();
                   console.log("user not found!!!!!");
                   return;
               }
@@ -135,6 +136,19 @@ function changeLoginBox() {
     $('#logoutbutton').on('click', logOut);
 }
 
+
+function showWrongLoginHint() {
+    $('#username, #password').val("");
+    $('#username').attr('placeholder', 'Invalid username or password');
+    $('#username').addClass('invalid');
+
+    $('#username, #password').on("click", function() {
+        $('#username').removeClass('invalid');
+        $('#username').attr('placeholder', 'Username');
+    })
+}
+
+
 function logOut() {
     var url = "logout";
     var xmlhttp = new XMLHttpRequest();
@@ -145,7 +159,6 @@ function logOut() {
           var responseString = xmlhttp.responseText;
           if(responseString === "loggedout") {
             console.log("logged out and must revert html for log in box");
-            clearUserInfo();
             window.location="https://localhost:8443/";
           }
       }
@@ -184,6 +197,7 @@ function lineAnimate(){
 function lineRedraw() {
     lineHide();
 }
+
 
 
 function showHint(e) {

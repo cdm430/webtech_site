@@ -4,6 +4,10 @@ var canvas, canvasWidth, canvasHeight, rad, seg, scene, camera, ambLight,
     direcLight, renderer, geometry, material, sphere, cloudSphere, cloudMaterial,
     clouds, rendering, spinning = false;
 
+/*
+ * Sets up the canvas with the planet on page load. This is concealed by an
+ * image of the planet, which is removed once the user clicks "animate"
+ */
 $(document).ready(function (){
   setup();
   $('.activate').on("click", function() {
@@ -18,6 +22,11 @@ $(document).ready(function (){
 });
 
 
+/*
+ * Sets up all of the fields of the globe, including the sphere proportions and
+ * the various textures that are wrapped around it. The various lighting also
+ * generated here
+ */
 function setup() {
   canvas = document.getElementById('endor-canvas');
   canvasWidth = window.innerWidth / 2;
@@ -60,8 +69,10 @@ function setup() {
 }
 
 
-
-
+/*
+ * This function animates the globe and renders it to the screen. It also
+ * removes the image of the planet that would be obstructing it
+ */
 function spin() {
   spinning = true;
   var render = function(){
@@ -79,10 +90,11 @@ function spin() {
 }
 
 
+/*
+ * Allows the user to pause the animation
+ */
 function stop() {
   spinning = false;
   cancelAnimationFrame(rendering);
   changeButton();
-  var division = querySelector('.planet-side');
-  division.innerHTML = '<img src=\"static-planet.png\" />';
 }

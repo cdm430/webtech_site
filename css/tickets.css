@@ -1,24 +1,19 @@
 .black{
-    /*position: relative;*/
     background-color: #0d0d0d;
-    /*background-color: red;*/
-    /*top: 350px;*/
     height: 400px;
-    /*height: auto;*/
-    /*clear: both;*/
-    /*padding: 20px;*/
     z-index: 10;
     width: 100%;
-    /*margin: -1px 0 -1px 0;*/
     display: block;
     color: #ffffff;
 }
+
 
 h2 {
     font-size: 35px;
     text-align: center;
     opacity: 0;
 }
+
 
 ul {
     line-height: 2em;
@@ -28,29 +23,30 @@ ul {
 
 .text {
     width: 50%;
-    /*display: inline;*/
-    /*float: left;*/
     margin: 0;
     z-index: 10;
 }
-
 
 
 .black .text {
     float:left;
 }
 
+
 .black .buttons {
     float:right;
 }
+
 
 .frosted .text {
     float:right;
 }
 
+
 .frosted .buttons {
     float:left;
 }
+
 
 .underline {
     background-color: #FF6600;
@@ -60,14 +56,13 @@ ul {
     margin: 0 auto;
 }
 
+
 .buttons {
     width: 50%;
-    /*display: inline;*/
-    /*float: right;*/
-    /*background-color: yellow;*/
     margin: 0;
     text-align: center;
 }
+
 
 .purchase, .terms, .sign-in, .purchase-frosted, .terms-frosted {
     display: block;
@@ -76,8 +71,9 @@ ul {
     position: relative;
     width: 50%;
     font-size: 15px;
-    color: #ffffff;
     -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -o-border-radius: 5px;
     border-radius: 5px;
     border: 1px solid #333333;
     -webkit-transition: 0.6s ease-in-out 0s;
@@ -90,27 +86,33 @@ ul {
     color: #ffffff;
 }
 
+
 .purchase, .terms, .purchase-frosted, .terms-frosted {
     background-color: transparent;
 }
+
 
 .purchase-frosted, .terms-frosted {
     color: #000000;
 }
 
+
 .sign-in {
     background-color: green;
 }
+
 
 .purchase:hover, .terms:hover {
     background-color: #d3d3d3;
     color: #000000;
 }
 
+
 .purchase-frosted:hover, .terms-frosted:hover {
     background-color: #47515b;
     color: #ffffff;
 }
+
 
 .sign-in:hover {
     background-color: #FF6600;
@@ -119,8 +121,9 @@ ul {
 
 .scrolling {
     position: relative;
-    top:54em;
+    top: 54em;
 }
+
 
 #tickets{
     margin: 90px auto;
@@ -131,16 +134,16 @@ ul {
 .triangle {
     position: relative;
     width: 100%;
-    /*margin-top: -1px;*/
     clear: both;
     display: block;
-    /*background-color: green;*/
     margin: 0;
 }
+
 
 #footer-container{
     height:30em;
 }
+
 
 .procured {
     position: relative;
@@ -154,17 +157,18 @@ ul {
     opacity: 0;
 }
 
+
 .tick {
     height: 3.5em;
     margin: 0 0 0 1em;
     float: left;
 }
 
+
 .purchased-text {
     font-size: 15px;
     height: 3.5em;
     line-height: 3.5em;
-    /*width: 50%;*/
     float: left;
     margin-left: 3em;
 }
@@ -177,17 +181,19 @@ ul {
     margin: 0;
 }
 
+
 .frosted{
     background: rgba(255, 255, 255, 0.6);
     color: black;
     z-index: 10;
 }
 
+
 .package{
     height: 400px;
     z-index: 10;
-    /*background-color: red;*/
 }
+
 
 #arrow {
     width: 100px;
@@ -198,6 +204,7 @@ ul {
     position: fixed;
     z-index: -1;
 }
+
 
 footer {
     top: 33em;

@@ -1,48 +1,54 @@
 body {
-    font-family: "Raleway";
-    font-weight: bold;
-    color: #ffffff;
-    margin: 0 0 0 0;
-    padding: 0 0 0 0;
-    background-color: #0d0d0d;
     background-position: left top;
     background-attachment: fixed;
+    background-color: #0d0d0d;
+    font-family: "Raleway";
+    font-weight: bold;
+    padding: 0 0 0 0;
     min-width: 900px;
+    margin: 0 0 0 0;
+    color: #ffffff;
 }
 
+
 .event-text {
-    position: relative;
-    margin: 5% 0% 0% 0%;
     text-align: justify;
+    margin: 5% 0% 0% 0%;
+    position: relative;
+    line-height: 1.2;
+    font-size: 1em;
     display: block;
     width: 100%;
     clear: left;
-    font-size: 1em;
-    line-height: 1.2;
 }
+
 
 .event-image {
     width: 100%;
 }
 
+
 #event-info {
-    clear: both;
     width: 50%;
-    height: 100%;
+    clear: both;
     margin: auto;
-    position: relative;
+    height: 100%;
     margin-top: 170px;
+    position: relative;
 }
+
 
 #map {
     height: 50%;
-    visibility: visible;
     position: relative
+    visibility: visible;
 }
+
 
 html{
     height:100%;
 }
+
 
 body{
     height:100%;
@@ -54,6 +60,7 @@ body{
     position: fixed;
     top: 10em;
 }
+
 
 #twitter, #instagram, #facebook {
     position: relative;
@@ -78,6 +85,7 @@ body{
     filter: opacity(100%);
 }
 
-.twitter-timeline {
 
+.spacer {
+    height: 130em;
 }

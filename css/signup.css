@@ -6,8 +6,6 @@
 .user-info {
     width: 80%;
     margin: 0 auto;
-    /*min-height: 1300px;*/
-    /*background-color: red;*/
 }
 
 
@@ -20,11 +18,11 @@
     top: 10em;
     display: block;
     -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -o-border-radius: 5px;
     border-radius: 5px;
     border: 1px solid #333333;
     min-width: 500px;
-    /*background-color: red;*/
-
 }
 
 
@@ -49,34 +47,36 @@ input[type=radio] {
     width: 50%;
 }
 
+
 .info-line {
     width: 100%;
     height: 2.5em;
     display: inline-block;
     font-size: 20px;
     padding: 0;
-    margin: 0;
     margin: 0.25em 0;
-    /*background-color: green;*/
 }
+
 
 .info-type {
     vertical-align: middle;
-    /*display: inline;*/
     line-height: 2.5em;
     height: 2.5em;
 }
 
+
 .signinput {
     float: right;
     -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -o-border-radius: 5px;
     border-radius: 5px;
     border: 1px solid #333333;
     width: 60%;
     height: 2.5em;
     display: block;
-    /*background-color: purple;*/
 }
+
 
 .button-outfit {
     display: inline;
@@ -87,6 +87,8 @@ input[type=radio] {
     font-size: 15px;
     color: #ffffff;
     -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -o-border-radius: 5px;
     border-radius: 5px;
     border: 1px solid #333333;
     -webkit-transition: 0.6s ease-in-out 0s;
@@ -94,14 +96,15 @@ input[type=radio] {
     -o-transition: 0.6s ease-in-out 0s;
     transition: 0.6s ease-in-out 0s;
     text-transform: uppercase;
-    color: #ffffff;
     cursor: pointer;
 }
+
 
 .button-outfit:hover {
     background-color: #d3d3d3;
     color: #000000;
 }
+
 
 .button-outfit:active {
     background-color: green;
@@ -117,9 +120,10 @@ input[type=radio] {
     margin-bottom: 2em;
     top: 2em;
     -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -o-border-radius: 5px;
     border-radius: 5px;
     border: 1px solid #333333;
-
 }
 
 
@@ -128,15 +132,18 @@ input[type=radio] {
     opacity: 0.4;
 }
 
+
 .signinput::-moz-placeholder{
     color: red;
     opacity: 0.4;
 }
 
+
 .signinput::-webkit-input-placeholder{
     color: red;
     opacity: 0.4;
 }
+
 
 .signinput:-ms-input-placeholder{
     color: red;
@@ -144,7 +151,6 @@ input[type=radio] {
 }
 
 
-
 #spacer {
-    height: 15em;
+    height: 18em;
 }

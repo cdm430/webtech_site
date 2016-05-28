@@ -1,6 +1,7 @@
 "use script";
 
 $(document).ready(start);
+
 var fname, lname, uname, email, gender;
 var costume = [
     {"head" : "Helmet: brown",
@@ -13,24 +14,31 @@ var costume = [
     "feet" : "Boots: black"}
 ];
 
+
 function start() {
     previewFile();
+    $('.button-outfit').off().on('click', logoChange);
 }
 
 
+/*
+ * Sends the server request that retrieves the user's information from the
+ * database. This information is then used to fill in the fields on the
+ * profile page
+ */
 function getUserInfo() {
     var url = "get-user-info";
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.open("GET", url, true);
+
     xmlhttp.onreadystatechange = function() {
         if(xmlhttp.readyState==4 && xmlhttp.status==200) {
             var responseString = xmlhttp.responseText;
             if(responseString === "nf") {
-                console.log("Something went wrong. Couldn't retrieve user info");
+                console.log("Couldn't retrieve user info");
             }
             else {
                 var responseObject = JSON.parse(responseString);
-                console.log("response object in getUserInfo " + responseObject);
                 fname = responseObject.fname;
                 lname = responseObject.lname;
                 uname = responseObject.username;
@@ -44,6 +52,10 @@ function getUserInfo() {
 }
 
 
+/*
+ * Uses the information obtained from the database for a particular user to
+ * fill in the various sections on the profile page.
+ */
 function setUserInfo() {
     var nameHTML = fname + " " + lname;
     var unameHTML = username;
@@ -56,10 +68,15 @@ function setUserInfo() {
     $('#gender').text(genderHTML);
 }
 
+
 function addCostumeListener() {
-    $('.button-outfit').on('click', seeCostumeInfo);
+    $('.button-outfit').off().on('click', seeCostumeInfo);
 }
 
+
+/*
+ * Fills out the user's costume information, based on their genderHTML
+ */
 function addCostumeInfo() {
     var index;
     if(gender === "Male") index = 0;
@@ -77,24 +94,9 @@ function addCostumeInfo() {
 }
 
 
-function clearUserInfo() {
-    $('.box').each(function() {
-        $(this).text("")
-    });
-    $('.costume-box').each(function() {
-        $(this).text("");
-    });
-    fname = null;
-    lname = null;
-    uname = null;
-    email = null;
-    gender = null;
-}
-
-
 function previewFile(){
-    var preview = document.querySelector('#new-pic'); //selects the query named img
-    var file    = document.querySelector('input[type=file]').files[0]; //sames as here
+    var preview = document.querySelector('#new-pic');
+    var file    = document.querySelector('input[type=file]').files[0];
     var reader  = new FileReader();
 
     reader.onloadend = function () {
@@ -102,17 +104,21 @@ function previewFile(){
     }
 
     if (file) {
-        reader.readAsDataURL(file); //reads the data as a URL
+        reader.readAsDataURL(file);
     } else {
         preview.src = "";
     }
 }
 
 
+/*
+ * Creates a drop down menu displayiong the user's costume information
+ */
 function seeCostumeInfo() {
     var $costumeInfo = $('.costume-container');
     var newOpacity;
     var newHeight;
+
     if($costumeInfo.css('opacity') == 0) {
         newOpacity = 1;
         newHeight = '15em';
